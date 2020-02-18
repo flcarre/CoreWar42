@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_init.c                                          :+:      :+:    :+:   */
+/*   disp_hexlen.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/22 16:27:41 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/17 01:21:19 by hasni            ###   ########.fr       */
+/*   Created: 2020/02/10 16:15:19 by hasni             #+#    #+#             */
+/*   Updated: 2020/02/18 15:29:27 by hasni            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/asm.h"
 
-void    init_asm(t_asm *asmb)
+void	disp_hexlen(int fd, size_t size, int len)
 {
-    asmb->fd = 0;
-    asmb->line = NULL;
-    asmb->file_name = NULL;
-    asmb->check = 0;
-    asmb->have_quote = 0;
-    ft_bzero(asmb->prog_name, PROG_NAME_LENGTH + 1);
-	ft_bzero(asmb->prog_comment, COMMENT_LENGTH + 1);
-    asmb->accu_len = 0;
-	asmb->inst = NULL;
-	asmb->labels = NULL;
+	unsigned char	*tmp;
+	int				i;
+
+	i = len;
+	if (!(tmp = (unsigned char*)ft_memalloc(i * sizeof(unsigned char))))
+		return ;
+	while (size && i > 0)
+	{
+		tmp[--i] = size % 256;
+		size /= 256;
+	}
+	write(fd, tmp, len);
+	ft_memdel((void**)&tmp);
 }

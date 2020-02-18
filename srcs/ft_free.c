@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 02:26:03 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/01 02:39:43 by wahasni          ###   ########.fr       */
+/*   Updated: 2020/02/11 18:33:21 by hasni            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	free_inst(t_inst *inst)
 	{
 		free_tab((void **)inst->param_arr);
 		tmp = inst->next;
-		ft_memdel((void **)inst);
+		// 	ft_memdel((void **)inst);
 		inst = tmp;
 	}
 }

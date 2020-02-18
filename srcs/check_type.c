@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_type.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 02:36:09 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/01 01:55:24 by wahasni          ###   ########.fr       */
+/*   Updated: 2020/02/15 20:35:42 by hasni            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static t_bool	check_registry(char *str)
 	int		num;
 
 	str++;
-	if (!ft_isdigit(*str) || *str == '0')
+	if (!ft_isdigit(*str)) //  *str == '0'
 		return (ft_error("registry argument has wrong format", 1));
 	num = ft_atoi(str);
 	if (num < 1 || num > REG_NUMBER)

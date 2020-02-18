@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_comment.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 02:04:51 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/01 02:03:55 by wahasni          ###   ########.fr       */
+/*   Updated: 2020/02/18 22:15:37 by hasni            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,27 @@ static t_bool	handle_comment(t_asm *asmb, char **line)
 	len = ft_strchrindex(tmp, '"');
 	if (len > COMMENT_LENGTH)
 		return (ft_error("comment too long", 1));
-	while (ret > 0 && !tmp[ft_strchrindex(tmp, '"')])
+	while (ret > 0)
 	{
 		ft_strlcat(asmb->prog_comment, tmp, COMMENT_LENGTH);
+		ft_strcat(asmb->prog_comment, "\n");
 		ft_strdel(&asmb->line);
+        ft_printf("tmp : %s\n", tmp);
+        if (ft_strchr(tmp, '"'))
+        {
+        	asmb->prog_comment[ft_strlen(asmb->prog_comment) - 1] = 0;
+			asmb->have_quote |= QUOTE_COMMENT;
+            break ;
+		}
 		ret = get_next_line(asmb->fd, &asmb->line);
 		tmp = asmb->line;
 		len += ft_strchrindex(tmp, '"') + 1;
-		if (len > COMMENT_LENGTH)
+        // ft_printf("size comment : %d\n", ft_strlen(asmb->prog_comment));
+		if (ft_strlen(asmb->prog_comment) - 1 > COMMENT_LENGTH)
+	    {
+            // ft_printf("|%s|\n", asmb->prog_comment);
 			return (ft_error("comment too long", 1));
+        }
 	}
 	*line = tmp;
     return (0);
@@ -54,10 +66,10 @@ t_bool			parse_comment(t_asm *asmb)
     if (handle_comment(asmb, &line))
         return (1);
     n_len = ft_strchrindex(line, '"');
-    if (!line[n_len] || line[n_len + 1 + ft_strspn(line + n_len + 1, " ")])
-        ft_error("could not find ending '\"' at the end of the comment", 1);
+    if (!(asmb->have_quote & QUOTE_COMMENT))
+        return (ft_error("could not find ending '\"' at the end of the comment", 1));
     if (n_len > COMMENT_LENGTH)
-        ft_error("comment too long", 1);
+        return (ft_error("comment too long", 1));
     ft_strlcat(asmb->prog_comment, line, n_len + 1);
     asmb->check |= HAVE_COMMENT;
     return (0);

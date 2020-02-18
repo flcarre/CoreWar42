@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_instruction.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 02:20:58 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/01 03:31:04 by wahasni          ###   ########.fr       */
+/*   Updated: 2020/02/18 01:25:10 by hasni            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,18 @@
 static void		remove_comment(char *str)
 {
 	int		i;
+	int		j;
+	int		index;
 
 	i = ft_strchrindex(str, COMMENT_CHAR);
-	if (i >= 0)
-		while (str[i])
-			str[i++] = 0;
+	j = ft_strchrindex(str, ALT_COMMENT_CHAR);
+	if (i > j)
+		index = j;
+	else
+		index = i;
+	if (index >= 0)
+		while (str[index])
+			str[index] = 0;
 }
 
 static t_inst	*create_inst(t_asm *asmb, t_op *op)
@@ -44,7 +51,7 @@ static t_op		*check_inst(char *str)
 
 	inst = NULL;
 	inst_len = 0;
-	while (str[inst_len] && !ft_isspace(str[inst_len]))
+	while (str[inst_len] && !ft_isspace(str[inst_len]) && str[inst_len] != DIRECT_CHAR)
 		inst_len++;
 	if (!(inst = ft_strsub(str, 0, inst_len)))
 		return (NULL);
@@ -60,7 +67,7 @@ static int		check_label_infront(t_asm *asmb, char *str)
 	int		j;
 
 	i = 0;
-	while (str[i] && !ft_isspace(str[i]))
+	while (str[i] && !ft_isspace(str[i]) && str[i] != DIRECT_CHAR)
 	{
 		if (str[i] == LABEL_CHAR)
 		{
@@ -83,25 +90,17 @@ t_bool			parse_instruction(t_asm *asmb)
 	t_op	*op;
 	t_inst	*inst;
 
-	// ft_printf("{green}Line : %s\n{reset}\n", asmb->line);
 	remove_comment(asmb->line);
-	// ft_printf("{white}11111{reset}\n");
 	if (!(str = ft_strtrim(asmb->line)))
 		return (1);
-	// ft_printf("{white}222222{reset}\n");
 	i = check_label_infront(asmb, str);
-	// ft_printf("{white}333333{reset}\n");
 	if (!str[i])
 	    return (free_str_value(str, 1));
-	// ft_printf("{white}444444{reset}\n");
-	i = skip_space(str, i);
-	// ft_printf("{white}555555{reset}\n");
+	i = skip_space(str, i);	
 	if (!(op = check_inst(str + i)))
 	    return (free_str_value(str, 0));
-	// ft_printf("{white}666666{reset}\n");
 	if (!(inst = create_inst(asmb, op)))
 	    return (free_str_value(str, 0));
-	// ft_printf("{white}777777{reset}\n");
 	i = skip_nonspace(str, i);
 	i = skip_space(str, i);
 	if (check_param(str + i, op, inst))

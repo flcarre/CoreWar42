@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asm.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 21:26:10 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/01 02:16:16 by wahasni          ###   ########.fr       */
+/*   Updated: 2020/02/17 01:20:39 by hasni            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 
 # define HAVE_NAME 1
 # define HAVE_COMMENT 2
+# define QUOTE_NAME 1
+# define QUOTE_COMMENT 2
 # define t_bool int // => Voir comment opti 
 
 typedef struct		s_op
@@ -60,8 +62,9 @@ typedef struct		s_asm
     char			*file_name;
 	char			prog_name[PROG_NAME_LENGTH + 1];
 	char			prog_comment[COMMENT_LENGTH + 1];
-	char			check;
-	int				accu_len;
+	char			check; // Have prog name - comment
+	char			have_quote;
+	int				accu_len; // Len of exec code
 	t_inst			*inst;
 	t_label			*labels;
 }					t_asm;
@@ -71,6 +74,7 @@ typedef struct		s_asm
 */
 
 int					ft_error(char *str, int ret);
+char				*ft_error_str(char *str, char *ret);
 
 /*
 ** INIT
@@ -116,5 +120,12 @@ void				free_tab(void **tab);
 
 void				ft_list_push_back_inst(t_inst **begin_list, t_inst *inst);
 void				ft_list_push_back_label(t_label **begin_list, char *name, int addr);
+
+/*
+** OUTPUT
+*/
+
+t_bool				output(t_asm *asmb);
+void				disp_hexlen(int fd, size_t size, int len);
 
 #endif
