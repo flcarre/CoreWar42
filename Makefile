@@ -6,7 +6,7 @@
 #    By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/18 22:47:08 by lutsiara          #+#    #+#              #
-#    Updated: 2020/02/19 16:30:38 by lutsiara         ###   ########.fr        #
+#    Updated: 2020/02/19 17:43:00 by lutsiara         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,8 +35,17 @@ fclean: clean
 	@make -C $(ASM) fclean
 	@make -C $(VM) fclean
 
+lib:
+	@make -C $(LIB)
+
+vm:
+	@make -C $(VM)
+
+asm:
+	@make -C $(ASM)
+
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean lib vm asm re
 
 .NOTPARALLEL: re
