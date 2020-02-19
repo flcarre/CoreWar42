@@ -3,19 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/15 11:07:25 by yabecret          #+#    #+#             */
-/*   Updated: 2018/11/20 18:06:04 by yabecret         ###   ########.fr       */
+/*   Created: 2018/11/09 16:10:25 by lutsiara          #+#    #+#             */
+/*   Updated: 2019/03/13 16:25:38 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-int	ft_isupper(int c)
+int		ft_isupper(int c)
 {
-	if (c >= 65 && c <= 90)
-		return (1);
-	else
-		return (0);
+	return (c >= 0101 && c <= 0132);
 }

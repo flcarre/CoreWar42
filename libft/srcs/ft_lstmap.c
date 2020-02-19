@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wahasni <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/16 13:10:23 by wahasni           #+#    #+#             */
-/*   Updated: 2018/11/27 16:49:12 by wahasni          ###   ########.fr       */
+/*   Created: 2018/11/13 15:29:35 by lutsiara          #+#    #+#             */
+/*   Updated: 2019/03/13 16:25:11 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,22 @@
 
 t_list		*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
 {
-	t_list	*sortie;
+	t_list		*ltmp;
+	t_list		*nelem;
 
-	if (lst)
+	if (!lst || !f)
+		return ((void *)0);
+	ltmp = (void *)0;
+	while (lst)
 	{
-		sortie = f(lst);
-		sortie->next = ft_lstmap(lst->next, f);
-		return (sortie);
+		if (!(nelem = f(lst)))
+		{
+			ft_lstdel(&ltmp, &ft_delcontent);
+			return ((void *)0);
+		}
+		ft_lstenqueue(&ltmp, nelem);
+		lst = lst->next;
+		nelem = (void *)0;
 	}
-	return (NULL);
+	return (ltmp);
 }

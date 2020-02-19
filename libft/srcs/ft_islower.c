@@ -3,19 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_islower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yabecret <yabecret@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/15 11:02:24 by yabecret          #+#    #+#             */
-/*   Updated: 2018/11/20 18:06:10 by yabecret         ###   ########.fr       */
+/*   Created: 2018/11/09 16:07:09 by lutsiara          #+#    #+#             */
+/*   Updated: 2019/03/13 16:25:58 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-int	ft_islower(int c)
+int		ft_islower(int c)
 {
-	if (c >= 97 && c <= 122)
-		return (1);
-	else
-		return (0);
+	return (c >= 0141 && c <= 0172);
 }

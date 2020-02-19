@@ -3,111 +3,38 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+         #
+#    By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/06/13 01:37:54 by wahasni           #+#    #+#              #
-#    Updated: 2020/02/01 02:25:16 by wahasni          ###   ########.fr        #
+#    Created: 2020/02/18 22:47:08 by lutsiara          #+#    #+#              #
+#    Updated: 2020/02/18 22:48:46 by lutsiara         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# Executable
-NAME	=	asm
+LIB = libft/
+VM = vm/
+ASM = asm/
 
-# Compilation
-CC			=	@cc
-CFLAGS		=	-O3 -Wall -Wextra -Werror
-CPPFLAGS	=	-Iinclude
+LIBFT = libft/libft.a
 
-# Files && Objs
+export LIBFT
 
-SRC_PATH	= srcs
+all:
+	@make -C $(LIB)
+	@make -C $(ASM)
+	@make -C $(VM)
 
-OBJ_PATH	= objs
+clean:
+	@make -C $(LIB) clean
+	@make -C $(ASM) clean
+	@make -C $(VM) clean
 
-INC_PATH	= includes
+fclean: clean
+	@make -C $(LIB) fclean
+	@make -C $(ASM) fclean
+	@make -C $(VM) fclean
 
-LIB			= ./libft/
-LDFLAGS		= -Llibft
-LDLIBS		= -lft
+re: fclean all
 
-SRC_NAME 	=	check_param.c\
-				check_parsing.c\
-				check_type.c\
-				ft_error.c\
-				ft_free.c\
-				ft_init.c\
-				ft_list.c\
-				ft_skip.c\
-				get_op.c\
-				get_param.c\
-				main.c\
-				parse_comment.c\
-				parse_instruction.c\
-				parse_name.c\
-				parser.c\
+.PHONY: all clean fclean re
 
-OBJ_NAME = $(SRC_NAME:.c=.o)
-
-SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
-
-OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
-
-# **************************************************************************** #
-
-# SPECIAL CHARS
-
-LOG_CLEAR		= \033[2K
-LOG_UP			= \033[A
-LOG_NOCOLOR		= \033[0m
-LOG_BOLD		= \033[1m
-LOG_UNDERLINE	= \033[4m
-LOG_BLINKING	= \033[5m
-LOG_BLACK		= \033[1;30m
-LOG_RED			= \033[1;31m
-LOG_GREEN		= \033[1;32m
-LOG_YELLOW		= \033[1;33m
-LOG_BLUE		= \033[1;34m
-LOG_VIOLET		= \033[1;35m
-LOG_CYAN		= \033[1;36m
-LOG_WHITE		= \033[1;37m
-
-# Protect
-
-.PHONY:	all clean fclean re
-
-# **************************************************************************** #
-
-# RULES
-
-# Main rules
-all				:  $(OBJ_PATH) $(NAME)
-
-re				: 	fclean all
-
-# Compilation rules
-$(OBJ_PATH)		:
-				 	@mkdir $(OBJ_PATH) 2> /dev/null || true
-
-
-$(NAME)			:	$(OBJ)
-					@make -C $(LIB)
-					@$(CC) $(CFLAGS) $(CPPFLAGS) -g -o $@ $^ $(LIB)libft.a
-					@echo "make $(NAME)$(LOG_GREEN) ✓ $(LOG_NOCOLOR)"
-
-$(OBJ_PATH)/%.o:	$(SRC_PATH)/%.c
-					$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
-
-# Clean rules
-clean			:
-					@cd libft && $(MAKE) clean
-					@rm -rf $(OBJ_PATH)
-					@echo "Removes all .o & $(OBJ_PATH)/$(LOG_GREEN) ✓ $(LOG_NOCOLOR)"
-
-fclean			: 	clean
-					@cd libft && $(MAKE) fclean
-					@rm -f $(NAME)
-					@echo "Remove $(NAME)$(LOG_GREEN) ✓ $(LOG_NOCOLOR)"
-norme:
-					@norminette $(SRC)
-					@norminette $(INC_PATH)/
-# **************************************************************************** #
+.NOTPARALLEL: re

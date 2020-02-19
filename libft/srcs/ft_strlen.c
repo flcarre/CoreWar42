@@ -3,34 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/05 17:12:20 by wahasni           #+#    #+#             */
-/*   Updated: 2019/06/13 00:45:09 by wahasni          ###   ########.fr       */
+/*   Created: 2018/11/08 11:33:53 by lutsiara          #+#    #+#             */
+/*   Updated: 2019/03/13 16:23:27 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-size_t	ft_wstrlen(wchar_t *s)
+unsigned long	ft_strlen(const char *s)
 {
-	int i;
+	unsigned long	len;
 
-	i = 0;
-	while (*s != L'\0')
-	{
-		i += w_charlen(*s);
-		s++;
-	}
-	return (i);
-}
-
-size_t	ft_strlen(const char *str)
-{
-	size_t i;
-
-	i = 0;
-	while (str[i])
-		i++;
-	return (i);
+	len = 0;
+	while (*(s + len))
+		len++;
+	return (len);
 }

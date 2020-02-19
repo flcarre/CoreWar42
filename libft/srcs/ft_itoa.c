@@ -3,37 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wahasni <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/13 19:23:49 by wahasni           #+#    #+#             */
-/*   Updated: 2019/01/30 19:14:04 by wahasni          ###   ########.fr       */
+/*   Created: 2018/11/13 11:09:13 by lutsiara          #+#    #+#             */
+/*   Updated: 2019/05/24 18:13:11 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char		*ft_itoa(int n)
+char	*ft_itoa(int n)
 {
-	size_t		i;
-	size_t		n_size;
-	static char	str[12];
-	char		*min_int;
+	unsigned int	i;
+	int				x;
+	char			*tmp;
 
-	i = 0;
-	ft_bzero(str, 12);
-	n_size = ft_nbrlen(n, 10);
-	if (n == -2147483648)
-		return (min_int = "-2147483648");
-	if (n < 0)
+	i = ft_digitlen(n, 10);
+	i += (n < 0) ? 1 : 0;
+	if (!(tmp = ft_strnew((unsigned long)i)))
+		return ((void *)0);
+	*tmp = (n < 0) ? '-' : '\0';
+	x = n;
+	while ((n < 0) ? (--i) : (i--))
 	{
-		str[0] = '-';
-		n *= -1;
-		i += 1;
+		*(tmp + i) = '0' + ABS(x % 10);
+		x /= 10;
 	}
-	while (i < n_size--)
-	{
-		str[n_size] = (n % 10) + '0';
-		n /= 10;
-	}
-	return (str);
+	return (tmp);
 }

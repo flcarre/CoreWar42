@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wahasni <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/14 13:44:00 by wahasni           #+#    #+#             */
-/*   Updated: 2018/11/15 13:14:14 by wahasni          ###   ########.fr       */
+/*   Created: 2018/11/12 15:08:50 by lutsiara          #+#    #+#             */
+/*   Updated: 2019/03/20 02:05:27 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,26 @@
 
 char	**ft_strsplit(char const *s, char c)
 {
-	size_t	i;
-	size_t	j;
-	size_t	k;
-	char	**w;
+	char			**tmp;
+	unsigned long	w;
+	unsigned long	i;
 
-	i = 0;
-	k = 0;
-	if (!s || !(w = (char **)malloc(sizeof(char *) * (ft_wordcount(s, c) + 1))))
-		return (NULL);
-	while (i < ft_wordcount(s, c))
+	if (!s)
+		return ((void *)0);
+	if (!(tmp = ft_strtabnew(ft_countword(s, c), 0)))
+		return ((void *)0);
+	w = 0;
+	while (*s)
 	{
-		if (!(w[i] = (char *)malloc(sizeof(char) * (ft_wordlen(&s[k], c) + 1))))
-			return (NULL);
-		j = 0;
-		while (s[k] == c)
-			k += 1;
-		while (s[k] != c && s[k])
-			w[i][j++] = s[k++];
-		w[i][j] = '\0';
-		i += 1;
+		while (*s && *s == c)
+			s++;
+		i = 0;
+		while (*(s + i) && *(s + i) != c)
+			i++;
+		if (*s)
+			if (!(tmp[w++] = ft_strsub(s, 0, i)))
+				return (ft_strtabdel(&tmp));
+		s += i;
 	}
-	w[i] = NULL;
-	return (w);
+	return (tmp);
 }

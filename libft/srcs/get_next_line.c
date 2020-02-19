@@ -3,117 +3,135 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ybecret <ybecret@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/17 16:51:47 by ybecret           #+#    #+#             */
-/*   Updated: 2019/04/15 17:50:05 by yabecret         ###   ########.fr       */
+/*   Created: 2018/11/16 13:24:09 by lutsiara          #+#    #+#             */
+/*   Updated: 2019/05/21 18:43:07 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
 #include "get_next_line.h"
 
-static t_fd		*new_line(const int fd, char *buff, t_fd **flst)
+static t_list	*ft_select(int fd, t_list *fd_buff)
 {
-	t_fd	*new;
+	t_list			*p;
+	int				*f;
 
-	if (!(new = (t_fd *)malloc(sizeof(t_fd))))
-		return (NULL);
-	new->fd = fd;
-	new->buff = ft_strdup(buff);
-	if (!(new->buff))
-		return (NULL);
-	new->next = *flst;
-	*flst = new;
-	return (new);
+	if (!fd_buff)
+		return ((void *)0);
+	while (fd_buff)
+	{
+		p = (t_list *)fd_buff->content;
+		f = (int *)(p->content);
+		if (fd == *f)
+			return (p);
+		fd_buff = fd_buff->next;
+	}
+	return ((void *)0);
 }
 
-static t_fd		*fd_tracker(const int fd, t_fd *flst)
+static t_list	*ft_add(int fd, t_list **fd_buff)
 {
-	while (flst)
+	t_list			*tmp;
+	t_list			*f;
+
+	tmp = (void *)0;
+	if (!(tmp = ft_lstnew((void const *)&fd, sizeof(int))))
+		return ((void *)0);
+	ft_lstenqueue(&tmp, ft_lstnew((void const *)"\0", 1));
+	if (!(tmp->next))
 	{
-		if (flst->fd == fd)
-			return (flst);
-		flst = flst->next;
+		ft_lstdel(&tmp, &ft_delcontent);
+		return ((void *)0);
 	}
-	return (NULL);
+	if (!(f = ft_lstnew((void const *)(void *)0, 0)))
+	{
+		ft_lstdel(&tmp, &ft_delcontent);
+		return ((void *)0);
+	}
+	f->content = (void *)tmp;
+	f->content_size = sizeof(t_list) * 2 + sizeof(int) + 1;
+	ft_lstenqueue(fd_buff, f);
+	f = *fd_buff;
+	while (f->next)
+		f = f->next;
+	return ((t_list *)f->content);
 }
 
-static int		check_elem(int const fd, char *buff, t_fd **flst)
+static int		ft_cpy_n_cut(char **line, t_list **buff)
 {
-	t_fd	*elem;
-	char	*tmp;
-
-	elem = fd_tracker(fd, *flst);
-	if (!elem)
-	{
-		if (!(elem = new_line(fd, buff, flst)))
-			return (-1);
-	}
-	else
-	{
-		if (!(tmp = ft_strjoin(elem->buff, buff)))
-			return (-1);
-		free(elem->buff);
-		elem->buff = tmp;
-	}
-	if (ft_strfind(elem->buff, '\n') != 0)
-		return (1);
-	return (0);
-}
-
-static char		*line_tracker(int const fd, t_fd *flst, int i)
-{
-	t_fd	*elem;
-	char	*tmp;
-	char	*res;
-
-	res = NULL;
-	if (!(elem = fd_tracker(fd, flst)) || !elem->buff)
-		return (NULL);
-	if ((ft_strfind(elem->buff, '\n') != 0))
-	{
-		while (elem->buff[i] != '\n' && elem->buff[i] != '\0')
-			i++;
-		res = ft_strsub(elem->buff, 0, i);
-		tmp = ft_strdup(&elem->buff[i + 1]);
-		free(elem->buff);
-		elem->buff = tmp;
-	}
-	else
-	{
-		if (ft_strlen(elem->buff) != 0 && !(res = ft_strdup(elem->buff)))
-			return (NULL);
-		free(elem->buff);
-		elem->buff = NULL;
-	}
-	return (res);
-}
-
-int				get_next_line(int const fd, char **line)
-{
-	static t_fd	*flst;
-	char		buff[GNL_BUFF_SIZE + 1];
-	int			ret;
-	int			end;
-	int			i;
+	char			*s;
+	unsigned long	i;
 
 	i = 0;
-	if (fd < 0 || line == NULL)
+	s = (char *)(*buff)->content;
+	while (*(s + i) && *(s + i) != '\n')
+		i++;
+	if (!(*line = ft_strsub((char const *)s, 0, i)))
 		return (-1);
-	while ((ret = read(fd, buff, GNL_BUFF_SIZE)) != 0)
+	i += (*(s + i) == '\n') ? 1 : 0;
+	(*buff)->content = (void *)ft_strdup(s + i);
+	ft_memdel((void **)&s);
+	s = (char *)(*buff)->content;
+	if (!s)
+		return (-1);
+	(*buff)->content_size = ft_strlen((const char *)s) + 1;
+	return (1);
+}
+
+static int		ft_fddel(int ret, t_list **fd_buff, t_list **p)
+{
+	t_list		*f;
+	t_list		*i;
+
+	f = (*fd_buff);
+	while (f->content != (void *)(*p))
 	{
-		if (ret < 0)
-			return (-1);
-		buff[ret] = '\0';
-		if ((end = check_elem(fd, buff, &flst)) == 1)
-		{
-			*line = line_tracker(fd, flst, i);
-			return (1);
-		}
-		if (end == -1)
-			return (-1);
+		i = f;
+		f = f->next;
 	}
-	if ((*line = line_tracker(fd, flst, i)) != NULL)
-		return (1);
-	return (0);
+	if (f == (*fd_buff))
+	{
+		i = f->next;
+		ft_lstdel(p, &ft_delcontent);
+		(*fd_buff)->content_size = 0;
+		ft_memdel((void **)&(*fd_buff));
+		*fd_buff = i;
+		return ((ret < 0) ? -1 : 0);
+	}
+	ft_lstdel(p, &ft_delcontent);
+	f->content_size = 0;
+	i->next = f->next;
+	ft_memdel((void **)&f);
+	return ((ret < 0) ? -1 : 0);
+}
+
+int				get_next_line(const int fd, char **line)
+{
+	static t_list	*fd_buff = (void *)0;
+	t_list			*p;
+	char			*s;
+	char			b[ABS(BUFF_SIZE) + 1];
+	long			r;
+
+	if (fd < 0 || !line || !(p = ft_select(fd, fd_buff)))
+		if (fd < 0 || !line || !(p = ft_add(fd, &fd_buff)))
+			return (-1);
+	while ((r = read(fd, b, BUFF_SIZE)) > 0)
+	{
+		b[r] = '\0';
+		s = (char *)(p->next->content);
+		p->next->content = (void *)ft_strjoin((char const *)s, (char const *)b);
+		ft_memdel((void **)&s);
+		p->next->content_size = 0;
+		if (!(p->next->content))
+			return (-1);
+		p->next->content_size = ft_strlen((const char *)p->next->content) + 1;
+		if (ft_strchr((const char *)p->next->content, (int)'\n'))
+			return (ft_cpy_n_cut(line, &(p->next)));
+	}
+	if (r >= 0 && ft_strlen((const char *)p->next->content))
+		return (ft_cpy_n_cut(line, &(p->next)));
+	return (ft_fddel(r, &fd_buff, &p));
 }

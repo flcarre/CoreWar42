@@ -3,31 +3,29 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wahasni <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/09 11:23:22 by wahasni           #+#    #+#             */
-/*   Updated: 2018/11/09 11:40:07 by wahasni          ###   ########.fr       */
+/*   Created: 2018/11/09 13:51:01 by lutsiara          #+#    #+#             */
+/*   Updated: 2019/04/04 18:36:55 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strstr(const char *str, const char *to_find)
+char	*ft_strstr(const char *haystack, const char *needle)
 {
-	int i;
-	int j;
+	unsigned long	i;
 
-	i = 0;
-	if (!to_find[i])
-		return ((char*)str);
-	while (str[i])
+	if (!haystack)
+		return ((void *)0);
+	if (!needle || !(*needle))
+		return ((char *)haystack);
+	while (*haystack)
 	{
-		j = 0;
-		while (to_find[j] == str[i + j])
-		{
-			if (to_find[j + 1] == '\0')
-				return ((char*)(str + i));
-			j++;
-		}
-		i++;
+		i = 0;
+		while (*(needle + i) && *(haystack + i) == *(needle + i))
+			i++;
+		if (!(*(needle + i)))
+			return ((char *)haystack);
+		haystack++;
 	}
-	return (0);
+	return ((void *)0);
 }

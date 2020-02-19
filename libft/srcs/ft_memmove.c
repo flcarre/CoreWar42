@@ -3,33 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wahasni <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/12 00:00:52 by wahasni           #+#    #+#             */
-/*   Updated: 2019/02/09 16:39:07 by wahasni          ###   ########.fr       */
+/*   Created: 2018/11/07 15:48:13 by lutsiara          #+#    #+#             */
+/*   Updated: 2019/03/13 16:24:32 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memmove(void *dst, const void *src, size_t n)
+void	*ft_memmove(void *dst, const void *src, unsigned long len)
 {
-	char		*d;
-	const char	*s;
-	int			i;
+	unsigned char	*d;
+	unsigned char	*s;
+	unsigned char	*start;
+	unsigned char	*tmp;
 
-	i = 0;
-	if (dst <= src)
-		ft_memcpy(dst, src, n);
-	else
-	{
-		d = dst + n - 1;
-		s = src + n - 1;
-		while (n--)
-		{
-			d[i] = s[i];
-			i--;
-		}
-	}
+	if (!len)
+		return (dst);
+	if (!(tmp = (unsigned char *)ft_memalloc(sizeof(unsigned char) * len)))
+		return (dst);
+	d = tmp;
+	s = (unsigned char *)src;
+	start = (unsigned char *)src;
+	while ((unsigned long)(s - start) < len)
+		*(d++) = *(s++);
+	d = (unsigned char *)dst;
+	s = tmp;
+	start = tmp;
+	while ((unsigned long)(s - start) < len)
+		*(d++) = *(s++);
+	ft_memdel((void **)&tmp);
 	return (dst);
 }

@@ -3,47 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/08 14:41:26 by wahasni           #+#    #+#             */
-/*   Updated: 2019/10/11 17:38:12 by wahasni          ###   ########.fr       */
+/*   Created: 2018/11/09 14:45:47 by lutsiara          #+#    #+#             */
+/*   Updated: 2019/03/13 16:26:25 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int			is_number(char *str)
+int		ft_atoi(const char *str)
 {
-	while (*str)
-	{
-		if (*str < 48 || *str > 57)
-			return (1);
+	long	r;
+	long	n;
+
+	r = 0;
+	n = 1;
+	while (ft_isspace((int)(*str)))
 		str++;
-	}
-	return (0);
-}
-
-int			ft_isdigit(int c)
-{
-	if (c >= 48 && c <= 57)
-		return (1);
-	else
-		return (0);
-}
-
-intmax_t	ft_atoi(char *s)
-{
-	intmax_t	res;
-	int			i;
-
-	i = 0;
-	res = 0;
-	while (s[i] && ft_isdigit(s[i]))
-	{
-		res += s[i] - 48;
-		if (ft_isdigit(s[i + 1]))
-			res *= 10;
-		i++;
-	}
-	return (res);
+	n = (*str == '-') ? -1 : 1;
+	if (*str == '-' || *str == '+')
+		str++;
+	while (ft_isdigit((int)(*str)))
+		r = r * 10 + *(str++) - '0';
+	return ((int)(r * n));
 }

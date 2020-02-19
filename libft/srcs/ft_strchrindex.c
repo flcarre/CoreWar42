@@ -3,18 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchrindex.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/29 16:36:04 by hasni             #+#    #+#             */
-/*   Updated: 2020/01/29 16:36:21 by hasni            ###   ########.fr       */
+/*   Created: 2020/02/19 11:47:48 by lutsiara          #+#    #+#             */
+/*   Updated: 2020/02/19 11:49:43 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-int		ft_strchrindex(const char *str, char c)
+unsigned long	ft_strchrindex(const char *str, char c)
 {
-	int		i;
+	unsigned long	i;
 
 	i = 0;
 	while (str[i] && str[i] != c)

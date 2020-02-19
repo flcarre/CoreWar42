@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wahasni <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/14 13:39:19 by wahasni           #+#    #+#             */
-/*   Updated: 2018/11/16 21:29:09 by wahasni          ###   ########.fr       */
+/*   Created: 2018/11/11 15:23:54 by lutsiara          #+#    #+#             */
+/*   Updated: 2019/03/13 16:22:26 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,24 @@
 
 char	*ft_strtrim(char const *s)
 {
-	int		i;
-	int		j;
-	char	*str;
+	unsigned long	len;
+	unsigned long	i;
+	char			*tmp;
 
-	i = 0;
-	j = 0;
 	if (!s)
-		return (NULL);
-	while (s[i] && ft_isspace(s[i]))
-		i += 1;
-	j = ft_strlen(&s[i]) - 1;
-	while (s[i] && ft_isspace(s[j + i]))
-		j -= 1;
-	if (!(str = ft_strnew(j + 1)))
-		return (NULL);
-	ft_strncpy(str, (s + i), (j + 1));
-	return (str);
+		return (ft_strnew(0));
+	len = ft_strlen(s);
+	while (len && ft_iswhitespace((int)(*(s + len - 1))))
+		len--;
+	while (len && ft_iswhitespace((int)(*s)))
+	{
+		s++;
+		len--;
+	}
+	if (!(tmp = ft_strnew(len)))
+		return ((void *)0);
+	i = 0;
+	while (len--)
+		*(tmp + (i++)) = *(s++);
+	return (tmp);
 }
