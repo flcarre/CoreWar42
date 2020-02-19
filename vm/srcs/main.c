@@ -3,26 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eviana <eviana@student.42.fr>              +#+  +:+       +#+        */
+/*   By: flcarre <flcarre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/16 16:51:00 by anrzepec          #+#    #+#             */
-/*   Updated: 2020/01/22 16:48:20 by anrzepec         ###   ########.fr       */
+/*   Updated: 2020/02/19 11:59:34 by flcarre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "virtual_machine.h"
 
-int			usage_check(int ac)
+int			ft_arg_check(int ac)
 {
 	if (ac == 1)
 	{
-		print_usage();
+		ft_print_helper();
 		return (1);
 	}
 	return (0);
 }
 
-int			load_players(char **av, t_vm *vm)
+int			ft_players_loading(char **av, t_vm *vm)
 {
 	int i;
 	int ret;
@@ -42,7 +42,7 @@ int			load_players(char **av, t_vm *vm)
 	return (vm->nb_players > 0 ? 0 : 1);
 }
 
-void		loading_position(t_vm *vm)
+void		ft_position_loading(t_vm *vm)
 {
 	t_process	*tracer;
 	int			div;
@@ -65,19 +65,19 @@ int			main(int ac, char **av)
 	t_vm	*vm;
 
 	err = 0;
-	if (usage_check(ac))
+	if (ft_arg_check(ac))
 		return (1);
-	if (!(vm = init_vm(ac)))
-		return (init_error(ALLOC_ERROR, vm));
-	if ((err = load_players(av, vm)))
-		return (init_error(err, vm));
+	if (!(vm = ft_init_vm(ac)))
+		return (ft_init_error(ALLOC_ERROR, vm));
+	if ((err = ft_players_loading(av, vm)))
+		return (ft_init_error(err, vm));
 	if ((load_process_list(vm)) == ALLOC_ERROR)
 		return (ALLOC_ERROR);
-	loading_position(vm);
+	ft_position_loading(vm);
 	create_arena(vm);
 	vm->last_live = &vm->player[vm->nb_players - 1];
 	if (exec_machine(vm) == ALLOC_ERROR)
-		return (init_error(ALLOC_ERROR, vm));
+		return (ft_init_error(ALLOC_ERROR, vm));
 	free_machine(vm);
 	ft_printf("You have been playing Corewar, feel free to donate!\n");
 	return (0);

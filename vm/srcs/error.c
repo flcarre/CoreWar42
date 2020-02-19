@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eviana <eviana@student.42.fr>              +#+  +:+       +#+        */
+/*   By: flcarre <flcarre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/08 13:22:13 by anrzepec          #+#    #+#             */
-/*   Updated: 2020/01/22 16:49:41 by anrzepec         ###   ########.fr       */
+/*   Updated: 2020/02/19 11:59:34 by flcarre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,25 +27,26 @@ void	free_machine(t_vm *vm)
 	free(vm);
 }
 
-void	print_usage_war(void)
+void	ft_print_helper_war(void)
 {
-	ft_printf(
-		"                   />\n");
-	ft_printf(
-	"      ()          //---------------------------(\n");
-	ft_printf(
-		"     (*)OXOXOXOXO(*>        --COREWAR--         {red}\\{eoc}\n");
-	ft_printf(
-		"      ()          \\\\-----------{red}------------------){eoc}\n");
-	ft_printf(
-		"                   \\>                          {red}  \"{eoc}\n");
-	ft_printf(
-		"                                                {red}'{eoc}\n");
+	ft_printf("\n");
+	ft_printf("\t\t  .----.-----.-----.-----.\n");
+	ft_printf("\t\t /      \\     \\     \\     \\\n");
+	ft_printf("\t\t|  \\/    |     |   __L_____L__\n");
+	ft_printf("\t\t|   |    |     |  (           \\\n");
+	ft_printf("\t\t|    \\___/    /    \\______/    |\n");
+	ft_printf("\t\t|        \\___/\\___/\\___/       |\n");
+	ft_printf("\t\t \\      \\     /               /\n");
+	ft_printf("\t\t  |                        __/\n");
+	ft_printf("\t\t   \\_                   __/\n");
+	ft_printf("\t\t     |        |         |\n");
+	ft_printf("\t\t     |                  |\n");
+	ft_printf("\t\t     |                  |\n");
 }
 
-void	print_usage(void)
+void	ft_print_helper(void)
 {
-	print_usage_war();
+	ft_print_helper_war();
 	ft_printf("> ./corewar [-v] cycle_refresh [[-dump] nbr_cycles] ");
 	ft_printf("[[-n number]");
 	ft_printf(" champion1.cor] ...\n\n{red}-->     FLAGS{eoc}\n\n-v  ");
@@ -61,7 +62,7 @@ void	print_usage(void)
 	ft_printf(" cycles.\n        Corewar can only accept 1 -dump argument.\n");
 }
 
-void	init_error_extend(int error)
+void	ft_init_error_extend(int error)
 {
 	if (error == SIZE_ERROR)
 		ft_printf("Invalid Champion: Exceeds Authorized Size.\n");
@@ -74,17 +75,17 @@ void	init_error_extend(int error)
 		ft_printf("Invalid Value For Visualization Refresh Rate.\n");
 	ft_printf("\n{eoc}");
 	if (error != ALLOC_ERROR)
-		print_usage();
+		ft_print_helper();
 }
 
-int		init_error(int error, t_vm *vm)
+int		ft_init_error(int error, t_vm *vm)
 {
 	free_machine(vm);
 	ft_printf("{red}\n -> ");
 	if (error == OPTION_ERROR)
-		ft_printf("Invalid Option.\n");
+		ft_printf("Invalid option(s).\n");
 	if (error == PLAYER_NUMBER_ERROR)
-		ft_printf("Invalid Champion Number.\n");
+		ft_printf("Invalid champion number.\n");
 	if (error == DUMP_ERROR)
 		ft_printf("Invalid Memory Dump Value.\n");
 	if (error == FILE_ERROR)
@@ -99,6 +100,6 @@ int		init_error(int error, t_vm *vm)
 		ft_printf("Invalid Champion Executable.\n");
 	if (error == MAGIC_ERROR)
 		ft_printf("Invalid Champion Magic Number.\n");
-	init_error_extend(error);
+	ft_init_error_extend(error);
 	return (1);
 }

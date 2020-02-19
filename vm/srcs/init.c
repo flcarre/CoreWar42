@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eviana <eviana@student.42.fr>              +#+  +:+       +#+        */
+/*   By: flcarre <flcarre@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/21 12:46:35 by andrewrze         #+#    #+#             */
-/*   Updated: 2020/01/09 11:35:58 by eviana           ###   ########.fr       */
+/*   Created: 2019/10/21 12:46:35 by flcarre           #+#    #+#             */
+/*   Updated: 2020/02/18 18:15:16 by flcarre          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	create_arena(t_vm *vm)
 	}
 }
 
-void	init_players(t_vm *vm)
+void	ft_init_players(t_vm *vm)
 {
 	int i;
 
@@ -64,7 +64,7 @@ void	init_players(t_vm *vm)
 		vm->live_tab[i] = -1;
 }
 
-t_vm	*init_vm(int ac)
+t_vm	*ft_init_vm(int ac)
 {
 	t_vm *vm;
 
@@ -87,6 +87,6 @@ t_vm	*init_vm(int ac)
 	vm->nb_option = 0;
 	vm->malloc_flag = 0;
 	ft_bzero(vm->player_numbers, MAX_PLAYERS);
-	init_players(vm);
+	ft_init_players(vm);
 	return (vm);
 }
