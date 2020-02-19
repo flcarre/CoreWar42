@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 16:27:41 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/17 01:21:19 by hasni            ###   ########.fr       */
+/*   Updated: 2020/02/19 16:22:14 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/asm.h"
+#include "asm.h"
 
 void    init_asm(t_asm *asmb)
 {

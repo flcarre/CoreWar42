@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_type.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 02:36:09 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/15 20:35:42 by hasni            ###   ########.fr       */
+/*   Updated: 2020/02/19 16:22:14 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/asm.h"
+#include "asm.h"
 
 static t_bool	check_registry(char *str)
 {

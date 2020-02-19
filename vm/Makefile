@@ -6,7 +6,7 @@
 #    By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/18 16:35:34 by lutsiara          #+#    #+#              #
-#    Updated: 2020/02/18 23:30:55 by lutsiara         ###   ########.fr        #
+#    Updated: 2020/02/19 17:28:45 by lutsiara         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRC_PATH = srcs/
 OBJ_PATH = srcs/
 INC_PATH = includes/
 INC = -I
-INCLUDES = $(INC_PATH) $(INC_LIB_PATH)
+INCLUDES = $(INC_PATH) ../$(INC_LIB_PATH)
 LIB = ../$(LIBFT)
 SRC_SUFFIX = .c
 H_SUFFIX = .h
@@ -47,23 +47,23 @@ OK = "$(CHECK)$(WHITE)"
 
 $(NAME): $(OBJ) $(H_FILES) $(SRC) $(LIB)
 	@$(CC) $(HEADER) $(OBJ) $(LIB) -o $@
-	@printf "\r$(EOLCLR)$(NAME):\t$(GREEN)$(OK)\n"
+	@printf "\r$(EOLCLR)$(NAME): $(GREEN)$(OK)\n"
 
 all: $(NAME)
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
-	@printf "\r$(EOLCLR)$(NAME):\t$< $(BLUE)$(OK)"
+	@printf "\r$(EOLCLR)$(NAME): $< $(BLUE)$(OK)"
 	@$(CC) $(HEADER) -o $@ -c $<
 
 clean:
 	@printf "$(NAME): rm *.o"
-	@rm -rf $(OBJ_PATH)/*.o
-	@printf "\t$(RED)$(OK)\n"
+	@/bin/rm -rf $(OBJ_PATH)/*.o
+	@printf " $(RED)$(OK)\n"
 
 fclean: clean
 	@printf "$(NAME): rm $(NAME)"
-	@rm -f $(NAME)
-	@printf "\t$(RED)$(OK)\n"
+	@/bin/rm -f $(NAME)
+	@printf " $(RED)$(OK)\n"
 
 re: fclean all
 

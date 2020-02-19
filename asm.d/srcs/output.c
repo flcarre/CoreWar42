@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   output.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 17:28:31 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/18 15:29:13 by hasni            ###   ########.fr       */
+/*   Updated: 2020/02/19 16:22:14 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/asm.h"
+#include "asm.h"
 #include <fcntl.h>
 
 static void		write_number(int fd, t_inst *inst, int i)

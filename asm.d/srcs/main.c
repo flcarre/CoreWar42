@@ -6,11 +6,11 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 21:25:43 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/19 11:13:04 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/02/19 16:22:14 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/asm.h"
+#include "asm.h"
 #include <fcntl.h>
 
 bool handle_file(t_asm *file, int ac, char *av)

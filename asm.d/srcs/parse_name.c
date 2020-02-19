@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_name.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 04:02:52 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/18 22:19:01 by hasni            ###   ########.fr       */
+/*   Updated: 2020/02/19 16:22:14 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/asm.h"
+#include "asm.h"
 
 // Free a chaque return error
 

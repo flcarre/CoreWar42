@@ -6,7 +6,7 @@
 #    By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 17:06:41 by lutsiara          #+#    #+#              #
-#    Updated: 2020/02/19 11:58:31 by lutsiara         ###   ########.fr        #
+#    Updated: 2020/02/19 17:29:18 by lutsiara         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -187,23 +187,23 @@ OK = "$(CHECK)$(WHITE)"
 $(NAME): $(OBJ) $(H_FILES) $(SRC)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
-	@printf "\r$(EOLCLR)$(NAME):\t$(GREEN)$(OK)\n"
+	@printf "\r$(EOLCLR)$(NAME): $(GREEN)$(OK)\n"
 
 all: $(NAME)
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
-	@printf "\r$(EOLCLR)$(NAME):\t$< $(BLUE)$(OK)"
+	@printf "\r$(EOLCLR)$(NAME): $< $(BLUE)$(OK)"
 	@$(CC) -o $@ -c $< $(HEADER) $(FLAGS)
 
 clean:
 	@printf "$(NAME): rm *.o"
 	@/bin/rm -rf $(OBJ_PATH)/*.o
-	@printf "\t$(RED)$(OK)\n"
+	@printf " $(RED)$(OK)\n"
 
 fclean: clean
 	@printf "$(NAME): rm $(NAME)"
 	@/bin/rm -f $(NAME)
-	@printf "\t$(RED)$(OK)\n"
+	@printf " $(RED)$(OK)\n"
 
 re: fclean all
 

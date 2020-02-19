@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   check_param.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 02:32:56 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/15 17:34:57 by hasni            ###   ########.fr       */
+/*   Updated: 2020/02/19 16:22:14 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/asm.h"
+#include "asm.h"
 
-static t_bool	check_param_num(char *str, char **arr, int param_num)
+static t_bool check_param_num(char *str, char **arr, int param_num)
 {
-	int		i;
-	int		sep_num;
-	int		arr_num;
+	int i;
+	int sep_num;
+	int arr_num;
 
 	i = 0;
 	sep_num = 0;
@@ -33,7 +33,7 @@ static t_bool	check_param_num(char *str, char **arr, int param_num)
 	return (0);
 }
 
-static void		get_inst_len(t_op *op, t_inst *inst, char type)
+static void get_inst_len(t_op *op, t_inst *inst, char type)
 {
 	if (type & T_REG)
 		inst->len++;
@@ -43,12 +43,12 @@ static void		get_inst_len(t_op *op, t_inst *inst, char type)
 		inst->len += 2;
 }
 
-t_bool			check_param(char *str, t_op *op, t_inst *inst)
+t_bool check_param(char *str, t_op *op, t_inst *inst)
 {
-	char	**arr;
-	char	*tmp;
-	char	type;
-	int		i;
+	char **arr;
+	char *tmp;
+	char type;
+	int i;
 
 	if (!(arr = ft_strsplit(str, SEPARATOR_CHAR)))
 		return (ft_error("ft_strsplit failed in check_parameters", 1));

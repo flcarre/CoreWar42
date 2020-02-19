@@ -6,11 +6,11 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/01 03:40:59 by wahasni           #+#    #+#             */
-/*   Updated: 2020/02/19 11:25:59 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/02/19 16:22:14 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/asm.h"
+#include "asm.h"
 
 static void print_inst(t_inst *begin)
 {
