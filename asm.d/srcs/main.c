@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 21:25:43 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/19 16:22:14 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/02/22 02:47:15 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm.h"
+#include "../includes/asm.h"
 #include <fcntl.h>
 
-bool handle_file(t_asm *file, int ac, char *av)
+bool	handle_file(t_asm *file, int ac, char *av)
 {
-	int len;
+	int	len;
 
 	if (ac != 2)
 		return (ft_error("format : ./asm champ.s", 1));
@@ -31,23 +31,18 @@ bool handle_file(t_asm *file, int ac, char *av)
 	return (0);
 }
 
-int main(int ac, char **av)
+int		main(int ac, char **av)
 {
-	t_asm asmb;
+	t_asm	asmb;
 
 	init_asm(&asmb);
 	if (handle_file(&asmb, ac, av[1]))
 		return (ft_error("Wrong input", -1));
-	if (parse(&asmb))
-		return (1);
-	// ft_printf("PROG_NAME : %s | PROG_COMMENT : %s\n", asmb.prog_name, asmb.prog_comment);
-	// ft_printf("%{GREEN}File to create : %s%{}\n", asmb.file_name);
+	if (parse(&asmb, 1))
+		return (-1);
 	if ((close(asmb.fd)) == -1)
-		return (ft_error("close file failed", -1));
-	ft_printf("size comment : %d\n", ft_strlen(asmb.prog_comment));
-	ft_printf("|%s|\n", asmb.prog_comment);
-	ft_printf("%{YELLOW}Just before output%{}\n");
+		return (free_asm(&asmb, ft_error("close file failed", -1)));
 	if (output(&asmb))
-		return (1);
-	return (0);
+		return (free_asm(&asmb, -1));
+	return (free_asm(&asmb, -1));
 }

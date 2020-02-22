@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+         #
+#    By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/18 22:57:27 by lutsiara          #+#    #+#              #
-#    Updated: 2020/02/19 17:28:41 by lutsiara         ###   ########.fr        #
+#    Updated: 2020/02/22 04:01:23 by wahasni          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,21 +26,25 @@ H_SUFFIX = .h
 H_FILENAME = op \
 			 asm
 
-C_FILENAME = check_param \
-			 check_parsing \
-			 check_type \
-			 ft_error \
-			 ft_free \
-			 ft_init \
-			 ft_list \
-			 ft_skip \
-			 get_op \
-			 get_param \
-			 main \
-			 parse_comment \
-			 parse_instruction \
-			 parse_name \
-			 parser
+C_FILENAME 	=	check_param \
+				check_parsing \
+				check_type \
+				disp_hexlen \
+				ft_error \
+				ft_free \
+				ft_free2 \
+				ft_init \
+				ft_list \
+				ft_skip \
+				get_op \
+				get_param \
+				main \
+				output \
+				parse_comment \
+				parse_instruction \
+				parse_name \
+				parser \
+				handle_end
 
 INC_FILES = $(addsuffix $(H_SUFFIX),$(H_FILENAME))
 SRC_FILES = $(addsuffix $(SRC_SUFFIX),$(C_FILENAME))

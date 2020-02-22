@@ -3,22 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   output.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/02 17:28:31 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/19 16:22:14 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/02/22 03:20:23 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm.h"
+#include "../includes/asm.h"
 #include <fcntl.h>
+#include <string.h>
 
 static void		write_number(int fd, t_inst *inst, int i)
 {
 	if (inst->param_arr[i][0] == '%')
-		disp_hexlen(fd, ft_atoi(&inst->param_arr[i][1]), inst->direct_len);
+		disp_hexlen(fd, atoi(&inst->param_arr[i][1]), inst->direct_len);
 	else
-		disp_hexlen(fd, ft_atoi(&inst->param_arr[i][0]), 2);
+		disp_hexlen(fd, atoi(&inst->param_arr[i][0]), 2);
 }
 
 static char		*get_label(t_inst *inst, int i)
@@ -34,22 +35,20 @@ static char		*get_label(t_inst *inst, int i)
 	return (label);
 }
 
-static t_bool	write_label(int fd, t_inst *inst, t_label *labels, int i)
+static int		write_label(int fd, t_inst *inst, t_label *labels, int i)
 {
 	char		*label;
-	char		*name;
 	int			addr;
 	int			direct_len;
 
 	if (!(label = get_label(inst, i)))
 		return (1);
 	addr = -1;
-	while (label)
+	while (labels)
 	{
 		if (!labels)
 			return (0);
-		name = labels->name;
-		if (ft_strcmp(label, name) == 0)
+		if (ft_strcmp(label, labels->name) == 0)
 		{
 			addr = labels->addr;
 			break ;
@@ -61,11 +60,10 @@ static t_bool	write_label(int fd, t_inst *inst, t_label *labels, int i)
 		disp_hexlen(fd, addr - inst->addr, direct_len);
 	else
 		ft_error("can't find label", 1);
-	ft_strdel(&label);
-	return (0);
+	return (free_str_value(label, 0));
 }
 
-static t_bool	write_inst(int fd, t_inst *inst, t_label *labels)
+static int		write_inst(int fd, t_inst *inst, t_label *labels)
 {
 	int			i;
 
@@ -76,7 +74,7 @@ static t_bool	write_inst(int fd, t_inst *inst, t_label *labels)
 	while (i < inst->param_num)
 	{
 		if (inst->param_arr[i][0] == 'r')
-			disp_hexlen(fd, ft_atoi(&inst->param_arr[i][1]), 1);
+			disp_hexlen(fd, atoi(&inst->param_arr[i][1]), 1);
 		else if (!ft_strchr(inst->param_arr[i], ':'))
 			write_number(fd, inst, i);
 		else
@@ -89,7 +87,7 @@ static t_bool	write_inst(int fd, t_inst *inst, t_label *labels)
 	return (0);
 }
 
-t_bool	output(t_asm *asmb)
+int				output(t_asm *asmb)
 {
 	t_inst	*inst;
 	t_label	*labels;
@@ -99,14 +97,7 @@ t_bool	output(t_asm *asmb)
 	if (asmb->accu_len > 682)
 		return (ft_error("exec code size too big", 1));
 	disp_hexlen(asmb->fd, COREWAR_EXEC_MAGIC, 4);
-	// ft_printf("asmb->name : %s | ft_strlen : %d\n", asmb->prog_name, ft_strlen(asmb->prog_name));
-	asmb->prog_name[ft_strlen(asmb->prog_name) - 1] = 0;
-	asmb->prog_comment[ft_strlen(asmb->prog_comment) - 1] = 0;
-	if (asmb->prog_name[ft_strlen(asmb->prog_name)] == '"')
-		asmb->prog_name[ft_strlen(asmb->prog_name)] = 0;
-	if (asmb->prog_comment[ft_strlen(asmb->prog_comment)] == '"')
-		asmb->prog_name[ft_strlen(asmb->prog_name)] = 0;
-	// ft_printf("PROG_NAME : %s | PROG_COMMENT : %s\n", asmb->prog_name, asmb->prog_comment);
+	handle_end(asmb);
 	write(asmb->fd, asmb->prog_name, PROG_NAME_LENGTH);
 	disp_hexlen(asmb->fd, asmb->accu_len, 8);
 	write(asmb->fd, asmb->prog_comment, COMMENT_LENGTH);

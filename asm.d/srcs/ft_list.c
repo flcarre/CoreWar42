@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_list.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 17:48:55 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/19 16:22:14 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/02/22 02:49:02 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm.h"
+#include "../includes/asm.h"
 
 static t_label	*ft_create_elem_label(char *name, int addr)
 {
@@ -18,7 +18,7 @@ static t_label	*ft_create_elem_label(char *name, int addr)
 
 	if (!(list = ft_memalloc(sizeof(t_label))))
 		return (NULL);
-	if (!(list->name = ft_strdup(name)))
+	if (!(list->name = name))
 		return (NULL);
 	list->addr = addr;
 	return (list);
@@ -41,7 +41,8 @@ static t_inst	*ft_create_elem_inst(t_inst *inst)
 	return (list);
 }
 
-void			ft_list_push_back_label(t_label **begin_list, char *name, int addr)
+void			ft_list_push_back_label(t_label **begin_list,
+	char *name, int addr)
 {
 	t_label	*list;
 
