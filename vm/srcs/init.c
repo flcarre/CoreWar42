@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flcarre <flcarre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 12:46:35 by flcarre           #+#    #+#             */
-/*   Updated: 2020/02/18 18:15:16 by flcarre          ###   ########.fr       */
+/*   Updated: 2020/02/24 18:41:13 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "virtual_machine.h"
+#include "vm.h"
+#include <stdlib.h>
 
-int		get_master(t_vm *vm, int master)
+static int	ft_get_master(t_vm *vm, int master)
 {
 	int i;
 
@@ -26,11 +27,11 @@ int		get_master(t_vm *vm, int master)
 	return (0);
 }
 
-void	create_arena(t_vm *vm)
+void		ft_create_arena(t_vm *vm)
 {
-	int			i;
-	int			div;
-	t_process	*tracer;
+	int i;
+	int div;
+	t_process *tracer;
 
 	i = vm->nb_players - 1;
 	div = MEM_SIZE / vm->nb_players;
@@ -38,17 +39,17 @@ void	create_arena(t_vm *vm)
 	while (tracer)
 	{
 		ft_memcpy(vm->mem + (div * i),
-			vm->player[get_master(vm, tracer->master)].exec,
-			vm->player[get_master(vm, tracer->master)].size);
-		ft_memset(vm->owner + (div * i), vm->player[get_master(vm,
-			tracer->master)].id, vm->player[get_master(vm,
-				tracer->master)].size);
+				vm->player[ft_get_master(vm, tracer->master)].exec,
+				vm->player[ft_get_master(vm, tracer->master)].size);
+		ft_memset(vm->owner + (div * i),
+				vm->player[ft_get_master(vm, tracer->master)].id,
+				vm->player[ft_get_master(vm, tracer->master)].size);
 		tracer = tracer->next;
 		i--;
 	}
 }
 
-void	ft_init_players(t_vm *vm)
+void		ft_init_players(t_vm *vm)
 {
 	int i;
 
@@ -64,7 +65,7 @@ void	ft_init_players(t_vm *vm)
 		vm->live_tab[i] = -1;
 }
 
-t_vm	*ft_init_vm(int ac)
+t_vm *ft_init_vm(int ac)
 {
 	t_vm *vm;
 

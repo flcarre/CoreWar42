@@ -3,39 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   print_machine.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lutsiara <lutsiara@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/17 13:27:25 by lutsiara            #+#    #+#             */
-/*   Updated: 2020/01/09 18:14:29 by lutsiara           ###   ########.fr       */
+/*   Created: 2020/02/24 15:59:21 by lutsiara          #+#    #+#             */
+/*   Updated: 2020/02/24 18:41:13 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "virtual_machine.h"
+#include "vm.h"
 
-void	print_bytes(t_vm *vm, int i)
+static void	ft_print_bytes(t_vm *vm, int i)
 {
 	int color;
 
 	color = vm->owner[i] % 8;
 	if (color == 0)
-		ft_printf("{eoc}%02x ", vm->mem[i]);
+		ft_printf("%{}%02x ", vm->mem[i]);
 	else if (color == 1)
-		ft_printf("{red}%02x ", vm->mem[i]);
+		ft_printf("%{RED}%02x ", vm->mem[i]);
 	else if (color == 2)
-		ft_printf("{green}%02x ", vm->mem[i]);
+		ft_printf("%{GREEN}%02x ", vm->mem[i]);
 	else if (color == 3)
-		ft_printf("{purple}%02x ", vm->mem[i]);
+		ft_printf("%{PURPLE}%02x ", vm->mem[i]);
 	else if (color == 4)
-		ft_printf("{blue}%02x ", vm->mem[i]);
+		ft_printf("%{BLUE}%02x ", vm->mem[i]);
 	else if (color == 5)
-		ft_printf("{yellow}%02x ", vm->mem[i]);
+		ft_printf("%{YELLOW}%02x ", vm->mem[i]);
 	else if (color == 6)
-		ft_printf("{cyan}%02x ", vm->mem[i]);
+		ft_printf("%{CYAN}%02x ", vm->mem[i]);
 	else if (color == 7)
-		ft_printf("{magenta}%02x ", vm->mem[i]);
+		ft_printf("%{ORANGE}%02x ", vm->mem[i]);
 }
 
-int		get_player_color(t_vm *vm, int players)
+int			ft_get_player_color(t_vm *vm, int players)
 {
 	int i;
 
@@ -43,21 +43,21 @@ int		get_player_color(t_vm *vm, int players)
 	while (i < vm->nb_players)
 	{
 		if (vm->player[i].id == players)
-			break ;
+			break;
 		i++;
 	}
 	if (vm->player[i].id == 1)
-		ft_printf("{red}");
+		ft_printf("%{RED}");
 	else if (vm->player[i].id == 2)
-		ft_printf("{green}");
+		ft_printf("%{GREEN}");
 	else if (vm->player[i].id == 3)
-		ft_printf("{purple}");
+		ft_printf("%{PURPLE}");
 	else if (vm->player[i].id == 4)
-		ft_printf("{blue}");
+		ft_printf("%{BLUE}");
 	return (i);
 }
 
-void	print_col_numbers(void)
+static void	ft_print_col_numbers(void)
 {
 	int i;
 
@@ -71,16 +71,16 @@ void	print_col_numbers(void)
 	ft_printf("     |\n");
 }
 
-int		print_arena(t_vm *vm)
+int ft_print_arena(t_vm *vm)
 {
-	int	i;
-	int	lines;
-	int	players;
+	int i;
+	int lines;
+	int players;
 
 	i = 0;
 	players = 0;
 	ft_printf("\e[1;1H\e[2J");
-	print_col_numbers();
+	ft_print_col_numbers();
 	lines = ft_sqrt(MEM_SIZE);
 	while (i < MEM_SIZE)
 	{
@@ -88,17 +88,17 @@ int		print_arena(t_vm *vm)
 			print_pannel(vm, i / lines, &players);
 		if (i % lines == 0)
 			ft_printf("0x%04x : ", i);
-		print_bytes(vm, i);
+		ft_print_bytes(vm, i);
 		i++;
 	}
-	ft_printf("{eoc}     |\n");
+	ft_printf("%{}     |\n");
 	return (0);
 }
 
-int		print_dump(t_vm *vm)
+int ft_print_dump(t_vm *vm)
 {
-	int	i;
-	int	lines;
+	int i;
+	int lines;
 
 	i = 0;
 	lines = ft_sqrt(MEM_SIZE);

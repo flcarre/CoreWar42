@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parse_option.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anrzepec <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/08 14:36:01 by anrzepec          #+#    #+#             */
-/*   Updated: 2020/01/08 14:36:04 by anrzepec         ###   ########.fr       */
+/*   Created: 2020/02/21 17:48:53 by lutsiara          #+#    #+#             */
+/*   Updated: 2020/02/21 17:51:35 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "virtual_machine.h"
+#include "vm.h"
 
-int		check_extension(char *name)
+int ft_check_extension(char *name)
 {
 	int len;
 
@@ -23,10 +23,9 @@ int		check_extension(char *name)
 	return (1);
 }
 
-int		visualizer_option(t_vm *vm, char **av, int *i)
+static int ft_visualizer_option(t_vm *vm, char **av, int *i)
 {
-	if ((*i + 1) < vm->nb_args && ft_strnum(av[*i + 1])
-		&& vm->vis == -1 && vm->dump == -1)
+	if ((*i + 1) < vm->nb_args && ft_strnum(av[*i + 1]) && vm->vis == -1 && vm->dump == -1)
 	{
 		vm->vis = ft_atoi(av[++(*i)]);
 		if (vm->vis > 0)
@@ -35,16 +34,16 @@ int		visualizer_option(t_vm *vm, char **av, int *i)
 	return (VIS_ERROR);
 }
 
-int		number_option(t_vm *vm, char **av, int *i)
+static int ft_number_option(t_vm *vm, char **av, int *i)
 {
 	if ((*i + 1) < vm->nb_args && ft_strnum(av[*i + 1]))
 	{
 		if (vm->nb_players < MAX_PLAYERS && !vm->nb_option)
 		{
-			if ((vm->nb_option = ft_atoi(av[++(*i)])) > 0
-				&& vm->nb_option <= MAX_PLAYERS)
+			if ((vm->nb_option = ft_atoi(av[++(*i)])) > 0 && vm->nb_option <= MAX_PLAYERS)
 				return (vm->nb_players <= MAX_PLAYERS
-				? OH_OUI : PLAYER_NUMBER_ERROR);
+							? OH_OUI
+							: PLAYER_NUMBER_ERROR);
 			else
 				return (PLAYER_NUMBER_ERROR);
 		}
@@ -52,10 +51,9 @@ int		number_option(t_vm *vm, char **av, int *i)
 	return (PLAYER_NUMBER_ERROR);
 }
 
-int		dump_option(t_vm *vm, char **av, int *i)
+static int ft_dump_option(t_vm *vm, char **av, int *i)
 {
-	if ((*i + 1) < vm->nb_args && ft_strnum(av[*i + 1])
-		&& vm->dump == -1 && vm->vis == -1)
+	if ((*i + 1) < vm->nb_args && ft_strnum(av[*i + 1]) && vm->dump == -1 && vm->vis == -1)
 	{
 		vm->dump = ft_atoi(av[++(*i)]);
 		return (OH_OUI);
@@ -63,13 +61,13 @@ int		dump_option(t_vm *vm, char **av, int *i)
 	return (DUMP_ERROR);
 }
 
-int		parse_option(t_vm *vm, char **av, int *i)
+int ft_parse_options(t_vm *vm, char **av, int *i)
 {
 	if (!ft_strcmp(av[*i], "-v"))
-		return (visualizer_option(vm, av, i));
+		return (ft_visualizer_option(vm, av, i));
 	if (!ft_strcmp(av[*i], "-n"))
-		return (number_option(vm, av, i));
+		return (ft_number_option(vm, av, i));
 	if (!ft_strcmp(av[*i], "-dump"))
-		return (dump_option(vm, av, i));
+		return (ft_dump_option(vm, av, i));
 	return (1);
 }

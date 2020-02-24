@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   operations2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lutsiara <lutsiara@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/09 17:35:53 by lutsiara            #+#    #+#             */
-/*   Updated: 2020/01/10 12:44:11 by lutsiara           ###   ########.fr       */
+/*   Created: 2020/02/24 16:02:52 by lutsiara          #+#    #+#             */
+/*   Updated: 2020/02/24 18:41:13 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "virtual_machine.h"
+#include "vm.h"
 
-int		op_sub(t_vm *vm, t_process *proc)
+int		ft_op_sub(t_vm *vm, t_process *proc)
 {
 	t_param params;
 	int		offset;
 
-	params = set_params(vm, proc, proc->pc, &offset);
+	params = ft_set_params(vm, proc, proc->pc, &offset);
 	if (params.valid)
 	{
 		proc->reg[params.n[2]] = proc->reg[params.n[0]]
@@ -30,22 +30,22 @@ int		op_sub(t_vm *vm, t_process *proc)
 	return (offset);
 }
 
-int		op_and(t_vm *vm, t_process *proc)
+int		ft_op_and(t_vm *vm, t_process *proc)
 {
 	t_param params;
 	int		offset;
 
-	params = set_params(vm, proc, proc->pc, &offset);
+	params = ft_set_params(vm, proc, proc->pc, &offset);
 	if (params.valid)
 	{
 		if (params.c[0] == REG_CODE)
 			params.n[0] = proc->reg[params.n[0]];
 		else if (params.c[0] == IND_CODE)
-			params.n[0] = read_address(vm, params.n[0], 4);
+			params.n[0] = ft_read_address(vm, params.n[0], 4);
 		if (params.c[1] == REG_CODE)
 			params.n[1] = proc->reg[params.n[1]];
 		else if (params.c[1] == IND_CODE)
-			params.n[1] = read_address(vm, params.n[1], 4);
+			params.n[1] = ft_read_address(vm, params.n[1], 4);
 		proc->reg[params.n[2]] = params.n[0] & params.n[1];
 		if (proc->reg[params.n[2]] == 0)
 			proc->carry = 1;
@@ -55,22 +55,22 @@ int		op_and(t_vm *vm, t_process *proc)
 	return (offset);
 }
 
-int		op_or(t_vm *vm, t_process *proc)
+int		ft_op_or(t_vm *vm, t_process *proc)
 {
 	t_param params;
 	int		offset;
 
-	params = set_params(vm, proc, proc->pc, &offset);
+	params = ft_set_params(vm, proc, proc->pc, &offset);
 	if (params.valid)
 	{
 		if (params.c[0] == REG_CODE)
 			params.n[0] = proc->reg[params.n[0]];
 		else if (params.c[0] == IND_CODE)
-			params.n[0] = read_address(vm, params.n[0], 4);
+			params.n[0] = ft_read_address(vm, params.n[0], 4);
 		if (params.c[1] == REG_CODE)
 			params.n[1] = proc->reg[params.n[1]];
 		else if (params.c[1] == IND_CODE)
-			params.n[1] = read_address(vm, params.n[1], 4);
+			params.n[1] = ft_read_address(vm, params.n[1], 4);
 		proc->reg[params.n[2]] = params.n[0] | params.n[1];
 		if (proc->reg[params.n[2]] == 0)
 			proc->carry = 1;
@@ -80,22 +80,22 @@ int		op_or(t_vm *vm, t_process *proc)
 	return (offset);
 }
 
-int		op_xor(t_vm *vm, t_process *proc)
+int		ft_op_xor(t_vm *vm, t_process *proc)
 {
 	t_param params;
 	int		offset;
 
-	params = set_params(vm, proc, proc->pc, &offset);
+	params = ft_set_params(vm, proc, proc->pc, &offset);
 	if (params.valid)
 	{
 		if (params.c[0] == REG_CODE)
 			params.n[0] = proc->reg[params.n[0]];
 		else if (params.c[0] == IND_CODE)
-			params.n[0] = read_address(vm, params.n[0], 4);
+			params.n[0] = ft_read_address(vm, params.n[0], 4);
 		if (params.c[1] == REG_CODE)
 			params.n[1] = proc->reg[params.n[1]];
 		else if (params.c[1] == IND_CODE)
-			params.n[1] = read_address(vm, params.n[1], 4);
+			params.n[1] = ft_read_address(vm, params.n[1], 4);
 		proc->reg[params.n[2]] = params.n[0] ^ params.n[1];
 		if (proc->reg[params.n[2]] == 0)
 			proc->carry = 1;
@@ -105,11 +105,11 @@ int		op_xor(t_vm *vm, t_process *proc)
 	return (offset);
 }
 
-int		op_zjmp(t_vm *vm, t_process *proc)
+int		ft_op_zjmp(t_vm *vm, t_process *proc)
 {
 	if (proc->carry)
 		return (
-			idx_mod(read_address(vm, (proc->pc + 1) % MEM_SIZE, 2)));
+			ft_idx_mod(ft_read_address(vm, (proc->pc + 1) % MEM_SIZE, 2)));
 	else
 		return (3);
 }

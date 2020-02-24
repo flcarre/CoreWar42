@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flcarre <flcarre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/08 13:22:13 by anrzepec          #+#    #+#             */
-/*   Updated: 2020/02/19 11:59:34 by flcarre          ###   ########.fr       */
+/*   Updated: 2020/02/24 18:41:13 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "virtual_machine.h"
+#include "vm.h"
+#include <stdlib.h>
 
-void	free_machine(t_vm *vm)
+void		ft_free_machine(t_vm *vm)
 {
 	t_process *tracer;
 	t_process *tmp;
@@ -27,7 +28,7 @@ void	free_machine(t_vm *vm)
 	free(vm);
 }
 
-void	ft_print_helper_war(void)
+static void	ft_print_helper_war(void)
 {
 	ft_printf("\n");
 	ft_printf("\t\t  .----.-----.-----.-----.\n");
@@ -44,12 +45,12 @@ void	ft_print_helper_war(void)
 	ft_printf("\t\t     |                  |\n");
 }
 
-void	ft_print_helper(void)
+void		ft_print_helper(void)
 {
 	ft_print_helper_war();
 	ft_printf("> ./corewar [-v] cycle_refresh [[-dump] nbr_cycles] ");
 	ft_printf("[[-n number]");
-	ft_printf(" champion1.cor] ...\n\n{red}-->     FLAGS{eoc}\n\n-v  ");
+	ft_printf(" champion1.cor] ...\n\n%{RED}-->     FLAGS%{}\n\n-v  ");
 	ft_printf("    ");
 	ft_printf("Visualization.\n        Example: ./corewar -v 500 champ1.cor ");
 	ft_printf("champ2.cor\n\n-n      Player number selection.\n        ");
@@ -62,7 +63,7 @@ void	ft_print_helper(void)
 	ft_printf(" cycles.\n        Corewar can only accept 1 -dump argument.\n");
 }
 
-void	ft_init_error_extend(int error)
+static void	ft_init_error_extend(int error)
 {
 	if (error == SIZE_ERROR)
 		ft_printf("Invalid Champion: Exceeds Authorized Size.\n");
@@ -73,15 +74,15 @@ void	ft_init_error_extend(int error)
 	}
 	if (error == VIS_ERROR)
 		ft_printf("Invalid Value For Visualization Refresh Rate.\n");
-	ft_printf("\n{eoc}");
+	ft_printf("\n%{}");
 	if (error != ALLOC_ERROR)
 		ft_print_helper();
 }
 
-int		ft_init_error(int error, t_vm *vm)
+int			ft_init_error(int error, t_vm *vm)
 {
-	free_machine(vm);
-	ft_printf("{red}\n -> ");
+	ft_free_machine(vm);
+	ft_printf("%{RED}\n -> ");
 	if (error == OPTION_ERROR)
 		ft_printf("Invalid option(s).\n");
 	if (error == PLAYER_NUMBER_ERROR)

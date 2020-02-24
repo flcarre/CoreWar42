@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   tools2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lutsiara <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/09 17:50:26 by lutsiara            #+#    #+#             */
-/*   Updated: 2020/01/09 17:51:29 by lutsiara           ###   ########.fr       */
+/*   Created: 2020/02/24 15:56:53 by lutsiara          #+#    #+#             */
+/*   Updated: 2020/02/24 18:41:13 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "virtual_machine.h"
+#include "vm.h"
 
-int		is_valid_op(int op_code)
+int ft_is_valid_op(int op_code)
 {
 	if (op_code <= 0 || op_code > 16)
 		return (0);
@@ -20,14 +20,14 @@ int		is_valid_op(int op_code)
 		return (1);
 }
 
-int		long_rel_address(t_process *proc, int add1, int add2)
+int long_rel_address(t_process *proc, int add1, int add2)
 {
-	return (modulo_mem_size(proc->pc + add1 + add2));
+	return (ft_modulo_mem_size(proc->pc + add1 + add2));
 }
 
-int		read_address(t_vm *vm, int addr, size_t bytes)
+int ft_read_address(t_vm *vm, int addr, size_t bytes)
 {
-	int		res;
+	int res;
 
 	res = 0;
 	while (bytes)
@@ -39,10 +39,10 @@ int		read_address(t_vm *vm, int addr, size_t bytes)
 	return (res);
 }
 
-int		read_bytes(unsigned char *mem, size_t size)
+int ft_read_octet(unsigned char *mem, size_t size)
 {
-	size_t	bytes;
-	int		res;
+	size_t bytes;
+	int res;
 
 	bytes = 0;
 	res = 0;
@@ -54,11 +54,11 @@ int		read_bytes(unsigned char *mem, size_t size)
 	return (res);
 }
 
-void	write_to_address(t_vm *vm, t_process *proc, int addr, int to_write)
+void ft_write_to_address(t_vm *vm, t_process *proc, int addr, int to_write)
 {
-	int			bytes;
-	int			chunk;
-	unsigned	to_write_uns;
+	int bytes;
+	int chunk;
+	unsigned to_write_uns;
 
 	bytes = 0;
 	to_write_uns = (unsigned int)to_write;

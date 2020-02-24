@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   code_check.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lutsiara <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/09 18:23:52 by lutsiara            #+#    #+#             */
-/*   Updated: 2020/01/09 18:24:08 by lutsiara           ###   ########.fr       */
+/*   Created: 2020/02/24 16:04:54 by lutsiara          #+#    #+#             */
+/*   Updated: 2020/02/24 18:41:13 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "virtual_machine.h"
+#include "vm.h"
 
-int		get_t_code(char ocp)
+int		ft_get_t_code(char ocp)
 {
 	if ((ocp & 1) && ((ocp >> 1) & 1))
 		return (T_IND);
@@ -24,7 +24,7 @@ int		get_t_code(char ocp)
 		return (0);
 }
 
-int		check_ocp(t_process *proc, char ocp)
+int		ft_check_ocp(t_process *proc, char ocp)
 {
 	int i;
 	int param;
@@ -35,14 +35,14 @@ int		check_ocp(t_process *proc, char ocp)
 	while (i < g_op_tab[proc->current_op - 1].params)
 	{
 		param = ocp >> (6 - (2 * i));
-		if (!(get_t_code(param) & g_op_tab[proc->current_op - 1].type[i]))
+		if (!(ft_get_t_code(param) & g_op_tab[proc->current_op - 1].type[i]))
 			return (0);
 		i++;
 	}
 	return (1);
 }
 
-int		get_code(char ocp)
+int		ft_get_code(char ocp)
 {
 	if ((ocp & 1) && ((ocp >> 1) & 1))
 		return (IND_CODE);

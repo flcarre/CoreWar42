@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   tools.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lutsiara <lutsiara@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/21 12:49:41 by flcarre         #+#    #+#             */
-/*   Updated: 2020/01/10 12:43:14 by lutsiara           ###   ########.fr       */
+/*   Created: 2020/02/24 15:55:24 by lutsiara          #+#    #+#             */
+/*   Updated: 2020/02/24 18:41:13 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "virtual_machine.h"
+#include "vm.h"
 
-int		modulo_mem_size(int addr)
+int ft_modulo_mem_size(int addr)
 {
 	if (addr >= 0)
 		return (addr % MEM_SIZE);
@@ -20,7 +20,7 @@ int		modulo_mem_size(int addr)
 		return (MEM_SIZE + (addr % MEM_SIZE));
 }
 
-int		idx_mod(int addr)
+int ft_idx_mod(int addr)
 {
 	short new_addr;
 
@@ -28,14 +28,14 @@ int		idx_mod(int addr)
 	return (new_addr % IDX_MOD);
 }
 
-int		is_valid_reg(int reg)
+int is_valid_reg(int reg)
 {
 	if (reg > 0 && reg < 17)
 		return (1);
 	return (0);
 }
 
-void	init_registers(t_process *process)
+void init_registers(t_process *process)
 {
 	int i;
 
@@ -49,7 +49,7 @@ void	init_registers(t_process *process)
 	}
 }
 
-void	copy_registers(t_process *new, t_process *proc)
+void ft_copy_registers(t_process *new, t_process *proc)
 {
 	int i;
 

@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   exec_virtual_machine.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lutsiara <lutsiara@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/18 12:44:35 by flcarre         #+#    #+#             */
-/*   Updated: 2020/01/09 11:47:32 by lutsiara           ###   ########.fr       */
+/*   Created: 2020/02/21 18:35:11 by lutsiara          #+#    #+#             */
+/*   Updated: 2020/02/24 18:41:13 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "virtual_machine.h"
+#include "vm.h"
+#include <unistd.h>
 
-void	cycle_review(t_vm *vm)
+static void	ft_cycle_review(t_vm *vm)
 {
 	if (++(vm->nb_checks) == MAX_CHECKS || vm->lives_since_check >= NBR_LIVE)
 	{
@@ -24,35 +25,35 @@ void	cycle_review(t_vm *vm)
 	vm->lives_since_check = 0;
 }
 
-int		option_review(t_vm *vm)
+static int	ft_option_review(t_vm *vm)
 {
 	if (vm->dump == vm->cycles)
 	{
-		print_dump(vm);
+		ft_print_dump(vm);
 		return (END_GAME);
 	}
 	if (vm->vis != -1 && !(vm->cycles % vm->vis))
 	{
-		print_arena(vm);
+		ft_print_arena(vm);
 		sleep(1);
 	}
 	return (0);
 }
 
-int		machine_review(t_vm *vm)
+static int	ft_machine_review(t_vm *vm)
 {
-	if (option_review(vm))
+	if (ft_option_review(vm))
 		return (END_GAME);
 	if (vm->cycles && !((vm->cycles - vm->last_verif) % vm->cycles_to_die))
 	{
-		if (life_check(vm))
+		if (ft_life_check(vm))
 			return (END_GAME);
-		cycle_review(vm);
+		ft_cycle_review(vm);
 	}
 	return (0);
 }
 
-void	introduce_players(t_vm *vm)
+static void	ft_introduce_players(t_vm *vm)
 {
 	int			i;
 	t_process	*tracer;
@@ -64,27 +65,27 @@ void	introduce_players(t_vm *vm)
 		i = -1;
 		while (++i < vm->nb_players)
 			if (vm->player[i].id == tracer->master)
-				break ;
+				break;
 		ft_printf("%s (%d), weighing in at %d bytes, \"%s\"\n",
-			vm->player[i].name, tracer->master, vm->player[i].size,
-			vm->player[i].comment);
+				  vm->player[i].name, tracer->master, vm->player[i].size,
+				  vm->player[i].comment);
 		tracer = tracer->next;
 	}
-	ft_printf("{red}\nLEEEEEEEEET'S GEEEET");
-	ft_printf(" REAAAADDDDYY TOOO RUUUUUUMBLEEEEEE!{eoc}\n\n");
+	ft_printf("%{RED}\nLEEEEEEEEET'S GEEEET");
+	ft_printf(" REAAAADDDDYY TOOO RUUUUUUMBLEEEEEE!%{}\n\n");
 }
 
-int		exec_machine(t_vm *vm)
+int			ft_exec_machine(t_vm *vm)
 {
-	t_process *champion;
+	t_process	*champion;
 
-	introduce_players(vm);
-	while (machine_review(vm) != END_GAME)
+	ft_introduce_players(vm);
+	while (ft_machine_review(vm) != END_GAME)
 	{
 		champion = vm->process;
 		while (champion)
 		{
-			if (process_review(vm, champion))
+			if (ft_process_review(vm, champion))
 				return (ALLOC_ERROR);
 			champion = champion->next;
 		}

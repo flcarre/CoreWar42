@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   print_pannel.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lutsiara <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/09 18:13:27 by lutsiara            #+#    #+#             */
-/*   Updated: 2020/01/09 18:14:03 by lutsiara           ###   ########.fr       */
+/*   Created: 2020/02/24 15:57:53 by lutsiara          #+#    #+#             */
+/*   Updated: 2020/02/24 18:41:13 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "virtual_machine.h"
+#include "vm.h"
 
-void	pannel_line(char *line)
+static void	ft_pannel_line(char *line)
 {
-	char	pannel[60];
+	char pannel[60];
 
 	ft_bzero(pannel, 60);
 	ft_printf(ft_strcat(ft_strcpy(pannel, "          "), line));
 }
 
-void	print_war(int line)
+static void	ft_print_war(int line)
 {
 	if (line == 2)
 		ft_printf(
@@ -30,24 +30,24 @@ void	print_war(int line)
 			"      ()          //---------------------------(");
 	else if (line == 4)
 		ft_printf(
-			"     (*)OXOXOXOXO(*>        --COREWAR--         {red}\\{eoc}");
+			"     (*)OXOXOXOXO(*>        --COREWAR--         %{RED}\\%{}");
 	else if (line == 5)
 		ft_printf(
-			"      ()          \\\\-----------{red}------------------){eoc}");
+			"      ()          \\\\-----------%{RED}------------------)%{}");
 	else if (line == 6)
 		ft_printf(
-			"                   \\>                          {red}  \"{eoc}");
+			"                   \\>                          %{RED}  \"%{}");
 	else if (line == 7)
 		ft_printf(
-			"                                                 {red}'{eoc}");
+			"                                                 %{RED}'%{}");
 }
 
-void	print_pannel3(t_vm *vm, int line)
+void ft_print_pannel_extend_extend(t_vm *vm, int line)
 {
 	if (line == 24)
 	{
-		ft_printf("        %-25s {yellow}%d{eoc}", "  Lives since check:",
-		vm->lives_since_check);
+		ft_printf("        %-25s %{YELLOW}%d%{}", "  Lives since check:",
+				vm->lives_since_check);
 	}
 	if (line == 18)
 		ft_printf("        %-25s %d", "  Number of players:", vm->nb_players);
@@ -57,7 +57,7 @@ void	print_pannel3(t_vm *vm, int line)
 		ft_printf("        %-25s %d", "  Last check: ", vm->last_verif);
 }
 
-void	print_pannel2(t_vm *vm, int line, int *players)
+void ft_print_pannel_extend(t_vm *vm, int line, int *players)
 {
 	int i;
 
@@ -70,35 +70,35 @@ void	print_pannel2(t_vm *vm, int line, int *players)
 	{
 		if (vm->live_tab[*players] != -1)
 		{
-			i = get_player_color(vm, vm->live_tab[*players]);
-			ft_printf("          %s (%d) has called Live!{eoc}",
-				vm->player[i].name, vm->player[i].id);
+			i = ft_get_player_color(vm, vm->live_tab[*players]);
+			ft_printf("          %s (%d) has called Live!%{}",
+					vm->player[i].name, vm->player[i].id);
 		}
 		(*players)++;
 	}
-	print_pannel3(vm, line);
+	ft_print_pannel_extend_extend(vm, line);
 }
 
-void	print_pannel(t_vm *vm, int line, int *players)
+void print_pannel(t_vm *vm, int line, int *players)
 {
-	ft_printf("{eoc}     |");
+	ft_printf("%{}     |");
 	if (line < 8)
-		print_war(line);
+		ft_print_war(line);
 	else if (line == 11)
 	{
-		pannel_line("current cycle : ");
+		ft_pannel_line("current cycle : ");
 		ft_printf("%d", vm->cycles);
 	}
 	else if (line == 12)
 	{
-		pannel_line("last alive : ");
+		ft_pannel_line("last alive : ");
 		ft_printf("%s (%d)", vm->last_live->name, vm->last_live->id);
 	}
 	else if (line == 13)
 	{
-		pannel_line("cycles to die : ");
+		ft_pannel_line("cycles to die : ");
 		ft_printf("%d", vm->cycles_to_die);
 	}
-	print_pannel2(vm, line, players);
+	ft_print_pannel_extend(vm, line, players);
 	ft_printf("\n");
 }

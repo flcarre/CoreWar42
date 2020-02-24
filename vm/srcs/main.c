@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flcarre <flcarre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/16 16:51:00 by anrzepec          #+#    #+#             */
-/*   Updated: 2020/02/19 11:59:34 by flcarre          ###   ########.fr       */
+/*   Created: 2020/02/21 16:48:50 by lutsiara          #+#    #+#             */
+/*   Updated: 2020/02/24 18:41:13 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "virtual_machine.h"
+#include "vm.h"
 
-int			ft_arg_check(int ac)
+static int	ft_arg_check(int ac)
 {
 	if (ac == 1)
 	{
@@ -22,27 +22,27 @@ int			ft_arg_check(int ac)
 	return (0);
 }
 
-int			ft_players_loading(char **av, t_vm *vm)
+static int	ft_load_players(char **av, t_vm *vm)
 {
-	int i;
-	int ret;
-	int err;
+	int	i;
+	int	ret;
+	int	err;
 
 	i = 0;
 	while (++i < vm->nb_args)
 	{
 		if (av[i] && av[i][0] == '-')
 		{
-			if ((ret = parse_option(vm, av, &i)))
+			if ((ret = ft_parse_options(vm, av, &i)))
 				return (ret);
 		}
-		else if ((err = parse_player(vm, av, i)))
+		else if ((err = ft_parse_players(vm, av, i)))
 			return (err);
 	}
 	return (vm->nb_players > 0 ? 0 : 1);
 }
 
-void		ft_position_loading(t_vm *vm)
+static void	ft_position_loading(t_vm *vm)
 {
 	t_process	*tracer;
 	int			div;
@@ -69,16 +69,16 @@ int			main(int ac, char **av)
 		return (1);
 	if (!(vm = ft_init_vm(ac)))
 		return (ft_init_error(ALLOC_ERROR, vm));
-	if ((err = ft_players_loading(av, vm)))
+	if ((err = ft_load_players(av, vm)))
 		return (ft_init_error(err, vm));
-	if ((load_process_list(vm)) == ALLOC_ERROR)
+	if ((ft_load_process_list(vm)) == ALLOC_ERROR)
 		return (ALLOC_ERROR);
 	ft_position_loading(vm);
-	create_arena(vm);
+	ft_create_arena(vm);
 	vm->last_live = &vm->player[vm->nb_players - 1];
-	if (exec_machine(vm) == ALLOC_ERROR)
+	if (ft_exec_machine(vm) == ALLOC_ERROR)
 		return (ft_init_error(ALLOC_ERROR, vm));
-	free_machine(vm);
-	ft_printf("You have been playing Corewar, feel free to donate!\n");
+	ft_free_machine(vm);
+	ft_printf("That was Corewar !\nDid you enjoyed ?\n");
 	return (0);
 }

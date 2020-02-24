@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   load_process.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anrzepec <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/08 14:08:26 by anrzepec          #+#    #+#             */
-/*   Updated: 2020/01/08 14:08:29 by anrzepec         ###   ########.fr       */
+/*   Created: 2020/02/24 16:04:30 by lutsiara          #+#    #+#             */
+/*   Updated: 2020/02/24 18:41:13 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "virtual_machine.h"
+#include "vm.h"
+#include <stdlib.h>
 
-t_process		*load_process_from_player(t_player player)
+static t_process	*ft_load_process_from_player(t_player player)
 {
 	t_process *process;
 
@@ -28,7 +29,7 @@ t_process		*load_process_from_player(t_player player)
 	return (process);
 }
 
-void			find_process_position(t_process **lst, t_process *proc)
+static void			ft_find_process_position(t_process **lst, t_process *proc)
 {
 	t_process	*tracer;
 	t_process	*tmp;
@@ -52,7 +53,7 @@ void			find_process_position(t_process **lst, t_process *proc)
 	}
 }
 
-void			place_process(t_process **lst, t_process *proc, int i)
+static void			ft_place_process(t_process **lst, t_process *proc, int i)
 {
 	proc->id = i;
 	if (!*lst)
@@ -68,10 +69,10 @@ void			place_process(t_process **lst, t_process *proc, int i)
 			(*lst)->next = proc;
 	}
 	else
-		find_process_position(lst, proc);
+		ft_find_process_position(lst, proc);
 }
 
-int				load_process_list(t_vm *vm)
+int					ft_load_process_list(t_vm *vm)
 {
 	int			i;
 	t_process	*proc;
@@ -79,9 +80,9 @@ int				load_process_list(t_vm *vm)
 	i = 0;
 	while (i < vm->nb_players)
 	{
-		if (!(proc = load_process_from_player(vm->player[i])))
+		if (!(proc = ft_load_process_from_player(vm->player[i])))
 			return (ALLOC_ERROR);
-		place_process(&(vm->process), proc, i);
+		ft_place_process(&(vm->process), proc, i);
 		i++;
 	}
 	vm->nb_proc = vm->nb_players;

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   life_check.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: flcarre <flcarre@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 17:58:15 by lutsiara          #+#    #+#             */
-/*   Updated: 2020/02/18 18:15:33 by flcarre          ###   ########.fr       */
+/*   Updated: 2020/02/24 18:41:13 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "virtual_machine.h"
+#include "vm.h"
 
-t_process		*list_pop(t_vm *vm)
+static t_process	*ft_list_pop(t_vm *vm)
 {
 	t_process *first;
 
@@ -22,14 +22,14 @@ t_process		*list_pop(t_vm *vm)
 	return (vm->process);
 }
 
-t_process		*list_delone(t_process *prec, t_process *current)
+static t_process	*ft_list_delone(t_process *prec, t_process *current)
 {
 	prec->next = current->next;
 	free(current);
 	return (prec->next);
 }
 
-int				process_life_check(t_vm *vm)
+static int			ft_process_life_check(t_vm *vm)
 {
 	t_process *tracer;
 	t_process *prec;
@@ -41,9 +41,9 @@ int				process_life_check(t_vm *vm)
 		if (tracer->last_live <= vm->last_verif)
 		{
 			if (tracer == vm->process)
-				tracer = list_pop(vm);
+				tracer = ft_list_pop(vm);
 			else
-				tracer = list_delone(prec, tracer);
+				tracer = ft_list_delone(prec, tracer);
 		}
 		else
 		{
@@ -54,9 +54,9 @@ int				process_life_check(t_vm *vm)
 	return (0);
 }
 
-int				life_check(t_vm *vm)
+int					ft_life_check(t_vm *vm)
 {
-	process_life_check(vm);
+	ft_process_life_check(vm);
 	if (vm->process == NULL && vm->last_live)
 	{
 		ft_printf("The winner is: %20s (%d)\n",

@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lutsiara <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/09 17:58:52 by lutsiara            #+#    #+#             */
-/*   Updated: 2020/01/09 17:58:57 by lutsiara           ###   ########.fr       */
+/*   Created: 2020/02/24 16:03:11 by lutsiara          #+#    #+#             */
+/*   Updated: 2020/02/24 18:41:13 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "virtual_machine.h"
+#include "vm.h"
 
-void	debug_lines(t_vm *vm)
+void ft_debug_lines(t_vm *vm)
 {
-	int			i;
-	t_process	*current;
+	int i;
+	t_process *current;
 
 	current = vm->process;
 	ft_printf("\nDEBUG :\n");
@@ -23,10 +23,10 @@ void	debug_lines(t_vm *vm)
 	{
 		i = 0;
 		ft_printf("Proc %d(m%d) pc : %d | c_op : %d | c",
-			current->id, current->master,
-			current->pc, current->current_op);
+				  current->id, current->master,
+				  current->pc, current->current_op);
 		ft_printf("_left : %d | last_l : %d | regs : [",
-			current->cycles_left, current->last_live);
+				  current->cycles_left, current->last_live);
 		while (++i < 17)
 			ft_printf("%d : %d | ", i, current->reg[i]);
 		ft_printf("]\n");
