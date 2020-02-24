@@ -3,23 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 02:26:03 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/19 16:22:14 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/02/22 03:05:27 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm.h"
+#include "../includes/asm.h"
 
-void	free_tab(void **tab)
+int		free_just_inst(t_inst *inst, int ret)
 {
-	int i;
-
-	i = -1;
-	while (tab[++i])
-		free(tab[i]);
-	free(tab);
+	free(inst);
+	return (ret);
 }
 
 void	free_inst(t_inst *inst)
@@ -28,9 +24,9 @@ void	free_inst(t_inst *inst)
 
 	while (inst)
 	{
-		free_tab((void **)inst->param_arr);
+		free_tab(inst->param_arr, 0);
 		tmp = inst->next;
-		// 	ft_memdel((void **)inst);
+		free(inst);
 		inst = tmp;
 	}
 }
@@ -43,23 +39,19 @@ void	free_labels(t_label *labels)
 	{
 		ft_strdel(&labels->name);
 		tmp = labels->next;
-		ft_memdel((void **)labels);
+		free(labels);
 		labels = tmp;
 	}
 }
 
 int		free_asm(t_asm *asmb, int ret)
 {
+	if (asmb->line)
+		ft_strdel(&asmb->line);
 	ft_strdel(&asmb->file_name);
 	if (asmb->labels)
 		free_labels(asmb->labels);
 	if (asmb->inst)
 		free_inst(asmb->inst);
 	return (ret);
-}
-
-int		free_str_value(char *str, int value)
-{
-	ft_strdel(&str);
-	return (value);
 }

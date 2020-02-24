@@ -3,25 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 16:27:41 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/19 16:22:14 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/02/22 02:37:13 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm.h"
+#include "../includes/asm.h"
 
-void    init_asm(t_asm *asmb)
+void	init_asm(t_asm *asmb)
 {
-    asmb->fd = 0;
-    asmb->line = NULL;
-    asmb->file_name = NULL;
-    asmb->check = 0;
-    asmb->have_quote = 0;
-    ft_bzero(asmb->prog_name, PROG_NAME_LENGTH + 1);
+	asmb->fd = 0;
+	asmb->line = NULL;
+	asmb->file_name = NULL;
+	asmb->check = 0;
+	asmb->have_quote = 0;
+	ft_bzero(asmb->prog_name, PROG_NAME_LENGTH + 1);
 	ft_bzero(asmb->prog_comment, COMMENT_LENGTH + 1);
-    asmb->accu_len = 0;
+	asmb->accu_len = 0;
 	asmb->inst = NULL;
 	asmb->labels = NULL;
 }

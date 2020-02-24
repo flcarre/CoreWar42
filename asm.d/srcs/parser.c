@@ -3,19 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 03:40:50 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/19 16:22:14 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/02/22 03:18:10 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm.h"
+#include "../includes/asm.h"
 
-t_bool	parse(t_asm *asmb)
+int	parse(t_asm *asmb, int ret)
 {
-	while (get_next_line(asmb->fd, &asmb->line))
+	while (ret == 1)
 	{
+		if ((ret = get_next_line(asmb->fd, &asmb->line)) == -1)
+			return (free_asm(asmb, 1));
 		if (asmb->line[0] == COMMENT_CHAR || asmb->line[0] == ';')
 			;
 		else if (ft_strnequ(asmb->line + ft_strspn(asmb->line, " \t"),

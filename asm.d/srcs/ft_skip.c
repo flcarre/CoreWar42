@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_skip.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 01:28:48 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/19 16:22:14 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/02/22 02:49:20 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm.h"
+#include "../includes/asm.h"
 
-int skip_nonspace(char *str, int i)
+int	skip_nonspace(char *str, int i)
 {
 	while (str[i] && !ft_isspace(str[i]) && str[i] != DIRECT_CHAR)
 		i++;

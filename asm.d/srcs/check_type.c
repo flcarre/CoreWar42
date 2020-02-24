@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   check_type.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 02:36:09 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/19 16:22:14 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/02/22 03:17:19 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm.h"
+#include "../includes/asm.h"
 
-static t_bool	check_registry(char *str)
+static int	check_registry(char *str)
 {
 	int		num;
 
 	str++;
-	if (!ft_isdigit(*str)) //  *str == '0'
+	if (!ft_isdigit(*str))
 		return (ft_error("registry argument has wrong format", 1));
 	num = ft_atoi(str);
 	if (num < 1 || num > REG_NUMBER)
@@ -29,7 +29,7 @@ static t_bool	check_registry(char *str)
 	return (0);
 }
 
-static t_bool	check_number(char *str, char type)
+static int	check_number(char *str, char type)
 {
 	if (type & T_DIR)
 		str++;
@@ -44,7 +44,7 @@ static t_bool	check_number(char *str, char type)
 	return (0);
 }
 
-static t_bool	check_label(char *str, char type)
+static int	check_label(char *str, char type)
 {
 	if (type & T_DIR)
 		str++;
@@ -60,7 +60,7 @@ static t_bool	check_label(char *str, char type)
 	return (0);
 }
 
-t_bool			check_type(char *str, int type)
+int			check_type(char *str, int type)
 {
 	if (type & T_REG)
 	{

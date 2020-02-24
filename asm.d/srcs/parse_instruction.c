@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parse_instruction.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 02:20:58 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/19 16:22:14 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/02/22 03:20:07 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm.h"
+#include "../includes/asm.h"
 
 static void		remove_comment(char *str)
 {
@@ -51,12 +51,16 @@ static t_op		*check_inst(char *str)
 
 	inst = NULL;
 	inst_len = 0;
-	while (str[inst_len] && !ft_isspace(str[inst_len]) && str[inst_len] != DIRECT_CHAR)
+	while (str[inst_len] && !ft_isspace(str[inst_len])
+		&& str[inst_len] != DIRECT_CHAR)
 		inst_len++;
 	if (!(inst = ft_strsub(str, 0, inst_len)))
 		return (NULL);
 	if (!(op = get_op(inst)))
+	{
+		ft_strdel(&inst);
 		return (NULL);
+	}
 	ft_strdel(&inst);
 	return (op);
 }
@@ -75,7 +79,8 @@ static int		check_label_infront(t_asm *asmb, char *str)
 			while (j < i)
 				if (!ft_strchr(LABEL_CHARS, str[j++]))
 					return (ft_error("label contains non-LABEL_CHARS", 1));
-			ft_list_push_back_label(&asmb->labels, ft_strsub(str, 0, i), asmb->accu_len);
+			ft_list_push_back_label(&asmb->labels,
+				ft_strsub(str, 0, i), asmb->accu_len);
 			return (i + 1);
 		}
 		i++;
@@ -83,9 +88,9 @@ static int		check_label_infront(t_asm *asmb, char *str)
 	return (0);
 }
 
-t_bool			parse_instruction(t_asm *asmb)
+int				parse_instruction(t_asm *asmb)
 {
-    char	*str;
+	char	*str;
 	int		i;
 	t_op	*op;
 	t_inst	*inst;
@@ -95,17 +100,17 @@ t_bool			parse_instruction(t_asm *asmb)
 		return (1);
 	i = check_label_infront(asmb, str);
 	if (!str[i])
-	    return (free_str_value(str, 1));
-	i = skip_space(str, i);	
+		return (free_str_value(str, 1));
+	i = skip_space(str, i);
 	if (!(op = check_inst(str + i)))
-	    return (free_str_value(str, 0));
+		return (free_str_value(str, 0));
 	if (!(inst = create_inst(asmb, op)))
-	    return (free_str_value(str, 0));
+		return (free_str_value(str, 0));
 	i = skip_nonspace(str, i);
 	i = skip_space(str, i);
-	if (check_param(str + i, op, inst))
-	    return (free_str_value(str, 0));
+	if (check_param(str + i, op, inst, -1))
+		return (free_str_value(str, free_just_inst(inst, 0)));
 	asmb->accu_len += inst->len;
 	ft_list_push_back_inst(&asmb->inst, inst);
-	return (free_str_value(str, 1));
+	return (free_str_value(str, free_just_inst(inst, 1)));
 }

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   check_parsing.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 18:28:19 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/19 16:22:14 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/02/22 03:17:11 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm.h"
+#include "../includes/asm.h"
 
-static t_bool	check_each_label(t_inst *inst, t_label *labels_list, int i)
+static int	check_each_label(t_inst *inst, t_label *labels_list, int i)
 {
 	int			j;
 	int			found;
@@ -35,7 +35,7 @@ static t_bool	check_each_label(t_inst *inst, t_label *labels_list, int i)
 	return (0);
 }
 
-static t_bool	check_label(t_inst *inst_list, t_label *labels_list)
+static int	check_label(t_inst *inst_list, t_label *labels_list)
 {
 	t_inst		*inst;
 	int			i;
@@ -56,9 +56,9 @@ static t_bool	check_label(t_inst *inst_list, t_label *labels_list)
 	return (0);
 }
 
-t_bool  		check_parsing(t_asm *asmb)
+int			check_parsing(t_asm *asmb)
 {
-    if (!(asmb->check & HAVE_NAME))
+	if (!(asmb->check & HAVE_NAME))
 		return (ft_error("champion has no name", 1));
 	if (!(asmb->check & HAVE_COMMENT))
 		return (ft_error("champion has no comment", 1));
