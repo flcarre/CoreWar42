@@ -6,7 +6,7 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 15:57:53 by lutsiara          #+#    #+#             */
-/*   Updated: 2020/02/24 23:07:29 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/02/24 23:09:37 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void ft_print_pannel_extend(t_vm *vm, int line, int *players)
 		{
 			i = ft_get_player_color(vm, vm->live_tab[*players]);
 			ft_printf("          %s (%d) has called Live!%{}",
-					git vm->player[i].name, vm->player[i].id);
+					vm->player[i].name, vm->player[i].id);
 		}
 		(*players)++;
 	}
