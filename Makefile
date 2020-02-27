@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+         #
+#    By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/18 22:47:08 by lutsiara          #+#    #+#              #
-#    Updated: 2020/02/19 17:43:00 by lutsiara         ###   ########.fr        #
+#    Updated: 2020/02/27 21:18:54 by wahasni          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,9 +39,11 @@ lib:
 	@make -C $(LIB)
 
 vm:
+	@make -C $(LIB)
 	@make -C $(VM)
 
 asm:
+	@make -C $(LIB)
 	@make -C $(ASM)
 
 re: fclean all
