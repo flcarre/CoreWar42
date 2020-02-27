@@ -5,19 +5,17 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/25 03:40:50 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/22 03:18:10 by wahasni          ###   ########.fr       */
+/*   Created: 2020/01/25 03:40:50 by wahasni           #+#    #+#             */
+/*   Updated: 2020/02/27 20:59:53 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/asm.h"
+#include "asm.h"
 
-int	parse(t_asm *asmb, int ret)
+int		parse(t_asm *asmb)
 {
-	while (ret == 1)
+	while (get_next_line(asmb->fd, &asmb->line))
 	{
-		if ((ret = get_next_line(asmb->fd, &asmb->line)) == -1)
-			return (free_asm(asmb, 1));
 		if (asmb->line[0] == COMMENT_CHAR || asmb->line[0] == ';')
 			;
 		else if (ft_strnequ(asmb->line + ft_strspn(asmb->line, " \t"),

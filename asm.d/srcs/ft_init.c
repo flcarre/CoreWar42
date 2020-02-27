@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/22 16:27:41 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/22 02:37:13 by wahasni          ###   ########.fr       */
+/*   Created: 2020/01/22 16:27:41 by wahasni           #+#    #+#             */
+/*   Updated: 2020/02/27 21:00:06 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/asm.h"
+#include "asm.h"
 
 void	init_asm(t_asm *asmb)
 {

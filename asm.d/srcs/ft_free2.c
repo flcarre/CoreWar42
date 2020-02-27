@@ -6,11 +6,11 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 03:04:39 by wahasni           #+#    #+#             */
-/*   Updated: 2020/02/22 03:06:28 by wahasni          ###   ########.fr       */
+/*   Updated: 2020/02/27 20:56:18 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/asm.h"
+#include "asm.h"
 
 int		free_str_value(char *str, int value)
 {

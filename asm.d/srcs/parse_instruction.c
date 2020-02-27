@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/28 02:20:58 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/22 03:20:07 by wahasni          ###   ########.fr       */
+/*   Created: 2020/01/28 02:20:58 by wahasni           #+#    #+#             */
+/*   Updated: 2020/02/27 20:57:31 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/asm.h"
+#include "asm.h"
 
 static void		remove_comment(char *str)
 {

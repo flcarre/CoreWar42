@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 21:26:10 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/22 03:58:45 by wahasni          ###   ########.fr       */
+/*   Updated: 2020/02/27 21:01:00 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void				init_asm(t_asm *asmb);
 ** PARSING
 */
 
-int					parse(t_asm *asmb, int ret);
+int					parse(t_asm *asmb);
 int					parse_name(t_asm *asmb);
 int					parse_comment(t_asm *asmb);
 int					parse_instruction(t_asm *asmb);

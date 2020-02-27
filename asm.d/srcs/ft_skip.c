@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/29 01:28:48 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/22 02:49:20 by wahasni          ###   ########.fr       */
+/*   Created: 2020/01/29 01:28:48 by wahasni           #+#    #+#             */
+/*   Updated: 2020/02/27 20:59:37 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/asm.h"
+#include "asm.h"
 
 int	skip_nonspace(char *str, int i)
 {

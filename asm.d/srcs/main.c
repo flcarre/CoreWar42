@@ -5,15 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/19 21:25:43 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/22 02:47:15 by wahasni          ###   ########.fr       */
+/*   Created: 2020/01/19 21:25:43 by wahasni           #+#    #+#             */
+/*   Updated: 2020/02/27 21:00:29 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/asm.h"
+#include "asm.h"
 #include <fcntl.h>
 
-bool	handle_file(t_asm *file, int ac, char *av)
+int	handle_file(t_asm *file, int ac, char *av)
 {
 	int	len;
 
@@ -38,7 +38,7 @@ int		main(int ac, char **av)
 	init_asm(&asmb);
 	if (handle_file(&asmb, ac, av[1]))
 		return (ft_error("Wrong input", -1));
-	if (parse(&asmb, 1))
+	if (parse(&asmb))
 		return (-1);
 	if ((close(asmb.fd)) == -1)
 		return (free_asm(&asmb, ft_error("close file failed", -1)));

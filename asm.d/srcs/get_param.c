@@ -6,11 +6,11 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 02:45:07 by hasni             #+#    #+#             */
-/*   Updated: 2020/01/31 19:53:30 by wahasni          ###   ########.fr       */
+/*   Updated: 2020/02/27 20:54:06 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/asm.h"
+#include "asm.h"
 
 static void	get_param_byte(t_inst *inst, int value, int i)
 {

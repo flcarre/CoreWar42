@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/28 17:48:55 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/22 02:49:02 by wahasni          ###   ########.fr       */
+/*   Created: 2020/01/28 17:48:55 by wahasni           #+#    #+#             */
+/*   Updated: 2020/02/27 21:02:18 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/asm.h"
+#include "asm.h"
 
 static t_label	*ft_create_elem_label(char *name, int addr)
 {

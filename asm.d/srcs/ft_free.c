@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/28 02:26:03 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/22 03:05:27 by wahasni          ###   ########.fr       */
+/*   Created: 2020/01/28 02:26:03 by wahasni           #+#    #+#             */
+/*   Updated: 2020/02/27 21:00:23 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/asm.h"
+#include "asm.h"
 
 int		free_just_inst(t_inst *inst, int ret)
 {

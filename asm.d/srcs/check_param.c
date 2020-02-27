@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/29 02:32:56 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/22 03:17:00 by wahasni          ###   ########.fr       */
+/*   Created: 2020/01/29 02:32:56 by wahasni           #+#    #+#             */
+/*   Updated: 2020/02/27 21:01:27 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/asm.h"
+#include "asm.h"
 
 static int		check_param_num(char *str, char **arr, int param_num)
 {

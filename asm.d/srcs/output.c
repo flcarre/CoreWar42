@@ -5,21 +5,21 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/02 17:28:31 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/22 03:20:23 by wahasni          ###   ########.fr       */
+/*   Created: 2020/02/02 17:28:31 by wahasni           #+#    #+#             */
+/*   Updated: 2020/02/27 21:04:44 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/asm.h"
+#include "asm.h"
 #include <fcntl.h>
 #include <string.h>
 
 static void		write_number(int fd, t_inst *inst, int i)
 {
 	if (inst->param_arr[i][0] == '%')
-		disp_hexlen(fd, atoi(&inst->param_arr[i][1]), inst->direct_len);
+		disp_hexlen(fd, ft_atoi(&inst->param_arr[i][1]), inst->direct_len);
 	else
-		disp_hexlen(fd, atoi(&inst->param_arr[i][0]), 2);
+		disp_hexlen(fd, ft_atoi(&inst->param_arr[i][0]), 2);
 }
 
 static char		*get_label(t_inst *inst, int i)

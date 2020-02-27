@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/29 02:36:09 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/22 03:17:19 by wahasni          ###   ########.fr       */
+/*   Created: 2020/01/29 02:36:09 by wahasni           #+#    #+#             */
+/*   Updated: 2020/02/27 21:00:52 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/asm.h"
+#include "asm.h"
 
 static int	check_registry(char *str)
 {

@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/29 18:28:19 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/22 03:17:11 by wahasni          ###   ########.fr       */
+/*   Created: 2020/01/29 18:28:19 by wahasni           #+#    #+#             */
+/*   Updated: 2020/02/27 21:01:00 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/asm.h"
+#include "asm.h"
 
 static int	check_each_label(t_inst *inst, t_label *labels_list, int i)
 {

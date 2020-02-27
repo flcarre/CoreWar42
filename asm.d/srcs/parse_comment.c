@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/28 02:04:51 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/22 03:17:36 by wahasni          ###   ########.fr       */
+/*   Created: 2020/01/28 02:04:51 by wahasni           #+#    #+#             */
+/*   Updated: 2020/02/27 20:57:42 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/asm.h"
+#include "asm.h"
 
 static int	handle_comment(t_asm *asmb, char **line)
 {

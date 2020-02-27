@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   handle_end.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
+/*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 01:47:13 by wahasni           #+#    #+#             */
-/*   Updated: 2020/02/22 01:48:59 by wahasni          ###   ########.fr       */
+/*   Updated: 2020/02/27 20:49:12 by hasni            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/asm.h"
+#include "asm.h"
 
 void	handle_end(t_asm *asmb)
 {
