@@ -6,7 +6,7 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 16:00:42 by lutsiara          #+#    #+#             */
-/*   Updated: 2020/02/24 18:41:13 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/02/27 19:41:26 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	ft_get_param(t_vm *vm, t_process *proc, int pc, int code)
 	dir_size = (g_op_tab[proc->current_op - 1].dir_size ? 2 : 4);
 	if (code == REG_CODE)
 	{
-		if (is_valid_reg(ft_read_address(vm, pc, 1)))
+		if (ft_is_valid_reg(ft_read_address(vm, pc, 1)))
 			return (ft_read_address(vm, pc, 1));
 		else
 			return (-1);

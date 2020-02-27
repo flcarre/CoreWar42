@@ -6,11 +6,12 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 16:02:23 by lutsiara          #+#    #+#             */
-/*   Updated: 2020/02/24 18:41:13 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/02/27 23:00:46 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
+#include <stdlib.h>
 
 int ft_op_ldi(t_vm *vm, t_process *proc)
 {

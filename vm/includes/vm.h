@@ -6,7 +6,7 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/21 17:59:38 by lutsiara          #+#    #+#             */
-/*   Updated: 2020/02/24 18:41:13 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/02/27 20:44:14 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,10 +164,10 @@ int		ft_op_aff(t_vm *vm, t_process *proc);
 */
 int		ft_get_next_number(t_vm *vm);
 int		ft_is_valid_op(int opcode);
-int		is_valid_reg(int reg);
-void	init_registers(t_process *process);
+int		ft_is_valid_reg(int reg);
+void	ft_init_registers(t_process *process);
 void	ft_copy_registers(t_process *new, t_process *proc);
-int		long_rel_address(t_process *proc, int add1, int add2);
+int		ft_long_rel_address(t_process *proc, int add1, int add2);
 int		ft_read_address(t_vm *vm, int addr, size_t bytes);
 int		ft_read_octet(unsigned char *mem, size_t size);
 void	ft_write_to_address(t_vm *vm, t_process *proc,

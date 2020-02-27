@@ -6,7 +6,7 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 16:04:30 by lutsiara          #+#    #+#             */
-/*   Updated: 2020/02/24 18:41:13 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/02/27 19:41:58 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static t_process	*ft_load_process_from_player(t_player player)
 	process->last_live = 0;
 	process->current_op = player.exec[0];
 	process->cycles_left = g_op_tab[process->current_op - 1].cycles - 1;
-	init_registers(process);
+	ft_init_registers(process);
 	process->next = NULL;
 	return (process);
 }

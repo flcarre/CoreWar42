@@ -6,11 +6,12 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 16:01:06 by lutsiara          #+#    #+#             */
-/*   Updated: 2020/02/24 18:41:13 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/02/27 23:01:26 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
+#include <stdlib.h>
 
 int ft_op_lfork(t_vm *vm, t_process *proc)
 {
@@ -41,7 +42,7 @@ int ft_op_aff(t_vm *vm, t_process *proc)
 
 	if (vm->mem[(proc->pc + 1) % MEM_SIZE] == 64)
 	{
-		if (is_valid_reg(vm->mem[(proc->pc + 2) % MEM_SIZE]))
+		if (ft_is_valid_reg(vm->mem[(proc->pc + 2) % MEM_SIZE]))
 		{
 			c = proc->reg[vm->mem[(proc->pc + 2) % MEM_SIZE]] % 256;
 			ft_printf("%c", c);

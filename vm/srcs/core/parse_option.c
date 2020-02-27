@@ -6,7 +6,7 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/21 17:48:53 by lutsiara          #+#    #+#             */
-/*   Updated: 2020/02/21 17:51:35 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/02/27 22:42:55 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int ft_check_extension(char *name)
 
 static int ft_visualizer_option(t_vm *vm, char **av, int *i)
 {
-	if ((*i + 1) < vm->nb_args && ft_strnum(av[*i + 1]) && vm->vis == -1 && vm->dump == -1)
+	if ((*i + 1) < vm->nb_args && ft_strisnum(av[*i + 1]) \
+	&& vm->vis == -1 && vm->dump == -1)
 	{
 		vm->vis = ft_atoi(av[++(*i)]);
 		if (vm->vis > 0)
@@ -36,11 +37,12 @@ static int ft_visualizer_option(t_vm *vm, char **av, int *i)
 
 static int ft_number_option(t_vm *vm, char **av, int *i)
 {
-	if ((*i + 1) < vm->nb_args && ft_strnum(av[*i + 1]))
+	if ((*i + 1) < vm->nb_args && ft_strisnum(av[*i + 1]))
 	{
 		if (vm->nb_players < MAX_PLAYERS && !vm->nb_option)
 		{
-			if ((vm->nb_option = ft_atoi(av[++(*i)])) > 0 && vm->nb_option <= MAX_PLAYERS)
+			if ((vm->nb_option = ft_atoi(av[++(*i)])) > 0 \
+			&& vm->nb_option <= MAX_PLAYERS)
 				return (vm->nb_players <= MAX_PLAYERS
 							? OH_OUI
 							: PLAYER_NUMBER_ERROR);
@@ -53,7 +55,8 @@ static int ft_number_option(t_vm *vm, char **av, int *i)
 
 static int ft_dump_option(t_vm *vm, char **av, int *i)
 {
-	if ((*i + 1) < vm->nb_args && ft_strnum(av[*i + 1]) && vm->dump == -1 && vm->vis == -1)
+	if ((*i + 1) < vm->nb_args && ft_strisnum(av[*i + 1]) \
+	&& vm->dump == -1 && vm->vis == -1)
 	{
 		vm->dump = ft_atoi(av[++(*i)]);
 		return (OH_OUI);

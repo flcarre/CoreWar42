@@ -6,7 +6,7 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/08 13:22:13 by anrzepec          #+#    #+#             */
-/*   Updated: 2020/02/24 18:41:13 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/02/28 00:07:18 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,36 +31,36 @@ void		ft_free_machine(t_vm *vm)
 static void	ft_print_helper_war(void)
 {
 	ft_printf("\n");
-	ft_printf("\t\t  .----.-----.-----.-----.\n");
-	ft_printf("\t\t /      \\     \\     \\     \\\n");
-	ft_printf("\t\t|  \\/    |     |   __L_____L__\n");
-	ft_printf("\t\t|   |    |     |  (           \\\n");
-	ft_printf("\t\t|    \\___/    /    \\______/    |\n");
-	ft_printf("\t\t|        \\___/\\___/\\___/       |\n");
-	ft_printf("\t\t \\      \\     /               /\n");
-	ft_printf("\t\t  |                        __/\n");
-	ft_printf("\t\t   \\_                   __/\n");
-	ft_printf("\t\t     |        |         |\n");
-	ft_printf("\t\t     |                  |\n");
-	ft_printf("\t\t     |                  |\n");
+	ft_printf("%{RED}\t       .----.-----.-----.-----.%{}\n");
+	ft_printf("%{RED}\t      /      \\     \\ %{}    \\     \\\n");
+	ft_printf("%{RED}\t     |  \\/%{}    |     |   __L_____L__\n");
+	ft_printf("%{RED}\t     |   |%{}    |     |  (           \\\n");
+	ft_printf("\t     |    \\___/    /    \\______/    |\n");
+	ft_printf("\t     |        \\___/\\___/\\___/       |\n");
+	ft_printf("\t      \\      \\     /               /\n");
+	ft_printf("\t       |                        __/\n");
+	ft_printf("%{RED}\t        \\_ %{}                  __/\n");
+	ft_printf("%{RED}\t          |  %{}      |         |\n");
+	ft_printf("%{RED}\t          |   %{}               |\n");
+	ft_printf("%{RED}\t          |   %{}               |\n\n");
 }
 
 void		ft_print_helper(void)
 {
+	ft_printf("\n> ./corewar [-v] cycle_refresh [[-dump] nbr_cycles] ");
+	ft_printf("[[-n number] champion1.cor] ...\n\n");
 	ft_print_helper_war();
-	ft_printf("> ./corewar [-v] cycle_refresh [[-dump] nbr_cycles] ");
-	ft_printf("[[-n number]");
-	ft_printf(" champion1.cor] ...\n\n%{RED}-->     FLAGS%{}\n\n-v  ");
-	ft_printf("    ");
-	ft_printf("Visualization.\n        Example: ./corewar -v 500 champ1.cor ");
-	ft_printf("champ2.cor\n\n-n      Player number selection.\n        ");
+	ft_printf("%{ORANGE}\t------:\t\tOPTIONS\t\t");
+	ft_printf(":------%{}\n\n\t-v      ");
+	ft_printf("Visualization.\n\t        Example: ./corewar -v 500 champ1.cor");
+	ft_printf(" champ2.cor\n\n\t-n      Player number selection.\n\t        ");
 	ft_printf("Example: > ./corewar -n 4 champ1.cor -n 2 champ2.cor\n        ");
-	ft_printf("Corewar will auto-assign where no selection is made.\n\n");
-	ft_printf("-dump  ");
-	ft_printf(" Dump memory.\n        Example: > ./corewar -dump 27 ");
+	ft_printf("\tCorewar will auto-assign where no selection is made.\n\n");
+	ft_printf("\t-dump  ");
+	ft_printf(" Dump memory.\n\t        Example: > ./corewar -dump 27 ");
 	ft_printf("champ1.cor ");
-	ft_printf("champ2.cor\n        Here, Corewar will dump memory after 27");
-	ft_printf(" cycles.\n        Corewar can only accept 1 -dump argument.\n");
+	ft_printf("champ2.cor\n\t        Here, Corewar will dump memory after 27 ");
+	ft_printf("cycles.\n\t        Corewar can only accept 1 -dump argument.\n");
 }
 
 static void	ft_init_error_extend(int error)

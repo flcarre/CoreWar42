@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+         #
+#    By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/18 22:47:08 by lutsiara          #+#    #+#              #
-#    Updated: 2020/02/27 21:18:54 by wahasni          ###   ########.fr        #
+#    Updated: 2020/02/27 21:23:00 by lutsiara         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ clean:
 	@make -C $(ASM) clean
 	@make -C $(VM) clean
 
-fclean: clean
+fclean:
 	@make -C $(LIB) fclean
 	@make -C $(ASM) fclean
 	@make -C $(VM) fclean
