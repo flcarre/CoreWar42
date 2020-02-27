@@ -6,7 +6,7 @@
 #    By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/18 22:57:27 by lutsiara          #+#    #+#              #
-#    Updated: 2020/02/28 00:30:21 by lutsiara         ###   ########.fr        #
+#    Updated: 2020/02/28 00:34:56 by lutsiara         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,7 +75,7 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 
 clean:
 	@printf "$(NAME): rm *.o"
-	@/bin/rm -rf $(OBJ_PATH)/$(OBJ_FILES)
+	@/bin/rm -rf $(OBJ)
 	@printf " $(RED)$(OK)\n"
 
 fclean: clean
