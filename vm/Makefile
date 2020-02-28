@@ -54,7 +54,10 @@ C_FILENAME = main \
 			 utils/ft_modulo_mem_size \
 			 utils/ft_read_address \
 			 utils/ft_read_octet \
-			 utils/ft_write_to_address
+			 utils/ft_write_to_address \
+			#  visual/create_windows \
+			#  visual/init \
+			#  visual/visual
 
 INC_FILES = $(addsuffix $(H_SUFFIX),$(H_FILENAME))
 SRC_FILES = $(addsuffix $(SRC_SUFFIX),$(C_FILENAME))
