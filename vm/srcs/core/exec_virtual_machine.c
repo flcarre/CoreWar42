@@ -34,6 +34,8 @@ static int	ft_option_review(t_vm *vm)
 	}
 	if (vm->vis != -1 && !(vm->cycles % vm->vis))
 	{
+		// if (ft_visual(vm))
+		// 	return (VIS_ERROR);
 		ft_print_arena(vm);
 		sleep(1);
 	}

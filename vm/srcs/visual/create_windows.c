@@ -1,4 +1,4 @@
-#include "visual.h"
+#include "vm.h"
 
 void		create_windows(t_visu *visu)
 {
