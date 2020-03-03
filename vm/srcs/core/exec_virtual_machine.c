@@ -34,9 +34,9 @@ static int	ft_option_review(t_vm *vm)
 	}
 	if (vm->vis != -1 && !(vm->cycles % vm->vis))
 	{
-		// if (ft_visual(vm))
-		// 	return (VIS_ERROR);
-		ft_print_arena(vm);
+		if (ft_refresh_visu(vm))
+			return (VIS_ERROR);
+		// ft_print_arena(vm);
 		sleep(1);
 	}
 	return (0);
@@ -82,6 +82,9 @@ int			ft_exec_machine(t_vm *vm)
 	t_process	*champion;
 
 	ft_introduce_players(vm);
+	if (vm->vis != -1)// && !(vm->cycles) % vm->vis))
+		if (ft_visual(vm))
+			return (VIS_ERROR);
 	while (ft_machine_review(vm) != END_GAME)
 	{
 		champion = vm->process;
