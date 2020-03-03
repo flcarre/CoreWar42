@@ -102,6 +102,7 @@ typedef struct s_vm
 	int				player_numbers[MAX_PLAYERS];
 	int				live_tab[6];
 	int				malloc_flag;
+	t_visu			*visu;
 } t_vm;
 
 typedef struct s_param
@@ -192,15 +193,17 @@ int		ft_print_arena(t_vm *vm);
 void	print_pannel(t_vm *vm, int line, int *players);
 int		ft_get_player_color(t_vm *vm, int players);
 
+int		ft_visual(t_vm *vm);
+int		ft_refresh_visu(t_vm *vm);
 t_visu	*init_visu(t_vm *vm);
-void	init_colors(int *color_p);
+void	init_colors(t_visu *visu);
 void	init_player(t_visu *visu, char *p1, char *p2, char *p3, char *p4);
 void	init_arena(t_visu *visu, t_vm *vm, int *color_p);
 void	init_panel(t_visu *visu, t_vm *vm);
 void	create_windows(t_visu *visu);
-int		ft_visual(t_vm *vm);
 void	ft_print_col_numbers_bis(t_visu *visu);
-void	ft_print_bytes_bis(t_visu *visu, t_vm *vm, int i, int *color_p);
+// void	ft_print_bytes_bis(t_visu *visu, t_vm *vm, int i, int *color_p);
+void	ft_print_arena_bis(t_visu *visu, t_vm *vm, int *color_p);
 void	ft_print_war_bis(t_win *info);
 void	ft_print_first_panel(t_win *info, t_vm *vm);
 void	ft_print_secnd_panel(t_win *info, t_vm *vm);
