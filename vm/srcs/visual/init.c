@@ -58,7 +58,7 @@ void	init_arena(t_visu *visu, t_vm *vm, int *color_p)
 	int	i;
 	int	size;
 
-	ft_print_col_numbers(visu);
+	ft_print_col_numbers_bis(visu);
 	i = 0;
 	visu->arena->coord.x = 1;
 	visu->arena->coord.y = 1;
@@ -73,11 +73,11 @@ void	init_arena(t_visu *visu, t_vm *vm, int *color_p)
 				visu->arena->coord.x, "0x%04x : ", i);
 			visu->arena->coord.x = 10;
 		}
-		ft_print_bytes(visu, vm, i, color_p);
+		ft_print_bytes_bis(visu, vm, i, color_p);
 		i++;
 		visu->arena->coord.x += 3;
 	}
-	wrefresh(visu->arena->window);
+	// wrefresh(visu->arena->window);
 }
 
 void	init_player(t_visu *visu, char *p1, char *p2, char *p3, char *p4)
@@ -94,7 +94,7 @@ void	init_player(t_visu *visu, char *p1, char *p2, char *p3, char *p4)
 	wattron(visu->arena->window, COLOR_PAIR(COLOR_P4));
 	mvwprintw(visu->arena->window, 8, 1, p4);
 	wattroff(visu->arena->window, COLOR_PAIR(COLOR_P4));
-	wrefresh(visu->arena->window);
+	// wrefresh(visu->arena->window);
 }
 
 void	init_panel(t_visu *visu, t_vm *vm)
@@ -102,6 +102,8 @@ void	init_panel(t_visu *visu, t_vm *vm)
 	
 	(void)vm;
 	ft_print_war_bis(visu->info);
-
+	ft_print_first_panel(visu->info, vm);
+	ft_print_secnd_panel(visu->info, vm);
+	// ft_print_third_panel(visu->info, vm);
 	wrefresh(visu->info->window);
 }

@@ -59,6 +59,7 @@ C_FILENAME = main \
 			 visual/create_windows \
 			 visual/init \
 			 visual/print \
+			 visual/print_panel \
 			 visual/visual
 
 INC_FILES = $(addsuffix $(H_SUFFIX),$(H_FILENAME))

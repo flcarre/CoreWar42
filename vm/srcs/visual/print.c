@@ -1,6 +1,6 @@
 #include "vm.h"
 
-void	ft_print_col_numbers(t_visu *visu)
+void	ft_print_col_numbers_bis(t_visu *visu)
 {
 	int	x;
 	int	y;
@@ -23,7 +23,7 @@ void	ft_print_col_numbers(t_visu *visu)
 	}
 }
 
-void	ft_print_bytes(t_visu *visu, t_vm *vm, int i, int *color_p)
+void	ft_print_bytes_bis(t_visu *visu, t_vm *vm, int i, int *color_p)
 {
 	int color;
 	int	x;
@@ -44,7 +44,7 @@ void	ft_print_war_bis(t_win *info)
 	int	y;
 
 	x = 1;
-	y = 1;
+	y = 2;
 	wattron(info->window, COLOR_PAIR(COLOR_P1));
 	mvwprintw(info->window, y++, x, "\t\t       .----.-----.-----.-----.");
 	mvwprintw(info->window, y++, x, "\t\t      /      \\     \\     \\     \\");
@@ -59,4 +59,10 @@ void	ft_print_war_bis(t_win *info)
 	mvwprintw(info->window, y++, x, "\t\t          |                  |");
 	mvwprintw(info->window, y++, x, "\t\t          |                  |");
 	wattroff(info->window, COLOR_PAIR(COLOR_P1));
+	y += 3;
+	info->coord.x = x;
+	while (x < info->dim.cols - 1)
+		mvwprintw(info->window, y, x++, "-");
+	info->coord.y = y + 3;
 }
+

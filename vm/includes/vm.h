@@ -199,8 +199,11 @@ void	init_arena(t_visu *visu, t_vm *vm, int *color_p);
 void	init_panel(t_visu *visu, t_vm *vm);
 void	create_windows(t_visu *visu);
 int		ft_visual(t_vm *vm);
-void	ft_print_col_numbers(t_visu *visu);
-void	ft_print_bytes(t_visu *visu, t_vm *vm, int i, int *color_p);
+void	ft_print_col_numbers_bis(t_visu *visu);
+void	ft_print_bytes_bis(t_visu *visu, t_vm *vm, int i, int *color_p);
 void	ft_print_war_bis(t_win *info);
+void	ft_print_first_panel(t_win *info, t_vm *vm);
+void	ft_print_secnd_panel(t_win *info, t_vm *vm);
+void	ft_print_third_panel(t_win *info, t_vm *vm);
 
 #endif

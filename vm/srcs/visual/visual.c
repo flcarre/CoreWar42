@@ -24,20 +24,16 @@ int	ft_visual(t_vm *vm)
 	box(visu->info->window, ACS_VLINE, ACS_HLINE);
 
 	mvwprintw(visu->arena->window, 0, 1, "Arena");
-	wrefresh(visu->arena->window);
 	// refresh();
 	
 	mvwprintw(visu->info->window, 0, 1, "Info");
-	wrefresh(visu->info->window);
+	
 	init_colors(color_p);
 	init_arena(visu, vm, color_p);
 	init_panel(visu, vm);
-	// init_player(visu, p1, p2, p3, p4);
+	wrefresh(visu->arena->window);
+	wrefresh(visu->info->window);
 
-	// attron(COLOR_PAIR(1));
-	// attron(COLOR_PAIR(2));
-	// print_in_middle(stdscr, LINES / 2, 0, 0, "Voila !!! In color ...");
-	// attroff(COLOR_PAIR(2));
 
 	if (getch() == KEY_ENTER)
 	{
@@ -51,3 +47,7 @@ int	ft_visual(t_vm *vm)
 	}
 	return (0);
 }
+// int	ft_refresh_visu(t_vm *vm, t_visu *visu)
+// {
+
+// }
