@@ -34,10 +34,4 @@ typedef struct	s_visu
 	t_win	*arena;
 	t_win	*info;
 }				t_visu;
-// t_visu	*init_visu(t_vm *vm);
-// void	init_colors(void);
-// void	init_player(t_visu *visu, char *p1, char *p2, char *p3, char *p4);
-// void	init_arena(t_visu *visu);
-// void	create_windows(t_visu *visu);
-// int		ft_visual(t_vm *vm);
 #endif
