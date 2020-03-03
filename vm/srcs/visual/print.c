@@ -23,7 +23,7 @@ void	ft_print_col_numbers_bis(t_visu *visu)
 	}
 }
 
-void	ft_print_bytes_bis(t_visu *visu, t_vm *vm, int i, int *color_p)
+static void	ft_print_bytes_bis(t_visu *visu, t_vm *vm, int i, int *color_p)
 {
 	int color;
 	int	x;
@@ -66,3 +66,27 @@ void	ft_print_war_bis(t_win *info)
 	info->coord.y = y + 3;
 }
 
+void	ft_print_arena_bis(t_visu *visu, t_vm *vm, int *color_p)
+{
+	int	i;
+	int	size;
+
+	i = 0;
+	visu->arena->coord.x = 1;
+	visu->arena->coord.y = 1;
+	size = ft_sqrt(MEM_SIZE);
+	while (i < MEM_SIZE)
+	{
+		if (i % size == 0)
+		{
+			visu->arena->coord.y++;
+			visu->arena->coord.x = 1;
+			mvwprintw(visu->arena->window, visu->arena->coord.y,
+				visu->arena->coord.x, "0x%04x : ", i);
+			visu->arena->coord.x = 10;
+		}
+		ft_print_bytes_bis(visu, vm, i, color_p);
+		i++;
+		visu->arena->coord.x += 3;
+	}
+}

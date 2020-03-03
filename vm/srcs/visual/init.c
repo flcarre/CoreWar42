@@ -32,7 +32,7 @@ t_visu	*init_visu(t_vm *vm)
 	return (visu);
 }
 
-void	init_colors(int *color_p)
+void	init_colors(t_visu *visu)
 {
 	start_color();
 	init_pair(COLOR_DEF, COLOR_WHITE, COLOR_BLACK);
@@ -43,40 +43,20 @@ void	init_colors(int *color_p)
 	init_pair(COLOR_P5, COLOR_YELLOW, COLOR_BLACK);
 	init_pair(COLOR_P6, COLOR_CYAN, COLOR_BLACK);
 	init_pair(COLOR_P7, COLOR_BLACK, COLOR_WHITE);
-	color_p[0] = COLOR_DEF;
-	color_p[1] = COLOR_P1;
-	color_p[2] = COLOR_P2;
-	color_p[3] = COLOR_P3;
-	color_p[4] = COLOR_P4;
-	color_p[5] = COLOR_P5;
-	color_p[6] = COLOR_P6;
-	color_p[7] = COLOR_P7;
+	visu->color_p[0] = COLOR_DEF;
+	visu->color_p[1] = COLOR_P1;
+	visu->color_p[2] = COLOR_P2;
+	visu->color_p[3] = COLOR_P3;
+	visu->color_p[4] = COLOR_P4;
+	visu->color_p[5] = COLOR_P5;
+	visu->color_p[6] = COLOR_P6;
+	visu->color_p[7] = COLOR_P7;
 }
 
 void	init_arena(t_visu *visu, t_vm *vm, int *color_p)
 {
-	int	i;
-	int	size;
-
 	ft_print_col_numbers_bis(visu);
-	i = 0;
-	visu->arena->coord.x = 1;
-	visu->arena->coord.y = 1;
-	size = ft_sqrt(MEM_SIZE);
-	while (i < MEM_SIZE)
-	{
-		if (i % size == 0)
-		{
-			visu->arena->coord.y++;
-			visu->arena->coord.x = 1;
-			mvwprintw(visu->arena->window, visu->arena->coord.y,
-				visu->arena->coord.x, "0x%04x : ", i);
-			visu->arena->coord.x = 10;
-		}
-		ft_print_bytes_bis(visu, vm, i, color_p);
-		i++;
-		visu->arena->coord.x += 3;
-	}
+	ft_print_arena_bis(visu, vm, color_p);
 	// wrefresh(visu->arena->window);
 }
 
