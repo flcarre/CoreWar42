@@ -13,6 +13,7 @@
 NAME = ../corewar
 
 FLAGS = -Wall -Werror -Wextra
+LDFLAGS = -lncurses
 CC = gcc $(FLAGS)
 SRC_PATH = srcs/
 OBJ_PATH = srcs/
@@ -54,7 +55,12 @@ C_FILENAME = main \
 			 utils/ft_modulo_mem_size \
 			 utils/ft_read_address \
 			 utils/ft_read_octet \
-			 utils/ft_write_to_address
+			 utils/ft_write_to_address \
+			 visual/create_windows \
+			 visual/init \
+			 visual/print \
+			 visual/print_panel \
+			 visual/visual
 
 INC_FILES = $(addsuffix $(H_SUFFIX),$(H_FILENAME))
 SRC_FILES = $(addsuffix $(SRC_SUFFIX),$(C_FILENAME))
@@ -74,7 +80,7 @@ CHECK = "\\xE2\\x9C\\x94"
 OK = "$(CHECK)$(WHITE)"
 
 $(NAME): $(OBJ) $(H_FILES) $(SRC) $(LIB)
-	@$(CC) $(HEADER) $(OBJ) $(LIB) -o $@
+	@$(CC) $(HEADER) $(OBJ) $(LIB) -o $@ $(LDFLAGS)
 	@printf "\r$(EOLCLR)$(NAME): $(GREEN)$(OK)\n"
 
 all: $(NAME)
