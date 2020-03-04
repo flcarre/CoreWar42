@@ -6,17 +6,14 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 12:44:47 by lutsiara          #+#    #+#             */
-/*   Updated: 2020/02/27 22:59:54 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/03/04 11:19:51 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 #define LIBFT_H
 
-#define ABS(x) (((x) < 0) ? -(x) : (x))
-#define PARTA LDBL_MANT_DIG + 28) / 29
-#define PARTB (LDBL_MAX_EXP + LDBL_MANT_DIG + 28 + 8
-#define SIZE_LD_TX (PARTA + 1 + PARTB) / 9
+#define SIZE_LD_TX 1835
 
 typedef struct		s_list
 {
