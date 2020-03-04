@@ -34,5 +34,6 @@ typedef struct	s_visu
 	t_win	*arena;
 	t_win	*info;
 	int		color_p[8];
+	t_coord	cursor;
 }				t_visu;
 #endif

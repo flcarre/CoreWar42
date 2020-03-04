@@ -27,8 +27,8 @@ int	ft_visual(t_vm *vm)
 	vm->visu = visu;
 
 	/* A REMPLACER par un tableau de curseur par player contenant les coord x,y */
-	visu->arena->coord.x = 10;
-	visu->arena->coord.y = 1;
+	visu->cursor.x = 10;
+	visu->cursor.y = 2;
 	// move(1, 10);
 	return (0);
 }
@@ -44,26 +44,23 @@ int	ft_refresh_visu(t_vm *vm)
 	visu->info->coord.y = 20;
 
 	/* Utiliser les coord curseurs ici et à incrementer à chaque refresh */
-	mvwchgat(visu->arena->window, visu->arena->coord.y, visu->arena->coord.x, 2, A_STANDOUT, 0, NULL);
-	wrefresh(visu->arena->window);
 	
 	// getch();
 	// (void)vm;
 	ft_print_arena_bis(visu, vm, visu->color_p);
 	ft_print_first_panel(visu->info, vm);
 	ft_print_secnd_panel(visu->info, vm);
+	ft_print_third_panel(visu->info, vm);
 
+	mvwchgat(visu->arena->window, visu->cursor.y, visu->cursor.x, 2, A_STANDOUT, 1, NULL);
+	if (visu->cursor.x < visu->arena->dim.cols - 1)
+		visu->cursor.x += 3;
+	else
+	{
+		visu->cursor.x = 10;
+		visu->cursor.y++;
+	}
 	wrefresh(visu->arena->window);
 	wrefresh(visu->info->window);
 	return (0);
-	// if (getch() == KEY_ENTER)
-	// {
-	// 	free(visu->arena->window);
-	// 	free(visu->info->window);
-	// 	free(visu->arena);
-	// 	free(visu->info);
-	// 	free(visu);
-	// 	// exit(0);
-	// 	endwin();
-	// }
 }
