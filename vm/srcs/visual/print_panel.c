@@ -21,12 +21,39 @@ void	ft_print_secnd_panel(t_win *info, t_vm *vm)
 {
 	int	x;
 	int	y;
+	t_process	*pc1 = vm->process;
+	t_process	*pc2 = vm->process->next;
+	int			curs_x;
+	int			curs_y;
 
 	x = info->coord.x + 8;
 	y = info->coord.y;
 	mvwprintw(info->window, y++, x, "%-25s %d", "Number of players:",vm->nb_players);
 	mvwprintw(info->window, y++, x, "%-25s %d", "Number of processes:",vm->nb_proc);
 	mvwprintw(info->window, y++, x, "%-25s %d", "Last check:",vm->last_verif);
+
+	/* DEBUG */
+	y++;
+	wattron(info->window, COLOR_PAIR(5));
+	mvwprintw(info->window, y++, x, "%-10s", "DEBUG", pc1->pc, vm->mem[pc1->pc]);
+	wattroff(info->window, COLOR_PAIR(5));
+
+	wattron(info->window, COLOR_PAIR(3));
+	mvwprintw(info->window, y++, x, "%-10s %-10d %02x", "pc1", pc1->pc, vm->mem[pc1->pc]);
+	curs_x = (pc1->pc % ft_sqrt(MEM_SIZE)) * 3 + 10;
+	curs_y = (pc1->pc / ft_sqrt(MEM_SIZE)) + 2;
+	mvwprintw(info->window, y++, x, "x = %-10d y = %d", curs_x, curs_y);
+	wattroff(info->window, COLOR_PAIR(3));
+
+	wattron(info->window, COLOR_PAIR(4));
+	mvwprintw(info->window, y - 2, x + 35, "%-10s %-10d %02x", "pc2", pc2->pc, vm->mem[pc2->pc]);
+	curs_x = (pc2->pc % ft_sqrt(MEM_SIZE)) * 3 + 10;
+	curs_y = (pc2->pc / ft_sqrt(MEM_SIZE)) + 2;
+	mvwprintw(info->window, y - 1, x + 35, "x = %-10d y = %d", curs_x, curs_y);
+	wattroff(info->window, COLOR_PAIR(4));
+	y++;
+	/* end DEBUG */
+	
 	wattron(info->window, A_STANDOUT);
 	mvwprintw(info->window, y, x, "%-25s %d", "Lives since check:",vm->lives_since_check);
 	wattroff(info->window, A_STANDOUT);
