@@ -46,14 +46,14 @@ int			ft_get_player_color(t_vm *vm, int players)
 			break;
 		i++;
 	}
-	if (vm->player[i].id == 1)
-		ft_printf("%{RED}");
-	else if (vm->player[i].id == 2)
-		ft_printf("%{GREEN}");
-	else if (vm->player[i].id == 3)
-		ft_printf("%{PURPLE}");
-	else if (vm->player[i].id == 4)
-		ft_printf("%{BLUE}");
+	// if (vm->player[i].id == 1)
+	// 	ft_printf("%{RED}");
+	// else if (vm->player[i].id == 2)
+	// 	ft_printf("%{GREEN}");
+	// else if (vm->player[i].id == 3)
+	// 	ft_printf("%{PURPLE}");
+	// else if (vm->player[i].id == 4)
+	// 	ft_printf("%{BLUE}");
 	return (i);
 }
 

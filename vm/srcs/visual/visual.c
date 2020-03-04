@@ -26,39 +26,37 @@ int	ft_visual(t_vm *vm)
 	// visu->color_p = color_p;
 	vm->visu = visu;
 
-	/* A REMPLACER par un tableau de curseur par player contenant les coord x,y */
-	visu->cursor.x = 10;
-	visu->cursor.y = 2;
 	// move(1, 10);
 	return (0);
 }
 
 int	ft_refresh_visu(t_vm *vm)
 {
-	t_visu	*visu;
-	int		player;
+	t_visu		*visu;
+	t_process	*champion;
+	int			curs_x;
+	int			curs_y;
 
-	player = 0;
 	visu = vm->visu;
 	visu->info->coord.x = 1;
 	visu->info->coord.y = 20;
 
 	/* Utiliser les coord curseurs ici et à incrementer à chaque refresh */
 	
-	// getch();
+	getch(); // DEBUG
 	// (void)vm;
 	ft_print_arena_bis(visu, vm, visu->color_p);
 	ft_print_first_panel(visu->info, vm);
 	ft_print_secnd_panel(visu->info, vm);
 	ft_print_third_panel(visu->info, vm);
 
-	mvwchgat(visu->arena->window, visu->cursor.y, visu->cursor.x, 2, A_STANDOUT, 1, NULL);
-	if (visu->cursor.x < visu->arena->dim.cols - 1)
-		visu->cursor.x += 3;
-	else
+	champion = vm->process;
+	while (champion != NULL)
 	{
-		visu->cursor.x = 10;
-		visu->cursor.y++;
+		curs_x = (champion->pc % ft_sqrt(MEM_SIZE)) * 3 + 10;
+		curs_y = (champion->pc / ft_sqrt(MEM_SIZE)) + 2;
+		mvwchgat(visu->arena->window, curs_y, curs_x, 2, A_STANDOUT, champion->id + 1, NULL);
+		champion = champion->next;
 	}
 	wrefresh(visu->arena->window);
 	wrefresh(visu->info->window);
