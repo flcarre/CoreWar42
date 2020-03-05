@@ -26,9 +26,10 @@ t_visu	*init_visu(t_vm *vm)
 	info->coord.y = 0;
 
 	visu->arena = arena;
-
 	visu->info = info;
-	(void)vm;
+
+	visu->cps = 10;
+	vm->visu = visu;
 	return (visu);
 }
 

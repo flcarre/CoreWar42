@@ -8,6 +8,7 @@ void	ft_print_first_panel(t_win *info, t_vm *vm)
 	x = info->coord.x + 8;
 	y = info->coord.y;
 	mvwprintw(info->window, y++, x, "current cycle : %d", vm->cycles);
+	mvwprintw(info->window, y++, x, "Cycles/second : %3d", vm->visu->cps);
 	mvwprintw(info->window, y++, x, "last alive : %s (%d)", vm->last_live->name, vm->last_live->id);
 	mvwprintw(info->window, y, x, "cycles to die : %d", vm->cycles_to_die);
 	y += 3;
@@ -21,10 +22,6 @@ void	ft_print_secnd_panel(t_win *info, t_vm *vm)
 {
 	int	x;
 	int	y;
-	t_process	*pc1 = vm->process;
-	t_process	*pc2 = vm->process->next;
-	int			curs_x;
-	int			curs_y;
 
 	x = info->coord.x + 8;
 	y = info->coord.y;
@@ -33,7 +30,11 @@ void	ft_print_secnd_panel(t_win *info, t_vm *vm)
 	mvwprintw(info->window, y++, x, "%-25s %d", "Last check:",vm->last_verif);
 
 	/* DEBUG */
-	y++;
+	// t_process	*pc1 = vm->process;
+	// t_process	*pc2 = vm->process->next;
+	// int			curs_x;
+	// int			curs_y;
+	/*y++;
 	wattron(info->window, COLOR_PAIR(5));
 	mvwprintw(info->window, y++, x, "%-10s", "DEBUG", pc1->pc, vm->mem[pc1->pc]);
 	wattroff(info->window, COLOR_PAIR(5));
@@ -52,6 +53,7 @@ void	ft_print_secnd_panel(t_win *info, t_vm *vm)
 	mvwprintw(info->window, y - 1, x + 35, "x = %-10d y = %d", curs_x, curs_y);
 	wattroff(info->window, COLOR_PAIR(4));
 	y++;
+	*/
 	/* end DEBUG */
 	
 	wattron(info->window, A_STANDOUT);
