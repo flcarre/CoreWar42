@@ -208,5 +208,7 @@ void	ft_print_war_bis(t_win *info);
 void	ft_print_first_panel(t_win *info, t_vm *vm);
 void	ft_print_secnd_panel(t_win *info, t_vm *vm);
 void	ft_print_third_panel(t_win *info, t_vm *vm);
+int		ft_exit_visu(t_visu *visu);
+int		ft_key_event(t_vm *vm);
 
 #endif

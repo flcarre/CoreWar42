@@ -1,7 +1,7 @@
 #ifndef VISUAL_H
 # define VISUAL_H
 # include <stdlib.h>
-// # include "vm.h"
+# include <unistd.h>
 
 # define COLOR_DEF	0
 # define COLOR_P1	1
@@ -11,6 +11,7 @@
 # define COLOR_P5	5
 # define COLOR_P6	6
 # define COLOR_P7	7
+# define MAX_SLEEP_TIME 1000000
 
 typedef struct	s_coord
 {
@@ -33,7 +34,8 @@ typedef struct	s_visu
 {
 	t_win	*arena;
 	t_win	*info;
-	int		color_p[8];
 	t_coord	cursor;
+	int		color_p[8];
+	int		cps;
 }				t_visu;
 #endif
