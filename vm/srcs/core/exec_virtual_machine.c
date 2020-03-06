@@ -36,8 +36,6 @@ static int	ft_option_review(t_vm *vm)
 	{
 		if (ft_refresh_visu(vm))
 			return (VIS_ERROR);
-		// ft_print_arena(vm);
-		// usleep(1000);
 	}
 	return (0);
 }
@@ -80,15 +78,15 @@ static void	ft_introduce_players(t_vm *vm)
 int			ft_exec_machine(t_vm *vm)
 {
 	t_process	*champion;
+	int			err;
 
 	ft_introduce_players(vm);
 	if (vm->vis != -1)
-		if (ft_visual(vm))
-			return (VIS_ERROR);
-	timeout(0);
+		if ((err = ft_visual(vm)) != OH_OUI)
+			return (err);
 	while ((ft_machine_review(vm) != END_GAME))
 	{
-		if (ft_key_event(vm) == 1)
+		if (ft_key_event(vm) == END_GAME)
 		{
 			ft_exit_visu(vm->visu);
 			break;
