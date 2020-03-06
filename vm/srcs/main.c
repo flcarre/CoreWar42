@@ -76,8 +76,9 @@ int			main(int ac, char **av)
 	ft_position_loading(vm);
 	ft_create_arena(vm);
 	vm->last_live = &vm->player[vm->nb_players - 1];
-	if (ft_exec_machine(vm) == ALLOC_ERROR)
-		return (ft_init_error(ALLOC_ERROR, vm));
+	err = ft_exec_machine(vm);
+	if (err != END_GAME)
+		return (ft_init_error(err, vm));
 	ft_free_machine(vm);
 	ft_printf("That was Corewar !\nDid you enjoyed ?\n");
 	return (0);
