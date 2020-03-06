@@ -58,6 +58,7 @@ C_FILENAME = main \
 			 utils/ft_write_to_address \
 			 visual/create_windows \
 			 visual/init \
+			 visual/key_event \
 			 visual/print \
 			 visual/print_panel \
 			 visual/visual
