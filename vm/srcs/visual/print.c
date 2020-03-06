@@ -1,16 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dcoloma <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/03/06 15:26:48 by dcoloma           #+#    #+#             */
+/*   Updated: 2020/03/06 15:26:50 by dcoloma          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "vm.h"
 
-void	ft_print_col_numbers_bis(t_visu *visu)
+void		ft_print_col_numbers_bis(t_visu *visu)
 {
 	int	x;
 	int	y;
 	int	i;
-	// int	j;
 
 	x = 1;
 	y = 1;
 	i = 0;
-	
 	mvwprintw(visu->arena->window, y, x, "Col nb : ");
 	x += 9;
 	while (i < 64)
@@ -31,42 +41,38 @@ static void	ft_print_bytes_bis(t_visu *visu, t_vm *vm, int i, int *color_p)
 
 	x = visu->arena->coord.x;
 	y = visu->arena->coord.y;
-
 	color = vm->owner[i] % 8;
 	wattron(visu->arena->window, COLOR_PAIR(color_p[color]));
 	mvwprintw(visu->arena->window, y, x, "%02x", vm->mem[i]);
 	wattroff(visu->arena->window, COLOR_PAIR(color_p[color]));
 }
 
-void	ft_print_war_bis(t_win *info)
+void		ft_print_war_bis(t_win *info, int x, int y)
 {
-	int	x;
-	int	y;
-
-	x = 1;
-	y = 2;
+	x += 30;
 	wattron(info->window, COLOR_PAIR(COLOR_P1));
-	mvwprintw(info->window, y++, x, "\t\t       .----.-----.-----.-----.");
-	mvwprintw(info->window, y++, x, "\t\t      /      \\     \\     \\     \\");
-	mvwprintw(info->window, y++, x, "\t\t     |  \\/    |     |   __L_____L__");
-	mvwprintw(info->window, y++, x, "\t\t     |   |    |     |  (           \\");
-	mvwprintw(info->window, y++, x, "\t\t     |    \\___/    /    \\______/    |");
-	mvwprintw(info->window, y++, x, "\t\t     |        \\___/\\___/\\___/       |");
-	mvwprintw(info->window, y++, x, "\t\t      \\      \\     /               /");
-	mvwprintw(info->window, y++, x, "\t\t       |                        __/");
-	mvwprintw(info->window, y++, x, "\t\t        \\_                   __/");
-	mvwprintw(info->window, y++, x, "\t\t          |        |         |");
-	mvwprintw(info->window, y++, x, "\t\t          |                  |");
-	mvwprintw(info->window, y++, x, "\t\t          |                  |");
+	mvwprintw(info->window, y++, x, "  .----.-----.-----.-----.");
+	mvwprintw(info->window, y++, x, " /      \\     \\     \\     \\");
+	mvwprintw(info->window, y++, x, "|  \\/    |     |   __L_____L__");
+	mvwprintw(info->window, y++, x, "|   |    |     |  (           \\");
+	mvwprintw(info->window, y++, x, "|    \\___/    /    \\______/    |");
+	mvwprintw(info->window, y++, x, "|        \\___/\\___/\\___/       |");
+	mvwprintw(info->window, y++, x, " \\      \\     /               /");
+	mvwprintw(info->window, y++, x, "  |                        __/");
+	mvwprintw(info->window, y++, x, "   \\_                   __/");
+	mvwprintw(info->window, y++, x, "     |        |         |");
+	mvwprintw(info->window, y++, x, "     |                  |");
+	mvwprintw(info->window, y++, x, "     |                  |");
 	wattroff(info->window, COLOR_PAIR(COLOR_P1));
 	y += 3;
+	x -= 30;
 	info->coord.x = x;
 	while (x < info->dim.cols - 1)
 		mvwprintw(info->window, y, x++, "-");
 	info->coord.y = y + 3;
 }
 
-void	ft_print_arena_bis(t_visu *visu, t_vm *vm, int *color_p)
+void		ft_print_arena_bis(t_visu *visu, t_vm *vm, int *color_p)
 {
 	int	i;
 	int	size;

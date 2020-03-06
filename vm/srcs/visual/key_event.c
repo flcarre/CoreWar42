@@ -19,7 +19,7 @@ int	ft_key_event(t_vm *vm)
 	if ((ch = getch()) == 27)
 		return (END_GAME);
 	if (ch == '-' && vm->visu->cps > 1)
-			vm->visu->cps--;
+		vm->visu->cps--;
 	if (ch == '+' && vm->visu->cps < 900)
 		vm->visu->cps++;
 	if (ch == ' ')
@@ -31,7 +31,7 @@ int	ft_key_event(t_vm *vm)
 			vm->visu->info->coord.x = 1;
 			vm->visu->info->coord.y = 20;
 			if (ch == '-' && vm->visu->cps > 1)
-			vm->visu->cps--;
+				vm->visu->cps--;
 			if (ch == '+' && vm->visu->cps < 900)
 				vm->visu->cps++;
 			ft_print_first_panel(vm->visu->info, vm);
