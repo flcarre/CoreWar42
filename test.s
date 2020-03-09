@@ -1,4 +1,4 @@
-.name "Test"
+.name "Test long long long long long name"
 .comment "This is a test.."
 
 #add r2,r3,r5
