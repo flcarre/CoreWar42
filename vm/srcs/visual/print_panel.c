@@ -12,7 +12,7 @@
 
 #include "vm.h"
 
-void		ft_print_war_bis(t_win *info, int x, int y)
+void	ft_print_war_bis(t_win *info, int x, int y)
 {
 	x += 12;
 	wattron(info->window, COLOR_PAIR(COLOR_P1));
@@ -50,10 +50,10 @@ void	ft_print_first_panel(t_win *info, t_vm *vm)
 	mvwprintw(info->window, y++, x, "Cycles/second\t: %6d", vm->visu->cps);
 	mvwprintw(info->window, y++, x, "cycles to die\t: %6d", vm->cycles_to_die);
 	mvwprintw(info->window, y, x, "last alive\t: ");
-	wattron(info->window, COLOR_PAIR(vm->visu->color_p[i + 1]));
+	wattron(info->window, COLOR_PAIR(vm->visu->color_p[i + 1]) | A_BOLD);
 	mvwprintw(info->window, y, x + 18, "(%d)%-20.20s",
 		vm->last_live->id, vm->last_live->name);
-	wattroff(info->window, COLOR_PAIR(vm->visu->color_p[i + 1]));	
+	wattroff(info->window, COLOR_PAIR(vm->visu->color_p[i + 1]) | A_BOLD);
 	y += 3;
 	x = info->coord.x;
 	while (x < info->dim.cols - 1)
