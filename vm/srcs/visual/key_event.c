@@ -12,16 +12,21 @@
 
 #include "vm.h"
 
-int	ft_key_event(t_vm *vm)
+static void	ft_edit_speed_cycle(t_vm *vm, int ch)
+{
+	if (ch == '-' && vm->visu->cps > 1)
+		vm->visu->cps--;
+	if (ch == '+' && vm->visu->cps < 900)
+		vm->visu->cps++;
+}
+
+int			ft_key_event(t_vm *vm)
 {
 	int	ch;
 
 	if ((ch = getch()) == 27)
 		return (END_GAME);
-	if (ch == '-' && vm->visu->cps > 1)
-		vm->visu->cps--;
-	if (ch == '+' && vm->visu->cps < 900)
-		vm->visu->cps++;
+	ft_edit_speed_cycle(vm, ch);
 	if (ch == ' ')
 	{
 		while ((ch = getch()) != ' ')
@@ -30,13 +35,12 @@ int	ft_key_event(t_vm *vm)
 				return (END_GAME);
 			vm->visu->info->coord.x = 1;
 			vm->visu->info->coord.y = 20;
-			if (ch == '-' && vm->visu->cps > 1)
-				vm->visu->cps--;
-			if (ch == '+' && vm->visu->cps < 900)
-				vm->visu->cps++;
+			ft_edit_speed_cycle(vm, ch);
 			ft_print_first_panel(vm->visu->info, vm);
+			ft_print_fourth_panel(vm->visu->info, "PAUSE");
 			wrefresh(vm->visu->info->window);
 		}
+		ft_print_fourth_panel(vm->visu->info, "RUNNING");
 	}
 	return (0);
 }

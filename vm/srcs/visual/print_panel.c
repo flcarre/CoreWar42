@@ -12,18 +12,48 @@
 
 #include "vm.h"
 
+void		ft_print_war_bis(t_win *info, int x, int y)
+{
+	x += 12;
+	wattron(info->window, COLOR_PAIR(COLOR_P1));
+	mvwprintw(info->window, y++, x, "  .----.-----.-----.-----.");
+	mvwprintw(info->window, y++, x, " /      \\     \\     \\     \\");
+	mvwprintw(info->window, y++, x, "|  \\/    |     |   __L_____L__");
+	mvwprintw(info->window, y++, x, "|   |    |     |  (           \\");
+	mvwprintw(info->window, y++, x, "|    \\___/    /    \\______/    |");
+	mvwprintw(info->window, y++, x, "|        \\___/\\___/\\___/       |");
+	mvwprintw(info->window, y++, x, " \\      \\     /               /");
+	mvwprintw(info->window, y++, x, "  |                        __/");
+	mvwprintw(info->window, y++, x, "   \\_                   __/");
+	mvwprintw(info->window, y++, x, "     |        |         |");
+	mvwprintw(info->window, y++, x, "     |                  |");
+	mvwprintw(info->window, y++, x, "     |                  |");
+	wattroff(info->window, COLOR_PAIR(COLOR_P1));
+	y += 3;
+	x -= 12;
+	info->coord.x = x;
+	while (x < info->dim.cols - 1)
+		mvwprintw(info->window, y, x++, "-");
+	info->coord.y = y + 3;
+}
+
 void	ft_print_first_panel(t_win *info, t_vm *vm)
 {
 	int	x;
 	int	y;
+	int	i;
 
 	x = info->coord.x + 8;
 	y = info->coord.y;
-	mvwprintw(info->window, y++, x, "current cycle : %d", vm->cycles);
-	mvwprintw(info->window, y++, x, "Cycles/second : %3d", vm->visu->cps);
-	mvwprintw(info->window, y++, x, "last alive : %s (%d)",
-		vm->last_live->name, vm->last_live->id);
-	mvwprintw(info->window, y, x, "cycles to die : %d", vm->cycles_to_die);
+	i = ft_get_player_color(vm, vm->last_live->id);
+	mvwprintw(info->window, y++, x, "current cycle\t: %6d", vm->cycles);
+	mvwprintw(info->window, y++, x, "Cycles/second\t: %6d", vm->visu->cps);
+	mvwprintw(info->window, y++, x, "cycles to die\t: %6d", vm->cycles_to_die);
+	mvwprintw(info->window, y, x, "last alive\t: ");
+	wattron(info->window, COLOR_PAIR(vm->visu->color_p[i + 1]));
+	mvwprintw(info->window, y, x + 18, "(%d)%-20.20s",
+		vm->last_live->id, vm->last_live->name);
+	wattroff(info->window, COLOR_PAIR(vm->visu->color_p[i + 1]));	
 	y += 3;
 	x = info->coord.x;
 	while (x < info->dim.cols - 1)
@@ -68,14 +98,30 @@ void	ft_print_third_panel(t_win *info, t_vm *vm)
 	visu = vm->visu;
 	while (player < vm->nb_players)
 	{
-		if (vm->live_tab[player] != -1)
+		if (vm->live_tab[player] != -1 && player < 4)
 		{
 			i = ft_get_player_color(vm, vm->live_tab[player]);
 			wattron(info->window, COLOR_PAIR(visu->color_p[i + 1]));
-			mvwprintw(info->window, y++, x, "%-25s (%d) has called Live!",
-				vm->player[i].name, vm->player[i].id);
+			mvwprintw(info->window, y++, x, "(%d)%-20.20s has called Live!",
+				vm->player[i].id, vm->player[i].name);
 			wattroff(info->window, COLOR_PAIR(visu->color_p[i + 1]));
 		}
 		player++;
 	}
+}
+
+void	ft_print_fourth_panel(t_win *info, char *state)
+{
+	int		x;
+	int		y;
+
+	x = 1;
+	y = 45;
+	while (x < info->dim.cols - 1)
+		mvwprintw(info->window, y, x++, "-");
+	y = 55;
+	x = 20;
+	wattron(info->window, A_BOLD);
+	mvwprintw(info->window, y, x, "**%s**\t", state);
+	wattroff(info->window, A_BOLD);
 }

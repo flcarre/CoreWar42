@@ -24,12 +24,12 @@ t_visu	*init_visu(t_vm *vm)
 	info = (t_win *)malloc(sizeof(t_win));
 	if (visu == NULL || arena == NULL || info == NULL)
 		return (NULL);
-	arena->dim.lines = LINES;
-	arena->dim.cols = COLS * 2 / 3;
+	arena->dim.lines = 67;
+	arena->dim.cols = 203;
 	arena->coord.x = 0;
 	arena->coord.y = 0;
 	info->dim.lines = arena->dim.lines;
-	info->dim.cols = COLS / 3;
+	info->dim.cols = 60;
 	info->coord.x = arena->dim.cols;
 	info->coord.y = 0;
 	visu->arena = arena;
@@ -75,5 +75,6 @@ void	init_panel(t_visu *visu, t_vm *vm)
 	ft_print_war_bis(visu->info, x, y);
 	ft_print_first_panel(visu->info, vm);
 	ft_print_secnd_panel(visu->info, vm);
+	ft_print_fourth_panel(visu->info, "RUNNING");
 	wrefresh(visu->info->window);
 }
