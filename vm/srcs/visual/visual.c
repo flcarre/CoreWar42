@@ -18,7 +18,7 @@ int	ft_visual(t_vm *vm)
 
 	initscr();
 	timeout(0);
-	visu = init_visu(vm);
+	visu = ft_init_visu(vm);
 	if (visu == NULL)
 	{
 		ft_exit_visu(vm->visu);
@@ -32,12 +32,12 @@ int	ft_visual(t_vm *vm)
 		ft_printf("Your terminal does not support color\n");
 		return (VIS_ERROR);
 	}
-	create_windows(visu);
-	init_colors(visu);
-	init_arena(visu, vm, visu->color_p);
-	init_panel(visu, vm);
-	wrefresh(visu->arena->window);
-	wrefresh(visu->info->window);
+	ft_init(vm, visu);
+	if (ft_pause(vm) == END_GAME)
+	{
+		ft_exit_visu(vm->visu);
+		return (END_GAME);
+	}
 	return (0);
 }
 
@@ -49,8 +49,6 @@ int	ft_refresh_visu(t_vm *vm)
 	int			curs_y;
 
 	visu = vm->visu;
-	visu->info->coord.x = 1;
-	visu->info->coord.y = 20;
 	ft_print_arena_bis(visu, vm, visu->color_p);
 	ft_print_first_panel(visu->info, vm);
 	ft_print_secnd_panel(visu->info, vm);

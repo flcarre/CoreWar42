@@ -195,11 +195,13 @@ int		ft_get_player_color(t_vm *vm, int players);
 
 int		ft_visual(t_vm *vm);
 int		ft_refresh_visu(t_vm *vm);
-t_visu	*init_visu(t_vm *vm);
-void	init_colors(t_visu *visu);
-void	init_arena(t_visu *visu, t_vm *vm, int *color_p);
-void	init_panel(t_visu *visu, t_vm *vm);
-void	create_windows(t_visu *visu);
+t_visu	*ft_init_visu(t_vm *vm);
+// void	ft_init_colors(t_visu *visu);
+void	ft_init_arena(t_visu *visu, t_vm *vm, int *color_p);
+void	ft_init_panel(t_visu *visu, t_vm *vm);
+void	ft_init(t_vm *vm, t_visu *visu);
+void	ft_create_windows(t_visu *visu);
+void	ft_create_border(t_visu *visu);
 void	ft_print_col_numbers_bis(t_visu *visu);
 void	ft_print_arena_bis(t_visu *visu, t_vm *vm, int *color_p);
 void	ft_print_war_bis(t_win *info, int x, int y);
@@ -208,6 +210,7 @@ void	ft_print_secnd_panel(t_win *info, t_vm *vm);
 void	ft_print_third_panel(t_win *info, t_vm *vm);
 void	ft_print_fourth_panel(t_win *info, char *state);
 int		ft_exit_visu(t_visu *visu);
+int		ft_pause(t_vm *vm);
 int		ft_key_event(t_vm *vm);
 
 #endif
