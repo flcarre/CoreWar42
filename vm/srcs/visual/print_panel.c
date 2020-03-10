@@ -64,7 +64,7 @@ void	ft_print_secnd_panel(t_win *info, t_vm *vm)
 	int	y;
 
 	x = info->coord.x + 8;
-	y = info->coord.y  + 27;
+	y = info->coord.y + 27;
 	mvwprintw(info->window, y++, x, "%-25s %d", "Number of players:",
 		vm->nb_players);
 	mvwprintw(info->window, y++, x, "%-25s %d", "Number of processes:",

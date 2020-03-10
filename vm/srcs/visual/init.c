@@ -59,13 +59,13 @@ static void	ft_init_colors(t_visu *visu)
 	visu->color_p[7] = COLOR_P7;
 }
 
-void	ft_init_arena(t_visu *visu, t_vm *vm, int *color_p)
+void		ft_init_arena(t_visu *visu, t_vm *vm, int *color_p)
 {
 	ft_print_col_numbers_bis(visu);
 	ft_print_arena_bis(visu, vm, color_p);
 }
 
-void	ft_init_panel(t_visu *visu, t_vm *vm)
+void		ft_init_panel(t_visu *visu, t_vm *vm)
 {
 	int	x;
 	int	y;
