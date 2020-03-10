@@ -21,6 +21,7 @@ static void	ft_edit_speed_cycle(t_vm *vm, int ch)
 	if (ch == '+' || ch == '-')
 	{
 		ft_print_first_panel(vm->visu->info, vm);
+		wrefresh(vm->visu->info->window);
 	}
 }
 
@@ -44,7 +45,6 @@ int			ft_pause(t_vm *vm)
 	int	ch;
 
 	ft_print_fourth_panel(vm->visu->info, "PAUSE");
-	wrefresh(vm->visu->info->window);
 	while ((ch = getch()) != ' ')
 	{
 		if (ch == 27)
