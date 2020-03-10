@@ -12,7 +12,7 @@
 
 #include "vm.h"
 
-void		create_windows(t_visu *visu)
+void		ft_create_windows(t_visu *visu)
 {
 	t_win	*arena;
 	t_win	*info;
@@ -23,6 +23,11 @@ void		create_windows(t_visu *visu)
 		arena->coord.y, arena->coord.x);
 	info->window = newwin(info->dim.lines, info->dim.cols,
 		info->coord.y, info->coord.x);
+	ft_create_border(visu);
+}
+
+void		ft_create_border(t_visu *visu)
+{
 	box(visu->arena->window, ACS_VLINE, ACS_HLINE);
 	box(visu->info->window, ACS_VLINE, ACS_HLINE);
 	mvwprintw(visu->arena->window, 0, 1, "Arena");
