@@ -12,7 +12,7 @@
 
 #include "vm.h"
 
-t_visu	*init_visu(t_vm *vm)
+t_visu		*ft_init_visu(t_vm *vm)
 {
 	t_visu	*visu;
 	t_win	*arena;
@@ -34,11 +34,11 @@ t_visu	*init_visu(t_vm *vm)
 	info->coord.y = 0;
 	visu->arena = arena;
 	visu->info = info;
-	visu->cps = 20;
+	visu->cps = 40;
 	return (visu);
 }
 
-void	init_colors(t_visu *visu)
+static void	ft_init_colors(t_visu *visu)
 {
 	start_color();
 	init_pair(COLOR_DEF, COLOR_WHITE, COLOR_BLACK);
@@ -59,13 +59,13 @@ void	init_colors(t_visu *visu)
 	visu->color_p[7] = COLOR_P7;
 }
 
-void	init_arena(t_visu *visu, t_vm *vm, int *color_p)
+void	ft_init_arena(t_visu *visu, t_vm *vm, int *color_p)
 {
 	ft_print_col_numbers_bis(visu);
 	ft_print_arena_bis(visu, vm, color_p);
 }
 
-void	init_panel(t_visu *visu, t_vm *vm)
+void	ft_init_panel(t_visu *visu, t_vm *vm)
 {
 	int	x;
 	int	y;
@@ -75,6 +75,18 @@ void	init_panel(t_visu *visu, t_vm *vm)
 	ft_print_war_bis(visu->info, x, y);
 	ft_print_first_panel(visu->info, vm);
 	ft_print_secnd_panel(visu->info, vm);
-	ft_print_fourth_panel(visu->info, "RUNNING");
-	wrefresh(visu->info->window);
+	ft_print_third_panel(visu->info, vm);
+	ft_print_fourth_panel(visu->info, "PAUSE");
+}
+
+void		ft_init(t_vm *vm, t_visu *visu)
+{
+	ft_create_windows(visu);
+	visu->info->coord.x = 1;
+	visu->info->coord.y = 2;
+	ft_init_colors(visu);
+	ft_init_arena(visu, vm, visu->color_p);
+	ft_init_panel(visu, vm);
+	wrefresh(vm->visu->arena->window);
+	wrefresh(vm->visu->info->window);
 }
