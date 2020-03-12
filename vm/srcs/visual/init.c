@@ -41,6 +41,7 @@ t_visu		*ft_init_visu(t_vm *vm)
 static void	ft_init_colors(t_visu *visu)
 {
 	start_color();
+	init_color(COLOR_WHITE, 255, 255, 255);
 	init_pair(COLOR_DEF, COLOR_WHITE, COLOR_BLACK);
 	init_pair(COLOR_P1, COLOR_RED, COLOR_BLACK);
 	init_pair(COLOR_P2, COLOR_GREEN, COLOR_BLACK);
