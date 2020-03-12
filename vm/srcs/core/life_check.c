@@ -60,8 +60,11 @@ int					ft_life_check(t_vm *vm)
 	ft_process_life_check(vm);
 	if (vm->process == NULL && vm->last_live)
 	{
-		ft_printf("The winner is: %20s (%d)\n",
-			vm->last_live->name, vm->last_live->id);
+		if (vm->vis == -1)
+			ft_printf("The winner is: %20s (%d)\n",
+				vm->last_live->name, vm->last_live->id);
+		else
+			ft_end_visu(vm);
 		return (END_GAME);
 	}
 	return (0);
