@@ -89,3 +89,28 @@ int	ft_exit_visu(t_visu *visu)
 	}
 	return (0);
 }
+
+int	ft_end_visu(t_vm *vm)
+{
+	int		x;
+	int		y;
+	t_win	*info;
+	int		i;
+
+	info = vm->visu->info;
+	x = info->coord.x;
+	y = info->coord.y + 58;
+	i = ft_get_player_color(vm, vm->last_live->id);
+	ft_print_fourth_panel(vm->visu->info, "Press q to quit");
+	y = y + (info->dim.lines - y) / 2 + 1;
+	x = info->dim.cols / 2 - ft_strlen(vm->last_live->name) / 2 - 9;
+	mvwprintw(info->window, y + 1, x, "The winner is:");
+	wattron(info->window, COLOR_PAIR(vm->visu->color_p[i + 1]) | A_BOLD);
+	mvwprintw(info->window, y + 1, x + 15, "%.30s (%d)",
+		vm->last_live->name, vm->last_live->id);
+	wattroff(info->window, COLOR_PAIR(vm->visu->color_p[i + 1]) | A_BOLD);
+	wrefresh(vm->visu->info->window);
+	while (getch() != 'q');
+	ft_exit_visu(vm->visu);
+	return (END_GAME);
+}
