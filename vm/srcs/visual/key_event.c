@@ -16,7 +16,7 @@ static void	ft_edit_speed_cycle(t_vm *vm, int ch)
 {
 	if (ch == '-' && vm->visu->cps > 1)
 		vm->visu->cps--;
-	if (ch == '+' && vm->visu->cps < 900)
+	if (ch == '+' && vm->visu->cps < 1000)
 		vm->visu->cps++;
 	if (ch == '+' || ch == '-')
 	{
@@ -45,6 +45,7 @@ int			ft_pause(t_vm *vm)
 	int	ch;
 
 	ft_print_fourth_panel(vm->visu->info, "PAUSE");
+	wrefresh(vm->visu->info->window);
 	while ((ch = getch()) != ' ')
 	{
 		if (ch == 27)
