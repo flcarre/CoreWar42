@@ -14,11 +14,21 @@
 
 static void	ft_edit_speed_cycle(t_vm *vm, int ch)
 {
-	if (ch == '-' && vm->visu->cps > 1)
-		vm->visu->cps--;
-	if (ch == '+' && vm->visu->cps < 1000)
-		vm->visu->cps++;
-	if (ch == '+' || ch == '-')
+	if ((ch == '-' || ch == '/'))
+	{
+		if (ch == '-' && vm->visu->cps > 1)  
+			vm->visu->cps--;
+		else if (ch == '/' && vm->visu->cps > 51)
+			vm->visu->cps -= 50;
+	}
+	else if (vm->visu->cps < 1000 && (ch == '+' || ch == '*'))
+	{
+		if (ch == '+' && vm->visu->cps < 1000)
+			vm->visu->cps++;
+		else if (ch == '*' && vm->visu->cps < 950)
+			vm->visu->cps += 50;
+	}
+	if (ch == '+' || ch == '-' || ch == '/' || ch == '*')
 	{
 		ft_print_first_panel(vm->visu->info, vm);
 		wrefresh(vm->visu->info->window);
