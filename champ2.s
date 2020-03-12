@@ -1,28 +1,41 @@
-.name "Basic"
-.comment "B"
+.name "Basic+"
+.comment "B+"
 
 	st		r1, 6
 	live	%1
-	fork	%:trap
+	lfork	%:trap
 	ld		%0, r2
+	ld		%64, r6
+	ld		%0, r5
 	zjmp	%:start
 
 trap:
 	ld		%655359, r3
-	st		r3, -39
+	sti		r3, %-39, r5
 	ld		%512, r3		# offset - 7
-	st		r3, -55
+	sti		r3, %-55, r5
 	ld		%42991616, r3		# offset - 7
-	st		r3, -71
+	sti		r3, %-72, r5
+	sub		r5, r6, r5
 	ld		%0, r3
 	zjmp	%:trap
+
+#trap:
+#	ld		%655359, r3
+#	st		r3, -39
+#	ld		%512, r3		# offset - 7
+#	st		r3, -55
+#	ld		%42991616, r3		# offset - 7
+#	st		r3, -71
+#	ld		%0, r3
+#	zjmp	%:trap
 
 start:
 	st		r1, 6
 	live	%1
 	ld		%0, r2
 	zjmp	%:start
-	
+
 
 
 
