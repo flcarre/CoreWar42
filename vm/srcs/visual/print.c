@@ -21,6 +21,7 @@ void		ft_print_col_numbers_bis(t_visu *visu)
 	x = 1;
 	y = 1;
 	i = 0;
+	wattron(visu->arena->window, A_BOLD);
 	mvwprintw(visu->arena->window, y, x, "Col nb : ");
 	x += 9;
 	while (i < 64)
@@ -31,6 +32,7 @@ void		ft_print_col_numbers_bis(t_visu *visu)
 		if (i < 64)
 			mvwprintw(visu->arena->window, y, x++, " ");
 	}
+	wattroff(visu->arena->window, A_BOLD);
 }
 
 static void	ft_print_bytes_bis(t_visu *visu, t_vm *vm, int i, int *color_p)
@@ -62,8 +64,10 @@ void		ft_print_arena_bis(t_visu *visu, t_vm *vm, int *color_p)
 		{
 			visu->arena->coord.y++;
 			visu->arena->coord.x = 1;
+			wattron(visu->arena->window, A_BOLD);
 			mvwprintw(visu->arena->window, visu->arena->coord.y,
 				visu->arena->coord.x, "0x%04x : ", i);
+			wattroff(visu->arena->window, A_BOLD);
 			visu->arena->coord.x = 10;
 		}
 		ft_print_bytes_bis(visu, vm, i, color_p);
