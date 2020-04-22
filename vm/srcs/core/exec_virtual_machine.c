@@ -6,7 +6,7 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/21 18:35:11 by lutsiara          #+#    #+#             */
-/*   Updated: 2020/04/22 17:49:35 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/04/22 22:33:14 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int			ft_exec_machine(t_vm *vm)
 			return (err);
 	while ((ft_machine_review(vm) != END_GAME))
 	{
-		if (ft_key_event(vm) == END_GAME)
+		if (vm->vis != -1 && ft_key_event(vm) == END_GAME)
 		{
 			ft_exit_visu(vm->visu);
 			break ;
