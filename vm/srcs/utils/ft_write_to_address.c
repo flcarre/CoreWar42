@@ -6,17 +6,17 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 15:56:53 by lutsiara          #+#    #+#             */
-/*   Updated: 2020/02/27 22:02:48 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/04/22 17:28:04 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void ft_write_to_address(t_vm *vm, t_process *proc, int addr, int to_write)
+void	ft_write_to_address(t_vm *vm, t_process *proc, int addr, int to_write)
 {
-	int bytes;
-	int chunk;
-	unsigned to_write_uns;
+	int		bytes;
+	int		chunk;
+	unsigned int	to_write_uns;
 
 	bytes = 0;
 	to_write_uns = (unsigned int)to_write;

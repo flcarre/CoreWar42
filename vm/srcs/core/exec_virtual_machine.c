@@ -6,7 +6,7 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/21 18:35:11 by lutsiara          #+#    #+#             */
-/*   Updated: 2020/02/24 18:41:13 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/04/22 17:49:35 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,10 @@ static void	ft_introduce_players(t_vm *vm)
 		i = -1;
 		while (++i < vm->nb_players)
 			if (vm->player[i].id == tracer->master)
-				break;
-		ft_printf("%s (%d), weighing in at %d bytes, \"%s\"\n",
-				  vm->player[i].name, tracer->master, vm->player[i].size,
-				  vm->player[i].comment);
+				break ;
+		ft_printf("%s (%d), weighing in at %d bytes, \"%s\"\n", \
+				vm->player[i].name, tracer->master, vm->player[i].size, \
+				vm->player[i].comment);
 		tracer = tracer->next;
 	}
 	ft_printf("%{RED}\nLEEEEEEEEET'S GEEEET");
@@ -89,7 +89,7 @@ int			ft_exec_machine(t_vm *vm)
 		if (ft_key_event(vm) == END_GAME)
 		{
 			ft_exit_visu(vm->visu);
-			break;
+			break ;
 		}
 		champion = vm->process;
 		while (champion)

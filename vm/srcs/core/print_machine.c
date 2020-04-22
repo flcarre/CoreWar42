@@ -6,7 +6,7 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 15:59:21 by lutsiara          #+#    #+#             */
-/*   Updated: 2020/02/24 18:41:13 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/04/22 17:47:52 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,17 +43,19 @@ int			ft_get_player_color(t_vm *vm, int players)
 	while (i < vm->nb_players)
 	{
 		if (vm->player[i].id == players)
-			break;
+			break ;
 		i++;
 	}
-	// if (vm->player[i].id == 1)
-	// 	ft_printf("%{RED}");
-	// else if (vm->player[i].id == 2)
-	// 	ft_printf("%{GREEN}");
-	// else if (vm->player[i].id == 3)
-	// 	ft_printf("%{PURPLE}");
-	// else if (vm->player[i].id == 4)
-	// 	ft_printf("%{BLUE}");
+	/*
+	** if (vm->player[i].id == 1)
+	** 	ft_printf("%{RED}");
+	** else if (vm->player[i].id == 2)
+	** 	ft_printf("%{GREEN}");
+	** else if (vm->player[i].id == 3)
+	** 	ft_printf("%{PURPLE}");
+	** else if (vm->player[i].id == 4)
+	** 	ft_printf("%{BLUE}");
+	*/
 	return (i);
 }
 
@@ -71,7 +73,7 @@ static void	ft_print_col_numbers(void)
 	ft_printf("     |\n");
 }
 
-int ft_print_arena(t_vm *vm)
+int			ft_print_arena(t_vm *vm)
 {
 	int i;
 	int lines;
@@ -95,7 +97,7 @@ int ft_print_arena(t_vm *vm)
 	return (0);
 }
 
-int ft_print_dump(t_vm *vm)
+int			ft_print_dump(t_vm *vm)
 {
 	int i;
 	int lines;

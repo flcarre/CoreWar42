@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 21:25:43 by wahasni           #+#    #+#             */
-/*   Updated: 2020/02/27 21:00:29 by wahasni          ###   ########.fr       */
+/*   Updated: 2020/04/22 17:06:14 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int	handle_file(t_asm *file, int ac, char *av)
 {
-	int	len;
+	int		len;
 
 	if (ac != 2)
 		return (ft_error("format : ./asm champ.s", 1));
@@ -31,7 +31,7 @@ int	handle_file(t_asm *file, int ac, char *av)
 	return (0);
 }
 
-int		main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_asm	asmb;
 

@@ -6,13 +6,13 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 15:56:53 by lutsiara          #+#    #+#             */
-/*   Updated: 2020/02/27 22:07:44 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/04/22 17:30:05 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int ft_is_valid_op(int op_code)
+int		ft_is_valid_op(int op_code)
 {
 	if (op_code <= 0 || op_code > 16)
 		return (0);

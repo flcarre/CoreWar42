@@ -6,14 +6,14 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 12:44:47 by lutsiara          #+#    #+#             */
-/*   Updated: 2020/03/04 11:19:51 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/04/22 17:04:51 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
-#define LIBFT_H
+# define LIBFT_H
 
-#define SIZE_LD_TX 1835
+# define SIZE_LD_TX 1835
 
 typedef struct		s_list
 {

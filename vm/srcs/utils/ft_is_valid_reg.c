@@ -6,13 +6,13 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 15:55:24 by lutsiara          #+#    #+#             */
-/*   Updated: 2020/02/27 19:41:26 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/04/22 17:30:27 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int ft_is_valid_reg(int reg)
+int		ft_is_valid_reg(int reg)
 {
 	if (reg > 0 && reg < 17)
 		return (1);

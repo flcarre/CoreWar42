@@ -6,16 +6,16 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 15:56:53 by lutsiara          #+#    #+#             */
-/*   Updated: 2020/02/27 22:04:35 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/04/22 17:26:23 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int ft_read_octet(unsigned char *mem, size_t size)
+int	ft_read_octet(unsigned char *mem, size_t size)
 {
-	size_t bytes;
-	int res;
+	size_t	bytes;
+	int		res;
 
 	bytes = 0;
 	res = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key_event.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcoloma <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 16:18:59 by dcoloma           #+#    #+#             */
-/*   Updated: 2020/03/06 16:19:00 by dcoloma          ###   ########.fr       */
+/*   Updated: 2020/04/22 17:21:49 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	ft_edit_speed_cycle(t_vm *vm, int ch)
 {
 	if ((ch == '-' || ch == '/'))
 	{
-		if (ch == '-' && vm->visu->cps > 1)  
+		if (ch == '-' && vm->visu->cps > 1)
 			vm->visu->cps--;
 		else if (ch == '/' && vm->visu->cps > 51)
 			vm->visu->cps -= 50;

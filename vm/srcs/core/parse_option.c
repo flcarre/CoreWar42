@@ -6,15 +6,15 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/21 17:48:53 by lutsiara          #+#    #+#             */
-/*   Updated: 2020/02/27 22:42:55 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/04/22 17:42:20 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-int ft_check_extension(char *name)
+int			ft_check_extension(char *name)
 {
-	int len;
+	int	len;
 
 	len = ft_strlen(name) - 4;
 	if (len > 0)
@@ -23,7 +23,7 @@ int ft_check_extension(char *name)
 	return (1);
 }
 
-static int ft_visualizer_option(t_vm *vm, char **av, int *i)
+static int	ft_visualizer_option(t_vm *vm, char **av, int *i)
 {
 	if ((*i + 1) < vm->nb_args && ft_strisnum(av[*i + 1]) \
 	&& vm->vis == -1 && vm->dump == -1)
@@ -35,7 +35,7 @@ static int ft_visualizer_option(t_vm *vm, char **av, int *i)
 	return (VIS_ERROR);
 }
 
-static int ft_number_option(t_vm *vm, char **av, int *i)
+static int	ft_number_option(t_vm *vm, char **av, int *i)
 {
 	if ((*i + 1) < vm->nb_args && ft_strisnum(av[*i + 1]))
 	{
@@ -53,7 +53,7 @@ static int ft_number_option(t_vm *vm, char **av, int *i)
 	return (PLAYER_NUMBER_ERROR);
 }
 
-static int ft_dump_option(t_vm *vm, char **av, int *i)
+static int	ft_dump_option(t_vm *vm, char **av, int *i)
 {
 	if ((*i + 1) < vm->nb_args && ft_strisnum(av[*i + 1]) \
 	&& vm->dump == -1 && vm->vis == -1)
@@ -64,7 +64,7 @@ static int ft_dump_option(t_vm *vm, char **av, int *i)
 	return (DUMP_ERROR);
 }
 
-int ft_parse_options(t_vm *vm, char **av, int *i)
+int			ft_parse_options(t_vm *vm, char **av, int *i)
 {
 	if (!ft_strcmp(av[*i], "-v"))
 		return (ft_visualizer_option(vm, av, i));

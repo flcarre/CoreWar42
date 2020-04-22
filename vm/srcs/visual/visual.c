@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   visual.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: dcoloma <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/06 15:26:59 by dcoloma           #+#    #+#             */
-/*   Updated: 2020/03/06 15:27:01 by dcoloma          ###   ########.fr       */
+/*   Updated: 2020/04/22 17:21:07 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,8 @@ int	ft_end_visu(t_vm *vm)
 		vm->last_live->name, vm->last_live->id);
 	wattroff(info->window, COLOR_PAIR(vm->visu->color_p[i + 1]) | A_BOLD);
 	wrefresh(vm->visu->info->window);
-	while (getch() != 'q');
+	while (getch() != 'q')
+		;
 	ft_exit_visu(vm->visu);
 	return (END_GAME);
 }

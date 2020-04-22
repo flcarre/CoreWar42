@@ -6,11 +6,11 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/21 21:04:52 by lutsiara          #+#    #+#             */
-/*   Updated: 2020/02/21 21:08:13 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/04/22 17:02:13 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-long ft_power(int nb, int power)
+long	ft_power(int nb, int power)
 {
 	if (power < 0)
 		return (0);

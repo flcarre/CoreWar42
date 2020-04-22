@@ -6,7 +6,7 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 16:02:52 by lutsiara          #+#    #+#             */
-/*   Updated: 2020/02/24 18:41:13 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/04/22 17:39:27 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		ft_op_sub(t_vm *vm, t_process *proc)
 {
-	t_param params;
+	t_param	params;
 	int		offset;
 
 	params = ft_set_params(vm, proc, proc->pc, &offset);
@@ -32,7 +32,7 @@ int		ft_op_sub(t_vm *vm, t_process *proc)
 
 int		ft_op_and(t_vm *vm, t_process *proc)
 {
-	t_param params;
+	t_param	params;
 	int		offset;
 
 	params = ft_set_params(vm, proc, proc->pc, &offset);
@@ -57,7 +57,7 @@ int		ft_op_and(t_vm *vm, t_process *proc)
 
 int		ft_op_or(t_vm *vm, t_process *proc)
 {
-	t_param params;
+	t_param	params;
 	int		offset;
 
 	params = ft_set_params(vm, proc, proc->pc, &offset);
@@ -82,7 +82,7 @@ int		ft_op_or(t_vm *vm, t_process *proc)
 
 int		ft_op_xor(t_vm *vm, t_process *proc)
 {
-	t_param params;
+	t_param	params;
 	int		offset;
 
 	params = ft_set_params(vm, proc, proc->pc, &offset);

@@ -6,7 +6,7 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 15:56:19 by lutsiara          #+#    #+#             */
-/*   Updated: 2020/02/24 17:20:58 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/04/22 17:59:13 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static int	ft_update_process(t_vm *vm, t_process *proc)
 	return (vm->malloc_flag ? ALLOC_ERROR : 0);
 }
 
-int ft_process_review(t_vm *vm, t_process *process)
+int			ft_process_review(t_vm *vm, t_process *process)
 {
 	if (!process->cycles_left || process->current_op != vm->mem[process->pc])
 	{

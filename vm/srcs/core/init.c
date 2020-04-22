@@ -6,7 +6,7 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/21 12:46:35 by flcarre           #+#    #+#             */
-/*   Updated: 2020/02/24 18:41:13 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/04/22 17:51:13 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,20 @@ static int	ft_get_master(t_vm *vm, int master)
 
 void		ft_create_arena(t_vm *vm)
 {
-	int i;
-	int div;
-	t_process *tracer;
+	int			i;
+	int			div;
+	t_process	*tracer;
 
 	i = vm->nb_players - 1;
 	div = MEM_SIZE / vm->nb_players;
 	tracer = vm->process;
 	while (tracer)
 	{
-		ft_memcpy(vm->mem + (div * i),
-				vm->player[ft_get_master(vm, tracer->master)].exec,
+		ft_memcpy(vm->mem + (div * i), \
+				vm->player[ft_get_master(vm, tracer->master)].exec, \
 				vm->player[ft_get_master(vm, tracer->master)].size);
-		ft_memset(vm->owner + (div * i),
-				vm->player[ft_get_master(vm, tracer->master)].id,
+		ft_memset(vm->owner + (div * i), \
+				vm->player[ft_get_master(vm, tracer->master)].id, \
 				vm->player[ft_get_master(vm, tracer->master)].size);
 		tracer = tracer->next;
 		i--;
@@ -65,7 +65,7 @@ void		ft_init_players(t_vm *vm)
 		vm->live_tab[i] = -1;
 }
 
-t_vm *ft_init_vm(int ac)
+t_vm		*ft_init_vm(int ac)
 {
 	t_vm *vm;
 

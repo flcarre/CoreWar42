@@ -6,7 +6,7 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/21 17:55:10 by lutsiara          #+#    #+#             */
-/*   Updated: 2020/02/24 18:41:13 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/04/22 17:57:33 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <sys/uio.h>
 #include <unistd.h>
 
-static int ft_parse_magic(int fd)
+static int	ft_parse_magic(int fd)
 {
 	unsigned char buff[4];
 
@@ -27,18 +27,22 @@ static int ft_parse_magic(int fd)
 	return (1);
 }
 
-static int ft_parse_exec(int fd, t_vm *vm)
+static int	ft_parse_exec(int fd, t_vm *vm)
 {
 	unsigned char buff[4];
 
 	if (read(fd, buff, 4) != 4)
 		return (1);
-	if ((vm->player[vm->nb_players].size = ft_read_octet(buff, 4)) <= 0 || vm->player[vm->nb_players].size > CHAMP_MAX_SIZE)
+	if ((vm->player[vm->nb_players].size = \
+		ft_read_octet(buff, 4)) <= 0 || \
+		vm->player[vm->nb_players].size > CHAMP_MAX_SIZE)
 		return (SIZE_ERROR);
-	if (read(fd, vm->player[vm->nb_players].comment, COMMENT_LENGTH + 4) != COMMENT_LENGTH + 4)
+	if (read(fd, vm->player[vm->nb_players].comment, \
+		COMMENT_LENGTH + 4) != COMMENT_LENGTH + 4)
 		return (COMMENT_ERROR);
-	if (read(fd, vm->player[vm->nb_players].exec,
-			 vm->player[vm->nb_players].size) != vm->player[vm->nb_players].size)
+	if (read(fd, vm->player[vm->nb_players].exec, \
+			vm->player[vm->nb_players].size) != \
+			vm->player[vm->nb_players].size)
 		return (SIZE_ERROR);
 	if (read(fd, buff, 4))
 		return (SIZE_ERROR);
@@ -46,7 +50,7 @@ static int ft_parse_exec(int fd, t_vm *vm)
 	return (0);
 }
 
-int ft_check_players_number(t_vm *vm, int player_nb)
+int			ft_check_players_number(t_vm *vm, int player_nb)
 {
 	int i;
 
@@ -55,7 +59,8 @@ int ft_check_players_number(t_vm *vm, int player_nb)
 	i = 0;
 	while (i < vm->nb_players)
 	{
-		if (vm->player[player_nb - 1].id == vm->player[i].id && player_nb - 1 != i)
+		if (vm->player[player_nb - 1].id == vm->player[i].id && \
+			player_nb - 1 != i)
 		{
 			vm->player[i].id = ft_get_next_number(vm);
 			return (ft_check_players_number(vm, i));
@@ -65,7 +70,7 @@ int ft_check_players_number(t_vm *vm, int player_nb)
 	return (0);
 }
 
-int ft_get_next_number(t_vm *vm)
+int			ft_get_next_number(t_vm *vm)
 {
 	int i;
 
@@ -79,7 +84,7 @@ int ft_get_next_number(t_vm *vm)
 	return (0);
 }
 
-int ft_parse_players(t_vm *vm, char **av, int i)
+int			ft_parse_players(t_vm *vm, char **av, int i)
 {
 	int fd;
 
@@ -91,15 +96,15 @@ int ft_parse_players(t_vm *vm, char **av, int i)
 		return (PLAYER_OVERLOAD);
 	if (ft_parse_magic(fd))
 		return (MAGIC_ERROR);
-	if (read(fd, vm->player[vm->nb_players].name,
-			 PROG_NAME_LENGTH + 4) != PROG_NAME_LENGTH + 4)
+	if (read(fd, vm->player[vm->nb_players].name, \
+			PROG_NAME_LENGTH + 4) != PROG_NAME_LENGTH + 4)
 		return (NAME_ERROR);
 	if (ft_parse_exec(fd, vm))
 		return (EXEC_ERROR);
 	vm->nb_players++;
-	vm->player[vm->nb_players - 1].id = vm->nb_option
-											? vm->nb_option
-											: ft_get_next_number(vm);
+	vm->player[vm->nb_players - 1].id = vm->nb_option \
+							? vm->nb_option \
+							: ft_get_next_number(vm);
 	if (vm->nb_option)
 		return (ft_check_players_number(vm, vm->nb_players));
 	else

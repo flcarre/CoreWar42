@@ -6,15 +6,15 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 15:55:24 by lutsiara          #+#    #+#             */
-/*   Updated: 2020/02/27 20:44:19 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/04/22 17:29:14 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void ft_init_registers(t_process *process)
+void	ft_init_registers(t_process *process)
 {
-	int i;
+	int		i;
 
 	i = 2;
 	process->reg[0] = 0;

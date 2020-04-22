@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   asm.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 21:26:10 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/27 21:01:00 by wahasni          ###   ########.fr       */
+/*   Updated: 2020/04/22 17:07:20 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ASM_H
 # define ASM_H
 
-#include "libft.h"
-#include "ft_printf.h"
-#include "op.h"
-#include <stdlib.h>
-#include <unistd.h>
-#include "get_next_line.h"
+# include "libft.h"
+# include "ft_printf.h"
+# include "op.h"
+# include <stdlib.h>
+# include <unistd.h>
+# include "get_next_line.h"
 
 # define HAVE_NAME 1
 # define HAVE_COMMENT 2

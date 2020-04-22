@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   op.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hasni <hasni@student.42.fr>                +#+  +:+       +#+        */
+/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 21:24:28 by hasni             #+#    #+#             */
-/*   Updated: 2020/02/18 16:03:22 by hasni            ###   ########.fr       */
+/*   Updated: 2020/04/22 17:14:17 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,31 +50,23 @@
 # define NBR_LIVE 21
 # define MAX_CHECKS 10
 
-/*
-**
-*/
-
 typedef char	t_arg_type;
 
-#define T_REG					1
-#define T_DIR					2
-#define T_IND					4
-#define T_LAB					8
-
-/*
-**
-*/
+# define T_REG 1
+# define T_DIR 2
+# define T_IND 4
+# define T_LAB 8
 
 # define PROG_NAME_LENGTH 128
 # define COMMENT_LENGTH 2048
 # define COREWAR_EXEC_MAGIC 0xea83f3
 
-typedef struct		header_s
+typedef struct		s_header
 {
   unsigned int		magic;
   char				prog_name[PROG_NAME_LENGTH + 1];
   unsigned int		prog_size;
   char				comment[COMMENT_LENGTH + 1];
-}					header_t;
+}					t_header;
 
 #endif

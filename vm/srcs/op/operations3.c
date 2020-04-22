@@ -6,17 +6,17 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 16:02:23 by lutsiara          #+#    #+#             */
-/*   Updated: 2020/02/27 23:00:46 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/04/22 17:38:01 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "vm.h"
 #include <stdlib.h>
 
-int ft_op_ldi(t_vm *vm, t_process *proc)
+int		ft_op_ldi(t_vm *vm, t_process *proc)
 {
-	t_param params;
-	int offset;
+	t_param		params;
+	int			offset;
 
 	params = ft_set_params(vm, proc, proc->pc, &offset);
 	if (params.valid)
@@ -27,17 +27,17 @@ int ft_op_ldi(t_vm *vm, t_process *proc)
 			params.n[0] = ft_read_address(vm, params.n[0], 4);
 		if (params.c[1] == REG_CODE)
 			params.n[1] = proc->reg[params.n[1]];
-		proc->reg[params.n[2]] = ft_read_address(vm,
-			ft_modulo_mem_size(proc->pc +
-			ft_idx_mod(params.n[0] + params.n[1])),4);
+		proc->reg[params.n[2]] = ft_read_address(vm, \
+			ft_modulo_mem_size(proc->pc + \
+			ft_idx_mod(params.n[0] + params.n[1])), 4);
 	}
 	return (offset);
 }
 
-int ft_op_sti(t_vm *vm, t_process *proc)
+int		ft_op_sti(t_vm *vm, t_process *proc)
 {
-	t_param params;
-	int offset;
+	t_param		params;
+	int			offset;
 
 	params = ft_set_params(vm, proc, proc->pc, &offset);
 	if (params.valid)
@@ -48,16 +48,16 @@ int ft_op_sti(t_vm *vm, t_process *proc)
 			params.n[1] = ft_read_address(vm, params.n[1], 4);
 		if (params.c[2] == REG_CODE)
 			params.n[2] = proc->reg[params.n[2]];
-		ft_write_to_address(vm, proc,
-			ft_modulo_mem_size(proc->pc +
-			ft_idx_mod(params.n[1] + params.n[2])),proc->reg[params.n[0]]);
+		ft_write_to_address(vm, proc, \
+			ft_modulo_mem_size(proc->pc + \
+			ft_idx_mod(params.n[1] + params.n[2])), proc->reg[params.n[0]]);
 	}
 	return (offset);
 }
 
-int ft_op_fork(t_vm *vm, t_process *proc)
+int		ft_op_fork(t_vm *vm, t_process *proc)
 {
-	t_process *new;
+	t_process	*new;
 
 	if (!(new = (t_process *)malloc(sizeof(t_process))))
 		return ((vm->malloc_flag = 1));
@@ -65,7 +65,7 @@ int ft_op_fork(t_vm *vm, t_process *proc)
 	new->master = proc->master;
 	new->carry = proc->carry;
 	new->last_live = 0;
-	new->pc = ft_modulo_mem_size(proc->pc + ft_idx_mod(ft_read_address(vm,
+	new->pc = ft_modulo_mem_size(proc->pc + ft_idx_mod(ft_read_address(vm, \
 		(proc->pc + 1) % MEM_SIZE, 2)));
 	new->current_op = vm->mem[new->pc];
 	if (ft_is_valid_op(new->current_op))
@@ -78,10 +78,10 @@ int ft_op_fork(t_vm *vm, t_process *proc)
 	return (3);
 }
 
-int ft_op_lld(t_vm *vm, t_process *proc)
+int		ft_op_lld(t_vm *vm, t_process *proc)
 {
-	t_param params;
-	int offset;
+	t_param		params;
+	int			offset;
 
 	params = ft_set_params(vm, proc, proc->pc, &offset);
 	if (params.valid)
@@ -97,10 +97,10 @@ int ft_op_lld(t_vm *vm, t_process *proc)
 	return (offset);
 }
 
-int ft_op_lldi(t_vm *vm, t_process *proc)
+int		ft_op_lldi(t_vm *vm, t_process *proc)
 {
-	t_param params;
-	int offset;
+	t_param		params;
+	int			offset;
 
 	params = ft_set_params(vm, proc, proc->pc, &offset);
 	if (params.valid)
@@ -111,7 +111,7 @@ int ft_op_lldi(t_vm *vm, t_process *proc)
 			params.n[0] = ft_read_address(vm, params.n[0], 4);
 		if (params.c[1] == IND_CODE)
 			params.n[1] = ft_read_address(vm, params.n[1], 4);
-		proc->reg[params.n[2]] = ft_read_address(vm,
+		proc->reg[params.n[2]] = ft_read_address(vm, \
 			ft_modulo_mem_size(proc->pc + params.n[0] + params.n[1]), 4);
 		if (proc->reg[params.n[2]] == 0)
 			proc->carry = 1;
