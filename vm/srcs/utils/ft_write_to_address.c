@@ -6,7 +6,7 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 15:56:53 by lutsiara          #+#    #+#             */
-/*   Updated: 2020/04/22 17:28:04 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/04/22 18:03:01 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	ft_write_to_address(t_vm *vm, t_process *proc, int addr, int to_write)
 {
-	int		bytes;
-	int		chunk;
+	int				bytes;
+	int				chunk;
 	unsigned int	to_write_uns;
 
 	bytes = 0;

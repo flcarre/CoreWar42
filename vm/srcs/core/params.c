@@ -6,7 +6,7 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 16:00:42 by lutsiara          #+#    #+#             */
-/*   Updated: 2020/02/27 19:41:26 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/04/22 18:07:25 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,10 @@ static int	ft_param_size(int code, int dir_size)
 
 t_param		ft_set_params(t_vm *vm, t_process *proc, int pc, int *offset)
 {
-	int i;
-	char ocp;
-	t_param params;
-	int dir_size;
+	int			i;
+	char		ocp;
+	t_param		params;
+	int			dir_size;
 
 	i = 0;
 	ocp = vm->mem[(pc + 1) % MEM_SIZE];
