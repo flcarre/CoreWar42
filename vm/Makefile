@@ -12,7 +12,7 @@
 
 NAME = ../corewar
 
-FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra -g3 #-fsanitize=address,undefined
 LDFLAGS = -lncurses
 CC = gcc $(FLAGS)
 SRC_PATH = srcs/
