@@ -37,5 +37,5 @@ long	ft_iputwchar(int wc)
 		c[2] = ((wc >> 6) & 0x3F) + 0x80;
 		c[3] = (wc & 0x3F) + 0x80;
 	}
-	return ((ft_iputstr(c) >> 63) ? -1 : ft_wcharlen(wc));
+	return ((ft_iputstr(c) >> 63) ? -1 : (long)ft_wcharlen(wc));
 }
