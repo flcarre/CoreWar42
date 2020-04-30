@@ -70,22 +70,22 @@ int	ft_refresh_visu(t_vm *vm)
 
 int	ft_exit_visu(t_visu *visu)
 {
-	endwin();
 	if (visu != NULL)
 	{
 		if (visu->arena != NULL)
 		{
 			if (visu->arena->window != NULL)
-				free(visu->arena->window);
-			free(visu->arena);
+				ft_memdel((void **)&visu->arena->window);
+			ft_memdel((void **)&visu->arena);
 		}
 		if (visu->info != NULL)
 		{
 			if (visu->info->window != NULL)
-				free(visu->info->window);
-			free(visu->info);
+				ft_memdel((void **)&visu->info->window);
+			ft_memdel((void **)&visu->info);
 		}
-		free(visu);
+		ft_memdel((void **)&visu);
+		endwin();
 	}
 	return (0);
 }
