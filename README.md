@@ -5,10 +5,18 @@ Corewar 42 project
 2. [Key config](#key-config)
 ## Requirements
 ```bash
+#on OSX
 brew install ncurses
+
+#on Linux
+sudo apt-get install libncurses5-dev libncursesw5-dev
 ```
 ## Key config:
 <kbd>space</kbd> : pause
-<kbd>+</kbd>/<kbd>-</kbd> : speed adjustment
+
+<kbd>+</kbd> <kbd>-</kbd> : small speed adjustment
+
+<kbd>*</kbd> <kbd>/</kbd> : big speed adjustment
+
 <kbd>ESC</kbd> : quit program
 
