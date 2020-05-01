@@ -75,16 +75,16 @@ int	ft_exit_visu(t_visu *visu)
 		if (visu->arena != NULL)
 		{
 			if (visu->arena->window != NULL)
-				ft_memdel((void **)&visu->arena->window);
-			ft_memdel((void **)&visu->arena);
+				delwin(visu->arena->window);
+			free(visu->arena);
 		}
 		if (visu->info != NULL)
 		{
 			if (visu->info->window != NULL)
-				ft_memdel((void **)&visu->info->window);
-			ft_memdel((void **)&visu->info);
+				delwin(visu->info->window);
+			free(visu->info);
 		}
-		ft_memdel((void **)&visu);
+		free(visu);
 		endwin();
 	}
 	return (0);
