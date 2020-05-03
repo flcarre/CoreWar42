@@ -20,3 +20,7 @@ sudo apt-get install libncurses5-dev libncursesw5-dev
 
 <kbd>ESC</kbd> : quit program
 
+## Normal Usage
+```bash
+./corewar -v 1 champions/champ1.cor champions/champ2.cor
+```
