@@ -6,7 +6,7 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/21 17:55:10 by lutsiara          #+#    #+#             */
-/*   Updated: 2020/05/11 14:20:49 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/05/11 16:42:29 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,14 @@ int			ft_check_players_number(t_vm *vm, int player_nb)
 {
 	int i;
 
-	vm->player_numbers[vm->nb_option - 1] = 1;
+	vm->player_numbers[(vm->nb_option - 1 < 0) ? 0 : vm->nb_option - 1] = 1;
 	vm->nb_option = 0;
 	i = 0;
 	while (i < vm->nb_players)
 	{
-		if (vm->player[player_nb - 1].id == vm->player[i].id && \
-			player_nb - 1 != i)
+		if (vm->player[(player_nb - 1 < 0) ? 0 : player_nb - 1].id \
+			== vm->player[i].id && \
+			((player_nb - 1 < 0) ? 0 : player_nb - 1) != i)
 		{
 			vm->player[i].id = ft_get_next_number(vm);
 			return (ft_check_players_number(vm, i));
