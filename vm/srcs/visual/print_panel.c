@@ -103,8 +103,7 @@ void	ft_print_third_panel(t_win *info, t_vm *vm)
 		if (vm->live_tab[player] != -1 && player < 4)
 		{
 			i = ft_get_player_color(vm, vm->live_tab[player]);
-			mvwprintw(info->window, y, x,
-				"                                                          ");
+			mvwprintw(info->window, y, x, "                            ");
 			wattron(info->window, COLOR_PAIR(visu->color_p[i + 1]));
 			mvwprintw(info->window, y++, x, "(%d)%-.20s has called Live!",
 				vm->player[i].id, vm->player[i].name);

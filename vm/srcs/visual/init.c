@@ -41,15 +41,16 @@ t_visu		*ft_init_visu(t_vm *vm)
 static void	ft_init_colors(t_visu *visu)
 {
 	start_color();
+	use_default_colors();
 	init_color(COLOR_WHITE, 255, 255, 255);
-	init_pair(COLOR_DEF, COLOR_WHITE, COLOR_BLACK);
-	init_pair(COLOR_P1, COLOR_RED, COLOR_BLACK);
-	init_pair(COLOR_P2, COLOR_GREEN, COLOR_BLACK);
-	init_pair(COLOR_P3, COLOR_MAGENTA, COLOR_BLACK);
-	init_pair(COLOR_P4, COLOR_BLUE, COLOR_BLACK);
-	init_pair(COLOR_P5, COLOR_YELLOW, COLOR_BLACK);
-	init_pair(COLOR_P6, COLOR_CYAN, COLOR_BLACK);
-	init_pair(COLOR_P7, COLOR_BLACK, COLOR_WHITE);
+	init_pair(COLOR_DEF, COLOR_WHITE, -1);
+	init_pair(COLOR_P1, COLOR_RED, -1);
+	init_pair(COLOR_P2, COLOR_GREEN, -1);
+	init_pair(COLOR_P3, COLOR_MAGENTA, -1);
+	init_pair(COLOR_P4, COLOR_BLUE, -1);
+	init_pair(COLOR_P5, COLOR_YELLOW, -1);
+	init_pair(COLOR_P6, COLOR_CYAN, -1);
+	init_pair(COLOR_P7, -1, COLOR_WHITE);
 	visu->color_p[0] = COLOR_DEF;
 	visu->color_p[1] = COLOR_P1;
 	visu->color_p[2] = COLOR_P2;
