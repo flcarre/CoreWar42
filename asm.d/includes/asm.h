@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   asm.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 21:26:10 by hasni             #+#    #+#             */
-/*   Updated: 2020/04/22 17:07:20 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/05/13 17:09:17 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,13 @@ typedef struct		s_asm
 	t_label			*labels;
 }					t_asm;
 
+typedef struct		s_norme
+{
+	int				i;
+	int				j;
+	int				nb;
+}					t_norme;
+
 /*
 ** ERROR
 */
@@ -93,7 +100,11 @@ int					parse(t_asm *asmb);
 int					parse_name(t_asm *asmb);
 int					parse_comment(t_asm *asmb);
 int					parse_instruction(t_asm *asmb);
+t_inst				*create_inst(t_asm *asmb, t_op *op);
+t_op				*check_inst(char *str);
 int					check_parsing(t_asm *asmb);
+int					check_name_comment(t_asm *asmb);
+int					is_label(char *str);
 int					check_param(char *str, t_op *op
 					, t_inst *inst, int i);
 char				get_param_type(char *str, t_inst *inst, int i);

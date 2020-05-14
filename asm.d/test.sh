@@ -1,34 +1,28 @@
 #!/bin/bash
 
-## -------------------------------- PATHS ----------------------------------- ##
+# ------------------------------------------------- #
+# $1 : the 42's asm                                 #
+# $2 : our asm                                      #
+# $3 : the path to the repository of the champions  #
+# ------------------------------------------------- #
 
 test()
 {
 	echo "NEW:"
-	./asm champs/${1}.s
-	hexdump -C champs/${1}.cor > myret
-	./asm_compare champs/${1}.s
-	hexdump -C champs/${1}.cor > zazret
-	echo "Champion: ${1} | diff with zaz is:" >> script.out;
+	./${2} ${3}/${4}.s
+	hexdump -C ${3}/${4}.cor > myret
+	./${1} ${3}/${4}.s
+	hexdump -C ${3}/${4}.cor > zazret
+	echo "Champion: ${4} | diff with zaz is:" >> script.out;
 	diff myret zazret >> script.out;
 }
 
 echo "ASM TEST FOR VALID CHAMPIONS"
 touch script.out
-echo "\n--- RESULTS ---" >> script.out
-# test Car
-#test ex
-#test Gagnant
-#test jumper
-#test maxidef
-#test mortel
-#test slider2
-# test maxidef
-#test toto
-# test Octobre_Rouge_V4.2
-for f in champs/*.s
+echo "--- RESULTS ---" >> script.out
+for f in ${3}/*.s
 do
-	test `echo $f | rev | cut -c 3- | rev | cut -d '/' -f 2`
+	test ${1} ${2} ${3} `echo $f | rev | cut -c 3- | rev | cut -d '/' -f 2`
 done
-# cat -e script.out
-# rm champs/*.cor zazret myret script.out
+cat -e script.out
+rm ${3}/*.cor zazret myret script.out

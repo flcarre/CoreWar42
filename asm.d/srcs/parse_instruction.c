@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 02:20:58 by wahasni           #+#    #+#             */
-/*   Updated: 2020/02/27 20:57:31 by wahasni          ###   ########.fr       */
+/*   Updated: 2020/05/14 13:01:24 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static void		remove_comment(char *str)
 	int		j;
 	int		index;
 
+	if (!str)
+		return ;
 	i = ft_strchrindex(str, COMMENT_CHAR);
 	j = ft_strchrindex(str, ALT_COMMENT_CHAR);
 	if (i > j)
@@ -29,63 +31,40 @@ static void		remove_comment(char *str)
 			str[index] = 0;
 }
 
-static t_inst	*create_inst(t_asm *asmb, t_op *op)
+static int		space(char *str, t_norme norme)
 {
-	t_inst	*inst;
-
-	if (!(inst = (t_inst *)malloc(sizeof(t_inst))))
-		return (NULL);
-	inst->opcode = op->opcode;
-	inst->addr = asmb->accu_len;
-	inst->len = 1 + op->ocp;
-	inst->ocp = op->ocp;
-	inst->direct_len = op->direct_len;
-	return (inst);
-}
-
-static t_op		*check_inst(char *str)
-{
-	int		inst_len;
-	char	*inst;
-	t_op	*op;
-
-	inst = NULL;
-	inst_len = 0;
-	while (str[inst_len] && !ft_isspace(str[inst_len])
-		&& str[inst_len] != DIRECT_CHAR)
-		inst_len++;
-	if (!(inst = ft_strsub(str, 0, inst_len)))
-		return (NULL);
-	if (!(op = get_op(inst)))
-	{
-		ft_strdel(&inst);
-		return (NULL);
-	}
-	ft_strdel(&inst);
-	return (op);
-}
-
-static int		check_label_infront(t_asm *asmb, char *str)
-{
-	int		i;
-	int		j;
-
-	i = 0;
-	while (str[i] && !ft_isspace(str[i]) && str[i] != DIRECT_CHAR)
-	{
-		if (str[i] == LABEL_CHAR)
-		{
-			j = 0;
-			while (j < i)
-				if (!ft_strchr(LABEL_CHARS, str[j++]))
-					return (ft_error("label contains non-LABEL_CHARS", 1));
-			ft_list_push_back_label(&asmb->labels,
-				ft_strsub(str, 0, i), asmb->accu_len);
-			return (i + 1);
-		}
-		i++;
-	}
+	while (ft_isspace(str[norme.i]))
+		norme.i++;
 	return (0);
+}
+
+static int		check_label_infront(t_asm *asmb, char *str, t_norme norme)
+{
+	while (norme.nb-- && space(str, norme) == 0)
+	{
+		if (ft_strchr(LABEL_CHARS, str[norme.i]))
+		{
+			norme.j = norme.i;
+			while (str[norme.i] && !ft_isspace(str[norme.i])
+				&& str[norme.i] != DIRECT_CHAR)
+			{
+				if (str[norme.i] == LABEL_CHAR)
+				{
+					while (norme.j < norme.i)
+						if (!ft_strchr(LABEL_CHARS, str[norme.j++]))
+							return (ft_error("contains non-LABEL_CHARS", 1));
+					ft_list_push_back_label(&asmb->labels,
+						ft_strsub(str, 0, norme.i), asmb->accu_len);
+					norme.i++;
+					break ;
+				}
+				norme.i++;
+			}
+		}
+		else
+			return (ft_error("contains non-LABEL_CHARS", -1));
+	}
+	return (norme.i);
 }
 
 int				parse_instruction(t_asm *asmb)
@@ -95,19 +74,21 @@ int				parse_instruction(t_asm *asmb)
 	t_op	*op;
 	t_inst	*inst;
 
+	if (check_name_comment(asmb))
+		return (0);
 	remove_comment(asmb->line);
 	if (!(str = ft_strtrim(asmb->line)))
-		return (1);
-	i = check_label_infront(asmb, str);
+		return (ft_error("Failed strtrim", 1));
+	i = check_label_infront(asmb, str, (t_norme){0, 0, is_label(str)});
+	if (i == -1)
+		return (free_str_value(str, 0));
 	if (!str[i])
 		return (free_str_value(str, 1));
-	i = skip_space(str, i);
-	if (!(op = check_inst(str + i)))
+	if (!(op = check_inst(str + skip_space(str, i))))
 		return (free_str_value(str, 0));
 	if (!(inst = create_inst(asmb, op)))
 		return (free_str_value(str, 0));
-	i = skip_nonspace(str, i);
-	i = skip_space(str, i);
+	i = skip_space(str, skip_nonspace(str, i));
 	if (check_param(str + i, op, inst, -1))
 		return (free_str_value(str, free_just_inst(inst, 0)));
 	asmb->accu_len += inst->len;

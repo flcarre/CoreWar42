@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+         #
+#    By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/18 22:57:27 by lutsiara          #+#    #+#              #
-#    Updated: 2020/02/28 00:34:56 by lutsiara         ###   ########.fr        #
+#    Updated: 2020/05/13 16:29:30 by wahasni          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ C_FILENAME 	=	check_param \
 				ft_init \
 				ft_list \
 				ft_skip \
+				ft_inst \
 				get_op \
 				get_param \
 				main \

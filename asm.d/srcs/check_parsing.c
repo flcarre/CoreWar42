@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 18:28:19 by wahasni           #+#    #+#             */
-/*   Updated: 2020/02/27 21:01:00 by wahasni          ###   ########.fr       */
+/*   Updated: 2020/05/13 16:19:18 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,32 @@ static int	check_label(t_inst *inst_list, t_label *labels_list)
 		inst_list = inst_list->next;
 	}
 	return (0);
+}
+
+int			check_name_comment(t_asm *asmb)
+{
+	if (!(asmb->check & HAVE_NAME))
+		return (ft_error("champion has no name", 1));
+	if (!(asmb->check & HAVE_COMMENT))
+		return (ft_error("champion has no comment", 1));
+	return (0);
+}
+
+int			is_label(char *str)
+{
+	int	i;
+	int	n;
+
+	i = 0;
+	n = 0;
+	while (str[i])
+	{
+		if (str[i] == LABEL_CHAR && i > 0)
+			if (ft_strchr(LABEL_CHARS, str[i - 1]))
+				n++;
+		i++;
+	}
+	return (n);
 }
 
 int			check_parsing(t_asm *asmb)

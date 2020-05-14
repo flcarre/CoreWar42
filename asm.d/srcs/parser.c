@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 03:40:50 by wahasni           #+#    #+#             */
-/*   Updated: 2020/02/27 20:59:53 by wahasni          ###   ########.fr       */
+/*   Updated: 2020/05/13 16:32:23 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int		parse(t_asm *asmb)
 {
-	while (get_next_line(asmb->fd, &asmb->line))
+	while (get_next_line(asmb->fd, &asmb->line) > 0)
 	{
 		if (asmb->line[0] == COMMENT_CHAR || asmb->line[0] == ';')
 			;
