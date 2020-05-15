@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_instruction.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 02:20:58 by wahasni           #+#    #+#             */
-/*   Updated: 2020/05/14 13:01:24 by wahasni          ###   ########.fr       */
+/*   Updated: 2020/05/15 16:57:52 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,6 @@ int				parse_instruction(t_asm *asmb)
 	t_op	*op;
 	t_inst	*inst;
 
-	if (check_name_comment(asmb))
-		return (0);
 	remove_comment(asmb->line);
 	if (!(str = ft_strtrim(asmb->line)))
 		return (ft_error("Failed strtrim", 1));
@@ -84,11 +82,13 @@ int				parse_instruction(t_asm *asmb)
 		return (free_str_value(str, 0));
 	if (!str[i])
 		return (free_str_value(str, 1));
-	if (!(op = check_inst(str + skip_space(str, i))))
+	i = skip_space(str, i);
+	if (!(op = check_inst(str + i)))
 		return (free_str_value(str, 0));
 	if (!(inst = create_inst(asmb, op)))
 		return (free_str_value(str, 0));
-	i = skip_space(str, skip_nonspace(str, i));
+	i = skip_nonspace(str, i);
+	i = skip_space(str, i);
 	if (check_param(str + i, op, inst, -1))
 		return (free_str_value(str, free_just_inst(inst, 0)));
 	asmb->accu_len += inst->len;

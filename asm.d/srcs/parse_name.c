@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_name.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 04:02:52 by wahasni           #+#    #+#             */
-/*   Updated: 2020/05/14 12:48:52 by wahasni          ###   ########.fr       */
+/*   Updated: 2020/05/15 15:41:28 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ static int	handle_name(t_asm *asmb, char **line)
 		if (ft_strlen(asmb->prog_name) - 1 > PROG_NAME_LENGTH)
 			return (ft_error("champion name too long", 1));
 	}
-	*line = tmp;
-	return (0);
+	return (((*line = tmp) == NULL) ? \
+		ft_error("There isnt '\"' at the end of the name", 1) : 0);
 }
 
 int			parse_name(t_asm *asmb)
@@ -77,7 +77,7 @@ int			parse_name(t_asm *asmb)
 	int		n_len;
 	char	*line;
 
-	line = asmb->line + ft_strspn(asmb->line, " \t");
+	line = asmb->line + ft_strspn(asmb->line, "\" \t");
 	n_len = ft_strcspn(line, " \t");
 	n_start = n_len + ft_strspn(line + n_len, " \t");
 	remove_comment(line);
@@ -97,5 +97,5 @@ int			parse_name(t_asm *asmb)
 		return (ft_error("Champion name too long", 1));
 	ft_strlcat(asmb->prog_name, line, n_len + 1);
 	asmb->check |= HAVE_NAME;
-	return (0);
+	return (asmb->inst ? (ft_error("champion has no name or comment", 1)) : 0);
 }

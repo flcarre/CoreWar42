@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+         #
+#    By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/18 22:57:27 by lutsiara          #+#    #+#              #
-#    Updated: 2020/05/13 16:29:30 by wahasni          ###   ########.fr        #
+#    Updated: 2020/05/15 14:29:39 by lutsiara         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ../asm
 
-FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra -fsanitize=address,undefined -g3
 CC = gcc $(FLAGS)
 SRC_PATH = srcs/
 OBJ_PATH = srcs/

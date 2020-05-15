@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_comment.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 02:04:51 by wahasni           #+#    #+#             */
-/*   Updated: 2020/05/14 12:52:04 by wahasni          ###   ########.fr       */
+/*   Updated: 2020/05/15 15:41:23 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,8 @@ static int	handle_comment(t_asm *asmb, char **line)
 		if (ft_strlen(asmb->prog_comment) - 1 > COMMENT_LENGTH)
 			return (ft_error("comment too long", 1));
 	}
-	*line = tmp;
-	return (0);
+	return (((*line = tmp) == NULL) ? \
+		ft_error("There isnt '\"' at the end of the comment", 1) : 0);
 }
 
 int			parse_comment(t_asm *asmb)
@@ -97,5 +97,5 @@ int			parse_comment(t_asm *asmb)
 		return (ft_error("comment too long", 1));
 	ft_strlcat(asmb->prog_comment, line, n_len + 1);
 	asmb->check |= HAVE_COMMENT;
-	return (0);
+	return (asmb->inst ? (ft_error("champion has no name or comment", 1)) : 0);
 }
