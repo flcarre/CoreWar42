@@ -6,11 +6,22 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 04:02:52 by wahasni           #+#    #+#             */
-/*   Updated: 2020/05/15 19:15:25 by wahasni          ###   ########.fr       */
+/*   Updated: 2020/05/15 20:22:39 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+char		*find_dquote(t_asm *asmb, int n_start)
+{
+	n_start = 5;
+	while (ft_isspace(asmb->line[n_start]))
+		n_start++;
+	if (asmb->line[n_start] == '"')
+		return (&asmb->line[n_start + 1]);
+	else
+		return (NULL);
+}
 
 static int	end_line(char *line, int n_len)
 {
@@ -73,19 +84,14 @@ static int	handle_name(t_asm *asmb, char **line)
 
 int			parse_name(t_asm *asmb)
 {
-	int		n_start;
 	int		n_len;
 	char	*line;
 
-	line = asmb->line + ft_strspn(asmb->line, "\" \t");
-	n_len = ft_strcspn(line, " \t");
-	n_start = n_len + ft_strspn(line + n_len, " \t");
+	if (!(line = find_dquote(asmb, 0)))
+		return (ft_error("There isnt '\"' at the beginning of the name", 1));
 	remove_comment(line);
 	if (asmb->check & HAVE_NAME)
 		return (ft_error("Champion already has a name", 1));
-	if (line[n_start] != '"')
-		return (ft_error("There isnt '\"' at the beginning of the name", 1));
-	line += n_start + 1;
 	if (handle_name(asmb, &line))
 		return (1);
 	n_len = ft_strchrindex(line, '"');
@@ -101,5 +107,4 @@ int			parse_name(t_asm *asmb)
 		return (0);
 	else
 		return (ft_error("champion has no name or comment", 1));
-	// return (asmb->inst ? (ft_error("champion has no name or comment", 1)) : 0);
 }
