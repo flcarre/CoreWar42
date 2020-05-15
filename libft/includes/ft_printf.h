@@ -6,7 +6,7 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/12 18:07:32 by lutsiara          #+#    #+#             */
-/*   Updated: 2019/05/24 18:56:52 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/05/15 21:54:05 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ typedef struct				s_id
 	char					id[10];
 }							t_id;
 
-int							ft_printf(const char *format, ...);
+/*
+**int							ft_printf(const char *format, ...);
+*/
+
 int							ft_converter(char **fmt, va_list args, int *r);
 void						ft_parse(t_id *e, char **f, va_list args);
 int							ft_idisnull(t_id *e);

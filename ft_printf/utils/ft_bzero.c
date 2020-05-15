@@ -1,25 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/22 16:26:07 by wahasni           #+#    #+#             */
-/*   Updated: 2020/05/15 21:03:09 by lutsiara         ###   ########.fr       */
+/*   Created: 2018/11/12 16:00:05 by wahasni           #+#    #+#             */
+/*   Updated: 2019/05/08 14:56:06 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm.h"
+#include "ft_printf.h"
 
-char	*ft_error_str(char *str, char *ret)
+void	ft_bzero(void *s, size_t n)
 {
-	ft_printf("{red}%s{reset}\n", str);
-	return (ret);
-}
-
-int		ft_error(char *str, int ret)
-{
-	ft_printf("{red}%s{reset}\n", str);
-	return (ret);
+	ft_memset(s, 0, n);
 }

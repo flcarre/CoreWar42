@@ -6,7 +6,7 @@
 #    By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/18 16:35:34 by lutsiara          #+#    #+#              #
-#    Updated: 2020/05/11 18:16:04 by lutsiara         ###   ########.fr        #
+#    Updated: 2020/05/15 21:32:18 by lutsiara         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ OBJ_PATH = srcs/
 INC_PATH = includes/
 INC = -I
 INCLUDES = $(INC_PATH) ../$(INC_LIB_PATH)
-LIB = ../$(LIBFT)
+LIB = ../$(LIBFT) ../$(FTPRINTF)
 SRC_SUFFIX = .c
 H_SUFFIX = .h
 

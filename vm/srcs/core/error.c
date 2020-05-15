@@ -6,7 +6,7 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/08 13:22:13 by flcarre           #+#    #+#             */
-/*   Updated: 2020/05/11 14:06:27 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/05/15 21:02:14 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,18 @@ void		ft_free_machine(t_vm *vm)
 static void	ft_print_helper_war(void)
 {
 	ft_printf("\n");
-	ft_printf("%{RED}\t       .----.-----.-----.-----.%{}\n");
-	ft_printf("%{RED}\t      /      \\     \\ %{}    \\     \\\n");
-	ft_printf("%{RED}\t     |  \\/%{}    |     |   __L_____L__\n");
-	ft_printf("%{RED}\t     |   |%{}    |     |  (           \\\n");
+	ft_printf("{red}\t       .----.-----.-----.-----.{reset}\n");
+	ft_printf("{red}\t      /      \\     \\ {reset}    \\     \\\n");
+	ft_printf("{red}\t     |  \\/{reset}    |     |   __L_____L__\n");
+	ft_printf("{red}\t     |   |{reset}    |     |  (           \\\n");
 	ft_printf("\t     |    \\___/    /    \\______/    |\n");
 	ft_printf("\t     |        \\___/\\___/\\___/       |\n");
 	ft_printf("\t      \\      \\     /               /\n");
 	ft_printf("\t       |                        __/\n");
-	ft_printf("%{RED}\t        \\_ %{}                  __/\n");
-	ft_printf("%{RED}\t          |  %{}      |         |\n");
-	ft_printf("%{RED}\t          |   %{}               |\n");
-	ft_printf("%{RED}\t          |   %{}               |\n\n");
+	ft_printf("{red}\t        \\_ {reset}                  __/\n");
+	ft_printf("{red}\t          |  {reset}      |         |\n");
+	ft_printf("{red}\t          |   {reset}               |\n");
+	ft_printf("{red}\t          |   {reset}               |\n\n");
 }
 
 void		ft_print_helper(void)
@@ -50,8 +50,8 @@ void		ft_print_helper(void)
 	ft_printf("\n> ./corewar [-v] cycle_refresh [[-dump] nbr_cycles] ");
 	ft_printf("[[-n number] champion1.cor] ...\n\n");
 	ft_print_helper_war();
-	ft_printf("%{ORANGE}\t------:\t\tOPTIONS\t\t");
-	ft_printf(":------%{}\n\n\t-v      ");
+	ft_printf("{yellow}\t------:\t\tOPTIONS\t\t");
+	ft_printf(":------{reset}\n\n\t-v      ");
 	ft_printf("Visualization.\n\t        Example: ./corewar -v 500 champ1.cor");
 	ft_printf(" champ2.cor\n\n\t-n      Player number selection.\n\t        ");
 	ft_printf("Example: > ./corewar -n 4 champ1.cor -n 2 champ2.cor\n        ");
@@ -74,7 +74,7 @@ static void	ft_init_error_extend(int error)
 	}
 	if (error == VIS_ERROR)
 		ft_printf("Invalid Value For Visualization Refresh Rate.\n");
-	ft_printf("\n%{}");
+	ft_printf("\n{reset}");
 	if (error != ALLOC_ERROR)
 		ft_print_helper();
 }
@@ -82,7 +82,7 @@ static void	ft_init_error_extend(int error)
 int			ft_init_error(int error, t_vm *vm)
 {
 	ft_free_machine(vm);
-	ft_printf("%{RED}\n -> ");
+	ft_printf("{red}\n -> ");
 	if (error == OPTION_ERROR)
 		ft_printf("Invalid option(s).\n");
 	if (error == PLAYER_NUMBER_ERROR)

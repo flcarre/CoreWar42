@@ -6,7 +6,7 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/21 17:59:38 by lutsiara          #+#    #+#             */
-/*   Updated: 2020/02/27 20:44:14 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/05/15 20:49:25 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define VM_H
 
 # include "libft.h"
-# include "ft_printf.h"
+# include "../../ft_printf/includes/ft_printf.h"
 # include "op.h"
 # include <ncurses.h>
 # include "visual.h"

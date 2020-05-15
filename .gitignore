@@ -1,3 +1,6 @@
 *.o
 .DS_Store
 libft.a
+libftprintf.a
+asm
+corewar

@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   ft_str_toupper.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/22 16:26:07 by wahasni           #+#    #+#             */
-/*   Updated: 2020/05/15 21:03:09 by lutsiara         ###   ########.fr       */
+/*   Created: 2019/02/28 17:05:38 by wahasni           #+#    #+#             */
+/*   Updated: 2019/05/08 14:56:36 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm.h"
+#include "ft_printf.h"
 
-char	*ft_error_str(char *str, char *ret)
+char	*to_upper(char *str)
 {
-	ft_printf("{red}%s{reset}\n", str);
-	return (ret);
-}
+	int i;
 
-int		ft_error(char *str, int ret)
-{
-	ft_printf("{red}%s{reset}\n", str);
-	return (ret);
+	i = 0;
+	while (str[i] != '\0')
+	{
+		if (str[i] >= 97 && str[i] <= 122)
+			str[i] = str[i] - 32;
+		i++;
+	}
+	return (str);
 }

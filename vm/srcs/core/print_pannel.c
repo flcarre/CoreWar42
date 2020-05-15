@@ -6,7 +6,7 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 15:57:53 by lutsiara          #+#    #+#             */
-/*   Updated: 2020/02/28 00:10:07 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/05/15 21:48:53 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,19 @@ static void	ft_pannel_line(char *line)
 	char pannel[60];
 
 	ft_bzero(pannel, 60);
-	ft_printf(ft_strcat(ft_strcpy(pannel, "          "), line));
+	ft_printf("%s", ft_strcat(ft_strcpy(pannel, "          "), line));
 }
 
 static void	ft_print_war(int line)
 {
 	if (line == 2)
-		ft_printf("%{RED}\t\t       .----.-----.-----.-----.%{}");
+		ft_printf("{red}\t\t       .----.-----.-----.-----.{reset}");
 	else if (line == 3)
-		ft_printf("%{RED}\t\t      /      \\     \\ %{}    \\     \\");
+		ft_printf("{red}\t\t      /      \\     \\ {reset}    \\     \\");
 	else if (line == 4)
-		ft_printf("%{RED}\t\t     |  \\/%{}    |     |   __L_____L__");
+		ft_printf("{red}\t\t     |  \\/{reset}    |     |   __L_____L__");
 	else if (line == 5)
-		ft_printf("%{RED}\t\t     |   |%{}    |     |  (           \\");
+		ft_printf("{red}\t\t     |   |{reset}    |     |  (           \\");
 	else if (line == 6)
 		ft_printf("\t\t     |    \\___/    /    \\______/    |");
 	else if (line == 7)
@@ -39,20 +39,20 @@ static void	ft_print_war(int line)
 	else if (line == 9)
 		ft_printf("\t\t       |                        __/");
 	else if (line == 10)
-		ft_printf("%{RED}\t\t        \\_ %{}                  __/");
+		ft_printf("{red}\t\t        \\_ {reset}                  __/");
 	else if (line == 11)
-		ft_printf("%{RED}\t\t          |  %{}      |         |");
+		ft_printf("{red}\t\t          |  {reset}      |         |");
 	else if (line == 12)
-		ft_printf("%{RED}\t\t          |   %{}               |");
+		ft_printf("{red}\t\t          |   {reset}               |");
 	else if (line == 13)
-		ft_printf("%{RED}\t\t          |   %{}               |");
+		ft_printf("{red}\t\t          |   {reset}               |");
 }
 
 void		ft_print_pannel_extend_extend(t_vm *vm, int line)
 {
 	if (line == 30)
 	{
-		ft_printf("        %-25s %{YELLOW}%d%{}", "  Lives since check:",
+		ft_printf("        %-25s {yellow}%d{reset}", "  Lives since check:",
 				vm->lives_since_check);
 	}
 	if (line == 24)
@@ -77,7 +77,7 @@ void		ft_print_pannel_extend(t_vm *vm, int line, int *players)
 		if (vm->live_tab[*players] != -1)
 		{
 			i = ft_get_player_color(vm, vm->live_tab[*players]);
-			ft_printf("          %s (%d) has called Live!%{}",
+			ft_printf("          %s (%d) has called Live!{reset}",
 					vm->player[i].name, vm->player[i].id);
 		}
 		(*players)++;
@@ -87,7 +87,7 @@ void		ft_print_pannel_extend(t_vm *vm, int line, int *players)
 
 void		print_pannel(t_vm *vm, int line, int *players)
 {
-	ft_printf("%{}     |");
+	ft_printf("{reset}     |");
 	if (line < 14)
 		ft_print_war(line);
 	else if (line == 17)

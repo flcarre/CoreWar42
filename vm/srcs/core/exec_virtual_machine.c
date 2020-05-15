@@ -6,7 +6,7 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/21 18:35:11 by lutsiara          #+#    #+#             */
-/*   Updated: 2020/04/22 22:33:14 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/05/15 21:04:21 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ static void	ft_introduce_players(t_vm *vm)
 				vm->player[i].comment);
 		tracer = tracer->next;
 	}
-	ft_printf("%{RED}\nLEEEEEEEEET'S GEEEET");
-	ft_printf(" REAAAADDDDYY TOOO RUUUUUUMBLEEEEEE!%{}\n\n");
+	ft_printf("{red}\nLEEEEEEEEET'S GEEEET");
+	ft_printf(" REAAAADDDDYY TOOO RUUUUUUMBLEEEEEE!{reset}\n\n");
 }
 
 int			ft_exec_machine(t_vm *vm)

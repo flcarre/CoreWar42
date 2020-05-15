@@ -1,25 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   ft_strlenp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/22 16:26:07 by wahasni           #+#    #+#             */
-/*   Updated: 2020/05/15 21:03:09 by lutsiara         ###   ########.fr       */
+/*   Created: 2018/11/08 11:22:07 by wahasni           #+#    #+#             */
+/*   Updated: 2020/05/15 21:58:19 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm.h"
+#include "ft_printf.h"
 
-char	*ft_error_str(char *str, char *ret)
+size_t	ft_wstrlenp(wchar_t *s)
 {
-	ft_printf("{red}%s{reset}\n", str);
-	return (ret);
+	int i;
+
+	i = 0;
+	while (*s != L'\0')
+	{
+		i += w_charlen(*s);
+		s++;
+	}
+	return (i);
 }
 
-int		ft_error(char *str, int ret)
+size_t	ft_strlenp(const char *s)
 {
-	ft_printf("{red}%s{reset}\n", str);
-	return (ret);
+	int i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
 }

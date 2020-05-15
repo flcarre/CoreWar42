@@ -1,25 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/22 16:26:07 by wahasni           #+#    #+#             */
-/*   Updated: 2020/05/15 21:03:09 by lutsiara         ###   ########.fr       */
+/*   Created: 2018/11/08 14:39:34 by wahasni           #+#    #+#             */
+/*   Updated: 2020/05/15 21:58:19 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm.h"
+#include "ft_printf.h"
 
-char	*ft_error_str(char *str, char *ret)
+void	ft_putstr_fd(char const *s, int fd)
 {
-	ft_printf("{red}%s{reset}\n", str);
-	return (ret);
-}
-
-int		ft_error(char *str, int ret)
-{
-	ft_printf("{red}%s{reset}\n", str);
-	return (ret);
+	if (s)
+		write(fd, s, ft_strlenp(s));
 }

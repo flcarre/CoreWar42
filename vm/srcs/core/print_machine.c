@@ -6,7 +6,7 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 15:59:21 by lutsiara          #+#    #+#             */
-/*   Updated: 2020/04/22 18:08:46 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/05/15 21:09:02 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,21 @@ static void	ft_print_bytes(t_vm *vm, int i)
 
 	color = vm->owner[i] % 8;
 	if (color == 0)
-		ft_printf("%{}%02x ", vm->mem[i]);
+		ft_printf("{reset}%02x ", vm->mem[i]);
 	else if (color == 1)
-		ft_printf("%{RED}%02x ", vm->mem[i]);
+		ft_printf("{red}%02x ", vm->mem[i]);
 	else if (color == 2)
-		ft_printf("%{GREEN}%02x ", vm->mem[i]);
+		ft_printf("{green}%02x ", vm->mem[i]);
 	else if (color == 3)
-		ft_printf("%{PURPLE}%02x ", vm->mem[i]);
+		ft_printf("{violet}%02x ", vm->mem[i]);
 	else if (color == 4)
-		ft_printf("%{BLUE}%02x ", vm->mem[i]);
+		ft_printf("{blue}%02x ", vm->mem[i]);
 	else if (color == 5)
-		ft_printf("%{YELLOW}%02x ", vm->mem[i]);
+		ft_printf("{yellow}%02x ", vm->mem[i]);
 	else if (color == 6)
-		ft_printf("%{CYAN}%02x ", vm->mem[i]);
+		ft_printf("{cyan}%02x ", vm->mem[i]);
 	else if (color == 7)
-		ft_printf("%{ORANGE}%02x ", vm->mem[i]);
+		ft_printf("{white}%02x ", vm->mem[i]);
 }
 
 /*
@@ -94,7 +94,7 @@ int			ft_print_arena(t_vm *vm)
 		ft_print_bytes(vm, i);
 		i++;
 	}
-	ft_printf("%{}     |\n");
+	ft_printf("{reset}     |\n");
 	return (0);
 }
 

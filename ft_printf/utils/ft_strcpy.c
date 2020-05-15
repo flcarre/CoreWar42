@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_error.c                                         :+:      :+:    :+:   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/22 16:26:07 by wahasni           #+#    #+#             */
-/*   Updated: 2020/05/15 21:03:09 by lutsiara         ###   ########.fr       */
+/*   Created: 2018/11/08 11:20:11 by wahasni           #+#    #+#             */
+/*   Updated: 2019/05/08 14:56:48 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "asm.h"
+#include "ft_printf.h"
 
-char	*ft_error_str(char *str, char *ret)
+char	*ft_strcpy(char *dest, const char *src)
 {
-	ft_printf("{red}%s{reset}\n", str);
-	return (ret);
-}
+	int i;
 
-int		ft_error(char *str, int ret)
-{
-	ft_printf("{red}%s{reset}\n", str);
-	return (ret);
+	i = 0;
+	while (src[i])
+	{
+		dest[i] = src[i];
+		i++;
+	}
+	dest[i] = '\0';
+	return (dest);
 }

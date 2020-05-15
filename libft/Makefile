@@ -6,7 +6,7 @@
 #    By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/06 17:06:41 by lutsiara          #+#    #+#              #
-#    Updated: 2020/02/28 00:34:43 by lutsiara         ###   ########.fr        #
+#    Updated: 2020/05/15 21:54:09 by lutsiara         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -137,7 +137,6 @@ C_FILENAME = ft_atoi \
 			 ft_ld_ldiglen \
 			 ft_ull \
 			 ft_udigitlen \
-			 ft_printf \
 			 ft_parse \
 			 ft_converter \
 			 ft_dorounding \
