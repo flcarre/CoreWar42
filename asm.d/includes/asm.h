@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/19 21:26:10 by hasni             #+#    #+#             */
-/*   Updated: 2020/05/13 17:09:17 by wahasni          ###   ########.fr       */
+/*   Updated: 2020/05/15 19:08:49 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct		s_asm
 	char			prog_comment[COMMENT_LENGTH + 1];
 	char			check;
 	char			have_quote;
+	int				lab;
 	int				accu_len;
 	t_inst			*inst;
 	t_label			*labels;

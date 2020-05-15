@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_name.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 04:02:52 by wahasni           #+#    #+#             */
-/*   Updated: 2020/05/15 15:41:28 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/05/15 19:15:25 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,9 @@ int			parse_name(t_asm *asmb)
 		return (ft_error("Champion name too long", 1));
 	ft_strlcat(asmb->prog_name, line, n_len + 1);
 	asmb->check |= HAVE_NAME;
-	return (asmb->inst ? (ft_error("champion has no name or comment", 1)) : 0);
+	if (!asmb->inst && !asmb->lab)
+		return (0);
+	else
+		return (ft_error("champion has no name or comment", 1));
+	// return (asmb->inst ? (ft_error("champion has no name or comment", 1)) : 0);
 }

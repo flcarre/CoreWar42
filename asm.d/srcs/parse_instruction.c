@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_instruction.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 02:20:58 by wahasni           #+#    #+#             */
-/*   Updated: 2020/05/15 16:57:52 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/05/15 19:09:19 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ static int		check_label_infront(t_asm *asmb, char *str, t_norme norme)
 		else
 			return (ft_error("contains non-LABEL_CHARS", -1));
 	}
+	if (norme.i > 0)
+		asmb->lab = 1;
 	return (norme.i);
 }
 
