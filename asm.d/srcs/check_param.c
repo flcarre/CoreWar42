@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_param.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/29 02:32:56 by wahasni           #+#    #+#             */
-/*   Updated: 2020/05/15 16:58:56 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/05/16 12:52:57 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,17 +50,17 @@ int				check_param(char *str, t_op *op, t_inst *inst, int i)
 	char	type;
 
 	if (!(arr = ft_strsplit(str, SEPARATOR_CHAR)))
-		return (ft_error("ft_strsplit failed0", 1));
+		return (ft_error("ft_strsplit failed", 1));
 	if (check_param_num(str, arr, op->param_num))
 		return (free_tab(arr, 1));
 	while (++i < op->param_num)
 	{
 		if (!(tmp = ft_strtrim(arr[i])))
-			return (ft_error("ft_strtrim failed1", free_tab(arr, 1)));
+			return (ft_error("ft_strtrim failed", free_tab(arr, 1)));
 		ft_strdel(&arr[i]);
 		arr[i] = tmp;
 		if (!(type = get_param_type(arr[i], inst, i)))
-			return (ft_error("ft_strtrim failed2", free_tab(arr, 1)));
+			return (ft_error("ft_strtrim failed", free_tab(arr, 1)));
 		if (!(type & op->param_type[i]))
 			return (ft_error("arguments have wrong type", free_tab(arr, 1)));
 		if (check_type(arr[i], type))
