@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 04:02:52 by wahasni           #+#    #+#             */
-/*   Updated: 2020/05/15 20:22:39 by wahasni          ###   ########.fr       */
+/*   Updated: 2020/05/16 14:09:34 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,12 @@
 
 char		*find_dquote(t_asm *asmb, int n_start)
 {
-	n_start = 5;
+	int	i;
+
+	i = 0;
+	while (ft_isspace(asmb->line[i]))
+		i++;
+	n_start = 5 + i;
 	while (ft_isspace(asmb->line[n_start]))
 		n_start++;
 	if (asmb->line[n_start] == '"')

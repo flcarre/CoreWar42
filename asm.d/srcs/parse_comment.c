@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 02:04:51 by wahasni           #+#    #+#             */
-/*   Updated: 2020/05/15 20:25:15 by wahasni          ###   ########.fr       */
+/*   Updated: 2020/05/16 14:45:33 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,12 @@
 
 static char	*find_dquote(t_asm *asmb, int n_start)
 {
-	n_start = 8;
+	int	i;
+
+	i = 0;
+	while (ft_isspace(asmb->line[i]))
+		i++;
+	n_start = 8 + i;
 	while (ft_isspace(asmb->line[n_start]))
 		n_start++;
 	if (asmb->line[n_start] == '"')
@@ -75,7 +80,7 @@ static int	handle_comment(t_asm *asmb, char **line)
 		ret = get_next_line(asmb->fd, &asmb->line);
 		tmp = asmb->line;
 		remove_comment(tmp);
-		if (ft_strlen(asmb->prog_comment) - 1 > COMMENT_LENGTH)
+		if (ft_strlen(asmb->prog_comment) + 1 > COMMENT_LENGTH)
 			return (ft_error("comment too long", 1));
 	}
 	return (((*line = tmp) == NULL) ? \
