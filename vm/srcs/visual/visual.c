@@ -93,7 +93,6 @@ int	ft_end_visu(t_vm *vm)
 	int		i;
 
 	info = vm->visu->info;
-	x = info->coord.x;
 	y = info->coord.y + 58;
 	i = ft_get_player_color(vm, vm->last_live->id);
 	ft_print_fourth_panel(vm->visu->info, "Press q to quit");
