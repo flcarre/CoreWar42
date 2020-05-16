@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/25 04:02:52 by wahasni           #+#    #+#             */
-/*   Updated: 2020/05/16 14:09:34 by wahasni          ###   ########.fr       */
+/*   Updated: 2020/05/16 15:02:53 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,6 @@ int			parse_name(t_asm *asmb)
 
 	if (!(line = find_dquote(asmb, 0)))
 		return (ft_error("There isnt '\"' at the beginning of the name", 1));
-	remove_comment(line);
 	if (asmb->check & HAVE_NAME)
 		return (ft_error("Champion already has a name", 1));
 	if (handle_name(asmb, &line))

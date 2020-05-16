@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 02:20:58 by wahasni           #+#    #+#             */
-/*   Updated: 2020/05/15 19:09:19 by wahasni          ###   ########.fr       */
+/*   Updated: 2020/05/16 16:02:03 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,16 +31,16 @@ static void		remove_comment(char *str)
 			str[index] = 0;
 }
 
-static int		space(char *str, t_norme norme)
+static int		space(char *str, t_norme *norme)
 {
-	while (ft_isspace(str[norme.i]))
-		norme.i++;
+	while (ft_isspace(str[norme->i]))
+		norme->i++;
 	return (0);
 }
 
 static int		check_label_infront(t_asm *asmb, char *str, t_norme norme)
 {
-	while (norme.nb-- && space(str, norme) == 0)
+	while (norme.nb-- && space(str, &norme) == 0)
 	{
 		if (ft_strchr(LABEL_CHARS, str[norme.i]))
 		{
