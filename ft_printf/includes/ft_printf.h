@@ -6,7 +6,7 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 11:50:32 by wahasni           #+#    #+#             */
-/*   Updated: 2020/05/16 18:02:27 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/05/16 18:09:34 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,143 +121,143 @@ typedef struct	s_color
 	t_f_color	funct;
 }				t_color;
 
-int												ft_printf(const char *format, \
-												...);
-int												ft_dprintf(int fd, \
-												const char *format, ...);
-int												color_to_fct(t_printf *pf);
+int				ft_printf(const char *format, \
+				...);
+int				ft_dprintf(int fd, \
+				const char *format, ...);
+int				color_to_fct(t_printf *pf);
 
 /*
 **----------------------------------- UTILS -------------------------------
 */
 
-size_t											ft_strlenp(const char *str);
-size_t											ft_wstrlenp(wchar_t *s);
-size_t											w_charlen(wint_t wc);
-void											*ft_memset(void *s, int c, \
-												size_t n);
-void											*ft_memcpy(void *dest, \
-												const void *src, size_t n);
-void											ft_bzero(void *s, size_t n);
-void											ft_putstr_fd(char const *s, \
-												int fd);
-char											*ft_strcpy(char *dest, \
-												const char *src);
-char											*to_upper(char *str);
-char											*get_wchar(wint_t wc);
-int												ft_strnequ(char const *s1, \
-												char const *s2, size_t n);
-int												ft_isdigitp(int c);
-int												find_char(char *str, char c);
-int												find_conv(char *str, char c);
-int												isnan(long double nb);
-int												isinf(long double nb);
-int												ft_abs(intmax_t nb);
-int												ft_max(intmax_t a, intmax_t b);
-int												ft_min(intmax_t a, intmax_t b);
-intmax_t										ft_atoip(char *s);
+size_t			ft_strlenp(const char *str);
+size_t			ft_wstrlenp(wchar_t *s);
+size_t			w_charlen(wint_t wc);
+void			*ft_memset(void *s, int c, \
+				size_t n);
+void			*ft_memcpy(void *dest, \
+				const void *src, size_t n);
+void			ft_bzero(void *s, size_t n);
+void			ft_putstr_fd(char const *s, \
+				int fd);
+char			*ft_strcpy(char *dest, \
+				const char *src);
+char			*to_upper(char *str);
+char			*get_wchar(wint_t wc);
+int				ft_strnequ(char const *s1, \
+				char const *s2, size_t n);
+int				ft_isdigitp(int c);
+int				find_char(char *str, char c);
+int				find_conv(char *str, char c);
+int				isnan(long double nb);
+int				isinf(long double nb);
+int				ft_abs(intmax_t nb);
+int				ft_max(intmax_t a, intmax_t b);
+int				ft_min(intmax_t a, intmax_t b);
+intmax_t		ft_atoip(char *s);
 
 /*
 **---------------------------------- OPTIONS -------------------------------
 */
 
-int												parse_arg(t_printf *pf);
+int				parse_arg(t_printf *pf);
 
 /*
 **---------------------------------- CONVERS -------------------------------
 */
 
-int												get_conversion(t_printf *pf);
-int												conv_to_fct(t_printf *pf);
-int												d_conv(t_printf *pf, \
-												intmax_t nb, uintmax_t new);
-int												u_conv(t_printf *pf, \
-												uintmax_t nb);
-int												x_conv(t_printf *pf, \
-												uintmax_t nb);
-int												o_conv(t_printf *pf, \
-												uintmax_t nb);
-int												c_conv(t_printf *pf, char c);
-int												w_conv(t_printf *pf, \
-												wint_t wc);
-int												f_conv(t_printf *pf, \
-												long double nb, int prec);
+int				get_conversion(t_printf *pf);
+int				conv_to_fct(t_printf *pf);
+int				d_conv(t_printf *pf, \
+				intmax_t nb, uintmax_t new);
+int				u_conv(t_printf *pf, \
+				uintmax_t nb);
+int				x_conv(t_printf *pf, \
+				uintmax_t nb);
+int				o_conv(t_printf *pf, \
+				uintmax_t nb);
+int				c_conv(t_printf *pf, char c);
+int				w_conv(t_printf *pf, \
+				wint_t wc);
+int				f_conv(t_printf *pf, \
+				long double nb, int prec);
 
 /*
 **---------------------------------- CASTARG -------------------------------
 */
 
-intmax_t										ft_castint(t_printf *pf);
-uintmax_t										ft_castuint(t_printf *pf);
+intmax_t		ft_castint(t_printf *pf);
+uintmax_t		ft_castuint(t_printf *pf);
 
 /*
 **---------------------------------- PT_FUNCT ------------------------------
 */
 
-int												int_arg(t_printf *pf);
-int												dou_arg(t_printf *pf);
-int												c_arg(t_printf *pf);
-int												s_arg(t_printf *pf);
-int												p_arg(t_printf *pf);
-int												f_arg(t_printf *pf);
-int												pct_arg(t_printf *pf);
-int												not_specifier(t_printf *pf);
-int												man_arg(t_printf *pf);
+int				int_arg(t_printf *pf);
+int				dou_arg(t_printf *pf);
+int				c_arg(t_printf *pf);
+int				s_arg(t_printf *pf);
+int				p_arg(t_printf *pf);
+int				f_arg(t_printf *pf);
+int				pct_arg(t_printf *pf);
+int				not_specifier(t_printf *pf);
+int				man_arg(t_printf *pf);
 
 /*
 **-------------------------------- HANDLE_BUFF -----------------------------
 */
 
-void											reset_struct(t_printf *pf);
-void											reset(t_printf *pf);
-void											check_buff(t_printf *pf);
-int												end(t_printf *pf, int i);
-int												handle_buff(t_printf *pf, \
-												char *str, int i, int n);
+void			reset_struct(t_printf *pf);
+void			reset(t_printf *pf);
+void			check_buff(t_printf *pf);
+int				end(t_printf *pf, int i);
+int				handle_buff(t_printf *pf, \
+				char *str, int i, int n);
 
 /*
 **---------------------------------- PADDING -------------------------------
 */
 
-void											hash_padding(t_printf *pf);
-void											padding(t_printf *pf, \
-												int prec, int len, \
-												uintmax_t nb);
-void											u_padding(t_printf *pf, \
-												int prec, int len, \
-												uintmax_t nb);
-void											min_padding(t_printf *pf, \
-												char c, int len);
-void											char_padding(t_printf *pf, \
-												char c);
-void											f_padding(t_printf *pf, \
-												int prec, int min, \
-												long double nb);
+void			hash_padding(t_printf *pf);
+void			padding(t_printf *pf, \
+				int prec, int len, \
+				uintmax_t nb);
+void			u_padding(t_printf *pf, \
+				int prec, int len, \
+				uintmax_t nb);
+void			min_padding(t_printf *pf, \
+				char c, int len);
+void			char_padding(t_printf *pf, \
+				char c);
+void			f_padding(t_printf *pf, \
+				int prec, int min, \
+				long double nb);
 
 /*
 **----------------------------------- CHECK --------------------------------
 */
 
-int												check_plus(t_printf *pf, \
-												int len, int prec);
-int												check_zero(t_printf *pf, \
-												int len);
-int												check_ohash(t_printf *pf, \
-												int prec);
-int												check_xhash(t_printf *pf, \
-												int prec, int nb);
-uintmax_t										check_neg(t_printf *pf, \
-												intmax_t nb, uintmax_t new);
+int				check_plus(t_printf *pf, \
+				int len, int prec);
+int				check_zero(t_printf *pf, \
+				int len);
+int				check_ohash(t_printf *pf, \
+				int prec);
+int				check_xhash(t_printf *pf, \
+				int prec, int nb);
+uintmax_t		check_neg(t_printf *pf, \
+				intmax_t nb, uintmax_t new);
 
 /*
 **---------------------------------- NUMBERS -------------------------------
 */
 
-int												ft_nbrlen(uintmax_t nb, \
-												intmax_t base);
-char											*ft_lltoa_base(uintmax_t nb, \
-												intmax_t base);
-long double										ft_round(t_printf *pf, \
-												long double nb, int prec);
+int				ft_nbrlen(uintmax_t nb, \
+				intmax_t base);
+char			*ft_lltoa_base(uintmax_t nb, \
+				intmax_t base);
+long double		ft_round(t_printf *pf, \
+				long double nb, int prec);
 
 #endif
