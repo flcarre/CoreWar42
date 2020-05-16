@@ -6,7 +6,7 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 11:50:32 by wahasni           #+#    #+#             */
-/*   Updated: 2020/05/16 17:55:43 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/05/16 18:02:27 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ typedef struct	s_color
 	t_f_color	funct;
 }				t_color;
 
-__attribute__ ((__format__(printf, 1, 2))) int	ft_printf(const char *format, \
+int												ft_printf(const char *format, \
 												...);
 int												ft_dprintf(int fd, \
 												const char *format, ...);
