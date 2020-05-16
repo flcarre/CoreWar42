@@ -14,16 +14,11 @@
 
 int	ft_visual(t_vm *vm)
 {
-	t_visu	*visu;
-
+	vm->visu = ft_init_visu();
+	if (vm->visu == NULL)
+		return (ALLOC_ERROR);
 	initscr();
 	timeout(0);
-	visu = ft_init_visu(vm);
-	if (visu == NULL)
-	{
-		ft_exit_visu(vm->visu);
-		return (ALLOC_ERROR);
-	}
 	curs_set(FALSE);
 	noecho();
 	if (has_colors() == FALSE)
@@ -32,7 +27,7 @@ int	ft_visual(t_vm *vm)
 		ft_printf("Your terminal does not support color\n");
 		return (VIS_ERROR);
 	}
-	ft_init(vm, visu);
+	ft_init(vm, vm->visu);
 	if (ft_pause(vm) == END_GAME)
 	{
 		ft_exit_visu(vm->visu);
