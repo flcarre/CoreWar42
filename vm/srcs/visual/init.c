@@ -12,28 +12,26 @@
 
 #include "vm.h"
 
-t_visu		*ft_init_visu(t_vm *vm)
+t_visu		*ft_init_visu(void)
 {
 	t_visu	*visu;
-	t_win	*arena;
-	t_win	*info;
 
 	visu = (t_visu *)malloc(sizeof(t_visu));
-	vm->visu = visu;
-	arena = (t_win *)malloc(sizeof(t_win));
-	info = (t_win *)malloc(sizeof(t_win));
-	if (visu == NULL || arena == NULL || info == NULL)
+	if (visu == NULL)
 		return (NULL);
-	arena->dim.lines = 67;
-	arena->dim.cols = 203;
-	arena->coord.x = 0;
-	arena->coord.y = 0;
-	info->dim.lines = arena->dim.lines;
-	info->dim.cols = 60;
-	info->coord.x = arena->dim.cols;
-	info->coord.y = 0;
-	visu->arena = arena;
-	visu->info = info;
+	visu->arena = ft_struct_arena();
+	if (visu->arena == NULL)
+	{
+		free(visu);
+		return (NULL);
+	}
+	visu->info = ft_struct_info();
+	if (visu->info == NULL)
+	{
+		free(visu->arena);
+		free(visu);
+		return (NULL);
+	}
 	visu->cps = 40;
 	return (visu);
 }

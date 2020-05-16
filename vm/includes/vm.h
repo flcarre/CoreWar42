@@ -194,7 +194,9 @@ int				ft_get_player_color(t_vm *vm, int players);
 
 int				ft_visual(t_vm *vm);
 int				ft_refresh_visu(t_vm *vm);
-t_visu			*ft_init_visu(t_vm *vm);
+t_win			*ft_struct_arena(void);
+t_win			*ft_struct_info(void);
+t_visu			*ft_init_visu(void);
 void			ft_init_arena(t_visu *visu, t_vm *vm, int *color_p);
 void			ft_init_panel(t_visu *visu, t_vm *vm);
 void			ft_init(t_vm *vm, t_visu *visu);
