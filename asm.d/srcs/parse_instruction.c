@@ -6,11 +6,18 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/28 02:20:58 by wahasni           #+#    #+#             */
-/*   Updated: 2020/05/15 19:09:19 by wahasni          ###   ########.fr       */
+/*   Updated: 2020/05/16 16:29:18 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "asm.h"
+
+static int		assign_lab(int ret, t_asm *asmb)
+{
+	if (ret > 0)
+		asmb->lab = 1;
+	return (ret);
+}
 
 static void		remove_comment(char *str)
 {
@@ -31,16 +38,16 @@ static void		remove_comment(char *str)
 			str[index] = 0;
 }
 
-static int		space(char *str, t_norme norme)
+static int		space(char *str, t_norme *norme)
 {
-	while (ft_isspace(str[norme.i]))
-		norme.i++;
+	while (ft_isspace(str[norme->i]))
+		norme->i++;
 	return (0);
 }
 
 static int		check_label_infront(t_asm *asmb, char *str, t_norme norme)
 {
-	while (norme.nb-- && space(str, norme) == 0)
+	while (norme.nb-- && space(str, &norme) == 0)
 	{
 		if (ft_strchr(LABEL_CHARS, str[norme.i]))
 		{
@@ -64,9 +71,7 @@ static int		check_label_infront(t_asm *asmb, char *str, t_norme norme)
 		else
 			return (ft_error("contains non-LABEL_CHARS", -1));
 	}
-	if (norme.i > 0)
-		asmb->lab = 1;
-	return (norme.i);
+	return (assign_lab(norme.i, asmb));
 }
 
 int				parse_instruction(t_asm *asmb)
