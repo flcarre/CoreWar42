@@ -6,7 +6,7 @@
 /*   By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 12:34:13 by wahasni           #+#    #+#             */
-/*   Updated: 2020/05/15 21:40:28 by lutsiara         ###   ########.fr       */
+/*   Updated: 2020/05/16 17:31:56 by lutsiara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,8 @@ int		handle_buff(t_printf *pf, char *str, int i, int n)
 	len = n - i;
 	if (pf->index + len >= PBUFF_SIZE - 1)
 	{
-		ft_memcpy(&pf->buff[pf->index], &str[i], ((PBUFF_SIZE - 1) - pf->index));
+		ft_memcpy(&pf->buff[pf->index], &str[i], \
+		((PBUFF_SIZE - 1) - pf->index));
 		i += (PBUFF_SIZE - 1) - pf->index;
 		reset(pf);
 		handle_buff(pf, str, i, n);
