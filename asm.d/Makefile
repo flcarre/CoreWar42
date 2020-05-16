@@ -6,7 +6,7 @@
 #    By: lutsiara <lutsiara@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/18 22:57:27 by lutsiara          #+#    #+#              #
-#    Updated: 2020/05/15 21:33:28 by lutsiara         ###   ########.fr        #
+#    Updated: 2020/05/16 16:18:57 by lutsiara         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,7 @@ WHITE = "\\033[0m"
 GREEN = "\\033[32m"
 
 EOLCLR = "\\033[0K"
-CHECK = "\\xE2\\x9C\\x94"
+CHECK = "✓"
 OK = "$(CHECK)$(WHITE)"
 
 $(NAME): $(OBJ) $(H_FILES) $(SRC) $(LIB)
